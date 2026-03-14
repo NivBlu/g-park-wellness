@@ -3,140 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G PARK WELLNESS | רמת השרון</title>
-    <meta name="description" content="מתחם מגורים יוקרתי עם חוויית Wellness ברמת השרון">
+    <title>G PARK WELLNESS - רמת השרון</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Heebo:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
+            --cream: #FAF8F5;
+            --white: #FFFFFF;
+            --white-warm: #F5F3EF;
+            --ivory: #FDFBF7;
             --gold: #C9A962;
             --gold-light: #E5D4A1;
-            --gold-dark: #A88B45;
-            --charcoal: #1A1A1A;
-            --charcoal-light: #2D2D2D;
-            --cream: #F9F7F4;
-            --cream-warm: #F0EDE8;
-            --stone: #6B6B6B;
-            --white: #FFFFFF;
+            --gold-dark: #9A7B3A;
+            --black: #1A1A1A;
+            --black-soft: #2D2D2D;
+            --gray: #666666;
+            --gray-light: #999999;
             --shadow-soft: 0 4px 30px rgba(0,0,0,0.06);
             --shadow-medium: 0 10px 40px rgba(0,0,0,0.1);
-            --shadow-lift: 0 20px 60px rgba(0,0,0,0.12);
-            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow-luxury: 0 20px 60px rgba(0,0,0,0.12);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
-        body {
-            font-family: 'Assistant', sans-serif;
-            background: var(--white);
-            color: var(--charcoal);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Italiana', serif;
-            font-weight: 400;
-            letter-spacing: 0.02em;
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes gentleFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
+        body { font-family: 'Heebo', sans-serif; background: var(--cream); color: var(--black); line-height: 1.8; overflow-x: hidden; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .cinzel { font-family: 'Cinzel', serif; }
+        
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1.25rem 3rem;
+            padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(26,26,26,0.7), transparent);
-            transition: var(--transition-smooth);
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+            transition: all 0.5s ease;
         }
-
         nav.scrolled {
-            background: rgba(255,255,255,0.97);
+            background: rgba(255,255,255,0.98);
             backdrop-filter: blur(20px);
-            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 40px rgba(0,0,0,0.06);
+            padding: 1rem 4rem;
         }
-
-        nav.scrolled .logo { height: 45px; }
-        nav.scrolled .nav-link { color: var(--charcoal); }
-        nav.scrolled .nav-cta { background: var(--charcoal); color: var(--white); }
-
-        .logo {
-            height: 55px;
-            width: auto;
-            object-fit: contain;
-            transition: var(--transition-smooth);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 2.5rem;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 400;
-            transition: var(--transition-smooth);
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--gold);
-            transition: var(--transition-smooth);
-        }
-
-        .nav-link:hover::after { width: 100%; }
-
+        .logo { height: 50px; width: auto; transition: height 0.3s ease; }
+        nav.scrolled .logo { height: 40px; }
         .nav-cta {
-            background: var(--gold);
-            color: var(--charcoal);
-            padding: 0.85rem 2rem;
-            border: none;
-            border-radius: 4px;
-            font-family: 'Assistant', sans-serif;
+            background: transparent;
+            border: 1.5px solid var(--gold);
+            color: var(--gold);
+            padding: 0.7rem 2rem;
+            font-family: 'Heebo', sans-serif;
             font-size: 0.9rem;
             font-weight: 500;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.4s ease;
             text-decoration: none;
+            letter-spacing: 1px;
         }
-
-        .nav-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
+        .nav-cta:hover { background: var(--gold); color: white; }
 
         .hero {
             min-height: 100vh;
@@ -150,637 +85,710 @@
             background: url('images/hero-rendering.jpg') center/cover no-repeat;
             background-attachment: fixed;
         }
-
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(26,26,26,0.5) 0%, rgba(26,26,26,0.35) 40%, rgba(26,26,26,0.5) 100%);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.2) 40%, rgba(0,0,0,0.5) 100%);
         }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 900px;
-            animation: fadeInUp 1.2s ease forwards;
-        }
-
-        .hero-overline {
-            font-size: 0.85rem;
-            font-weight: 400;
-            color: var(--gold);
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 5rem;
+        .hero-content { position: relative; z-index: 1; max-width: 1000px; }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(201, 169, 98, 0.15);
+            border: 1px solid var(--gold-light);
+            color: var(--gold-light);
+            padding: 0.6rem 1.8rem;
+            font-size: 0.8rem;
             font-weight: 500;
-            color: var(--white);
-            margin-bottom: 0.75rem;
-            line-height: 1.1;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1s ease forwards;
         }
-
-        .hero-tagline {
-            font-size: 1.6rem;
-            font-weight: 300;
-            color: var(--cream);
-            margin-bottom: 2.5rem;
-            letter-spacing: 0.5px;
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 500;
+            color: white;
+            margin-bottom: 0.8rem;
+            letter-spacing: 8px;
+            text-shadow: 0 4px 40px rgba(0,0,0,0.3);
+            line-height: 1.15;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
         }
-
         .hero-subtitle {
-            font-size: 1.15rem;
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 4rem;
-            max-width: 550px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.9;
-            font-weight: 300;
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 400;
+            color: var(--gold-light);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
         }
-
+        .hero-line {
+            width: 80px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 0 auto 2rem;
+            animation: fadeInUp 1s ease 0.5s forwards;
+            opacity: 0;
+        }
+        .hero-tagline {
+            font-size: 1.3rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            opacity: 0;
+        }
         .hero-cta {
             display: inline-block;
             background: var(--gold);
-            color: var(--charcoal);
-            padding: 1.1rem 3.5rem;
+            color: white;
+            padding: 1.1rem 3rem;
             border: none;
-            border-radius: 4px;
-            font-family: 'Assistant', sans-serif;
+            font-family: 'Heebo', sans-serif;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.4s ease;
             text-decoration: none;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
+            animation: fadeInUp 1s ease 0.8s forwards;
+            opacity: 0;
         }
-
-        .hero-cta:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201, 169, 98, 0.3); }
-
+        .hero-cta:hover { background: var(--gold-dark); transform: translateY(-3px); }
         .scroll-indicator {
             position: absolute;
             bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            animation: gentleFloat 3s ease-in-out infinite;
+            animation: float 3s ease-in-out infinite;
         }
-
         .scroll-indicator span {
-            font-size: 0.7rem;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--gold), transparent); }
-
-        section { padding: 8rem 3rem; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 5rem; }
-        .section-overline { font-size: 0.75rem; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
-        .section-title { font-size: 2.8rem; font-weight: 500; color: var(--charcoal); margin-bottom: 1rem; }
-        .section-subtitle { font-size: 1.15rem; color: var(--stone); max-width: 600px; margin: 0 auto; font-weight: 300; }
-
-        .value-prop {
-            background: var(--cream);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .value-prop::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-        }
-
-        .value-content { text-align: center; max-width: 850px; margin: 0 auto; }
-        .value-title { font-size: 2.8rem; font-weight: 500; color: var(--charcoal); margin-bottom: 2.5rem; line-height: 1.4; }
-        .value-details { font-size: 1.2rem; line-height: 2; color: var(--charcoal-light); font-weight: 300; }
-        .value-highlight { display: inline-block; background: var(--charcoal); color: var(--white); padding: 0.75rem 2rem; border-radius: 4px; font-weight: 500; margin: 2rem 0; }
-
-        .price-comparison {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 4rem;
-            flex-wrap: wrap;
-        }
-
-        .price-card {
-            background: var(--white);
-            padding: 2.5rem 3rem;
-            border-radius: 4px;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition-smooth);
-            min-width: 240px;
-        }
-
-        .price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-medium); }
-        .price-card.competitors { border: 1px solid #E5E5E5; }
-        .price-card.gpark { border: 2px solid var(--gold); transform: scale(1.05); }
-        .price-card.gpark:hover { transform: scale(1.05) translateY(-8px); }
-        .price-label { font-size: 0.9rem; color: var(--stone); margin-bottom: 0.75rem; font-weight: 400; }
-        .price-value { font-size: 2.8rem; font-weight: 400; color: var(--charcoal); font-family: 'Italiana', serif; }
-        .price-card.competitors .price-value { color: var(--stone); }
-        .price-card.gpark .price-value { color: var(--gold-dark); }
-        .price-per { font-size: 0.85rem; color: var(--stone); }
-
-        .savings-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
-            color: var(--charcoal);
-            padding: 1.25rem 3rem;
-            border-radius: 4px;
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-top: 3rem;
-            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
-        }
-
-        .wellness { background: var(--white); }
-
-        .wellness-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 1.5rem;
-            max-width: 1100px;
+            display: block;
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gold-light), transparent);
             margin: 0 auto;
         }
-
-        .wellness-item {
-            background: var(--cream);
-            padding: 3rem 1.5rem;
-            border-radius: 4px;
-            text-align: center;
-            transition: var(--transition-smooth);
-            border: 1px solid transparent;
+        .scroll-indicator::after {
+            content: 'SCROLL';
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 10px;
         }
 
-        .wellness-item:hover {
-            background: var(--white);
-            box-shadow: var(--shadow-medium);
-            border-color: var(--gold-light);
-            transform: translateY(-8px);
-        }
-
-        .wellness-icon { width: 56px; height: 56px; margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center; }
-        .wellness-icon svg { width: 48px; height: 48px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; }
-        .wellness-label { font-size: 1rem; font-weight: 500; color: var(--charcoal); line-height: 1.5; }
-
-        .features-banner { background: var(--charcoal); padding: 5rem 3rem; text-align: center; }
-        .features-title { color: var(--white); font-size: 1.5rem; font-weight: 400; margin-bottom: 3rem; font-family: 'Assistant', sans-serif; }
-        .features-grid { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
-        .feature-item { display: flex; align-items: center; gap: 1rem; color: var(--cream); }
-        .feature-item svg { width: 24px; height: 24px; stroke: var(--gold); }
-
-        .interior-preview {
-            min-height: 70vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            background: url('images/interior.jpg') center/cover no-repeat;
-            background-attachment: fixed;
-        }
-
-        .interior-preview::before {
+        section { padding: 8rem 2rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        .location { background: var(--white); position: relative; }
+        .location::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
+        }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-label {
+            display: inline-block;
+            color: var(--gold);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 500;
+            color: var(--black);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 1.5rem;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
             bottom: 0;
-            background: rgba(26,26,26,0.6);
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1px;
+            background: var(--gold);
         }
-
-        .interior-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            margin-right: 10%;
-            padding: 4rem;
-            background: rgba(255,255,255,0.97);
-            border-radius: 4px;
+        .location-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
         }
-
-        .interior-label { font-size: 0.75rem; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
-        .interior-title { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--charcoal); }
-        .interior-text { font-size: 1.05rem; color: var(--stone); line-height: 1.8; font-weight: 300; }
-
-        .apartments { background: var(--cream); position: relative; }
-        .apartments::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
-
-        .double-suite {
-            background: var(--charcoal);
-            padding: 4rem;
-            border-radius: 4px;
-            margin-bottom: 5rem;
-            text-align: center;
-            color: var(--white);
+        .location-image {
             position: relative;
+            border-radius: 4px;
             overflow: hidden;
         }
+        .location-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .location-image:hover img { transform: scale(1.03); }
+        .location-content { padding: 2rem 0; }
+        .location-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: var(--black);
+            margin-bottom: 1.5rem;
+        }
+        .location-text {
+            font-size: 1.05rem;
+            color: var(--gray);
+            line-height: 2;
+            margin-bottom: 2rem;
+        }
+        .location-features { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .location-feature { display: flex; align-items: flex-start; gap: 1rem; }
+        .location-feature-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--cream);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .location-feature-icon svg { width: 18px; height: 18px; stroke: var(--gold); }
+        .location-feature-text { font-size: 0.95rem; color: var(--black-soft); font-weight: 500; }
 
-        .double-suite::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
-        .double-suite-title { font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; font-family: 'Italiana', serif; }
-        .double-suite-text { font-size: 1.1rem; opacity: 0.9; max-width: 650px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
+        .concept { background: var(--cream); position: relative; overflow: hidden; }
+        .concept::before {
+            content: '"';
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            font-family: 'Playfair Display', serif;
+            font-size: 30rem;
+            color: rgba(0,0,0,0.02);
+            line-height: 1;
+        }
+        .concept-content { max-width: 800px; margin: 0 auto; text-align: center; }
+        .concept-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.5rem, 3vw, 2.2rem);
+            font-weight: 400;
+            font-style: italic;
+            color: var(--black);
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+        .concept-quote::before,
+        .concept-quote::after { content: '"'; color: var(--gold); font-size: 3rem; line-height: 0; vertical-align: middle; }
+        .concept-author { font-size: 0.9rem; color: var(--gray-light); letter-spacing: 2px; text-transform: uppercase; }
+        .concept-divider { width: 1px; height: 60px; background: linear-gradient(to bottom, transparent, var(--gold), transparent); margin: 3rem auto; }
+        .concept-description { font-size: 1.1rem; color: var(--gray); line-height: 2.2; max-width: 700px; margin: 0 auto; }
 
-        .apartment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .wellness { background: var(--white); position: relative; }
+        .wellness-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 4rem; }
+        .wellness-item {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: var(--cream);
+            border-radius: 4px;
+            transition: all 0.5s ease;
+        }
+        .wellness-item:hover { background: var(--black); transform: translateY(-10px); }
+        .wellness-item:hover .wellness-icon { background: var(--gold); }
+        .wellness-item:hover .wellness-label { color: white; }
+        .wellness-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+        .wellness-icon svg { width: 28px; height: 28px; stroke: var(--black-soft); fill: none; stroke-width: 1.5; }
+        .wellness-item:hover .wellness-icon svg { stroke: white; }
+        .wellness-label { font-size: 1rem; font-weight: 500; color: var(--black); transition: color 0.4s ease; }
 
+        .gallery { display: grid; grid-template-columns: 1.5fr 1fr 1fr; grid-template-rows: 500px 350px; gap: 0; }
+        .gallery-item { position: relative; overflow: hidden; }
+        .gallery-item:first-child { grid-row: span 2; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1s ease; }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 2.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; transform: translateY(0); }
+        .gallery-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .gallery-desc { font-size: 0.9rem; opacity: 0.85; }
+
+        .apartments { background: var(--cream); }
+        .apartment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; }
         .apartment-card {
             background: var(--white);
             border-radius: 4px;
             overflow: hidden;
             box-shadow: var(--shadow-soft);
-            transition: var(--transition-smooth);
+            transition: all 0.5s ease;
         }
-
-        .apartment-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-lift); }
-        .apartment-image { height: 220px; background: linear-gradient(135deg, #E8E4DE 0%, #D8D4CE 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .apartment-number { font-family: 'Italiana', serif; font-size: 5rem; color: var(--charcoal); opacity: 0.15; font-weight: 400; }
+        .apartment-card:hover { transform: translateY(-15px); box-shadow: var(--shadow-luxury); }
+        .apartment-image { height: 280px; position: relative; overflow: hidden; }
+        .apartment-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+        .apartment-card:hover .apartment-image img { transform: scale(1.1); }
+        .apartment-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--gold);
+            color: white;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
         .apartment-details { padding: 2rem; }
-        .apartment-type { font-size: 1.4rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem; }
-        .apartment-size { font-size: 1rem; color: var(--stone); margin-bottom: 1rem; font-weight: 300; }
-        .apartment-feature { display: inline-block; background: var(--charcoal); color: var(--white); padding: 0.5rem 1.25rem; border-radius: 4px; font-size: 0.85rem; font-weight: 500; }
-
-        .pool-section {
-            min-height: 60vh;
-            position: relative;
-            display: flex;
-            align-items: center;
-            background: url('images/pool.jpg') center/cover no-repeat;
-            background-attachment: fixed;
-        }
-
-        .pool-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26,26,26,0.5); }
-        .pool-content { position: relative; z-index: 1; max-width: 550px; margin-left: 10%; padding: 3.5rem; background: rgba(255,255,255,0.97); border-radius: 4px; }
-        .pool-label { font-size: 0.75rem; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
-        .pool-title { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--charcoal); }
-        .pool-text { font-size: 1.05rem; color: var(--stone); line-height: 1.8; font-weight: 300; }
+        .apartment-type { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; color: var(--black); margin-bottom: 0.5rem; }
+        .apartment-size { font-size: 0.95rem; color: var(--gray); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+        .apartment-size svg { width: 16px; height: 16px; stroke: var(--gray); }
+        .apartment-features { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .apartment-feature { background: var(--cream); color: var(--black-soft); padding: 0.4rem 0.8rem; font-size: 0.75rem; font-weight: 500; border-radius: 2px; }
 
         .contact { background: var(--white); position: relative; }
-        .contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
-        .contact-title { font-size: 2.4rem; margin-bottom: 0.75rem; }
-        .contact-subtitle { font-size: 1.1rem; color: var(--stone); margin-bottom: 4rem; font-weight: 300; }
-
-        .contact-form {
-            max-width: 550px;
-            margin: 0 auto;
-            background: var(--cream);
-            padding: 4rem;
-            border-radius: 4px;
-            box-shadow: var(--shadow-soft);
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.08), transparent);
         }
-
-        .form-group { margin-bottom: 1.75rem; }
-        .form-label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.6rem; }
+        .contact-wrapper { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .contact-info { padding-right: 2rem; }
+        .contact-info-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 500; color: var(--black); margin-bottom: 1.5rem; }
+        .contact-info-text { font-size: 1.1rem; color: var(--gray); line-height: 2; margin-bottom: 2.5rem; }
+        .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+        .contact-detail { display: flex; align-items: center; gap: 1rem; font-size: 1rem; color: var(--black-soft); }
+        .contact-detail svg { width: 20px; height: 20px; stroke: var(--gold); }
+        .contact-form { background: var(--cream); padding: 3rem; border-radius: 4px; }
+        .form-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 500; color: var(--black); margin-bottom: 2rem; text-align: center; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label { display: block; font-size: 0.85rem; font-weight: 500; color: var(--black-soft); margin-bottom: 0.5rem; }
         .form-input {
             width: 100%;
-            padding: 1rem 1.25rem;
-            border: 1px solid #E0DCD5;
-            border-radius: 4px;
-            font-family: 'Assistant', sans-serif;
+            padding: 1rem 1.2rem;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 2px;
+            font-family: 'Heebo', sans-serif;
             font-size: 1rem;
-            transition: var(--transition-smooth);
+            transition: all 0.3s ease;
             background: var(--white);
-            color: var(--charcoal);
         }
-
-        .form-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.15); }
-        .form-input::placeholder { color: #A0A0A0; }
-
+        .form-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.1); }
         .submit-btn {
             width: 100%;
-            background: var(--charcoal);
-            color: var(--white);
-            padding: 1.25rem;
+            background: var(--black);
+            color: white;
+            padding: 1.2rem;
             border: none;
-            border-radius: 4px;
-            font-family: 'Assistant', sans-serif;
+            font-family: 'Heebo', sans-serif;
             font-size: 1rem;
             font-weight: 500;
             cursor: pointer;
-            transition: var(--transition-smooth);
+            transition: all 0.4s ease;
+            margin-top: 1rem;
         }
+        .submit-btn:hover { background: var(--gold); }
 
-        .submit-btn:hover { background: var(--charcoal-light); transform: translateY(-2px); }
-
-        footer { background: var(--charcoal); color: var(--white); padding: 5rem 3rem 2.5rem; }
+        footer { background: var(--black); color: white; padding: 5rem 2rem 2rem; }
         .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
-        .footer-logo { height: 60px; margin-bottom: 2.5rem; opacity: 0.9; }
-        .footer-disclaimer { font-size: 0.8rem; color: rgba(255,255,255,0.5); max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.9; padding: 1.5rem 2rem; background: rgba(255,255,255,0.03); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); }
-        .footer-contact { margin-bottom: 2rem; }
-        .footer-contact a { color: var(--gold-light); text-decoration: none; display: block; margin: 0.6rem 0; font-size: 1rem; transition: var(--transition-smooth); }
-        .footer-contact a:hover { color: var(--white); }
-        .footer-address { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 2.5rem; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+        .footer-logo { height: 60px; margin-bottom: 2rem; opacity: 0.9; }
+        .footer-tagline { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold-light); margin-bottom: 3rem; letter-spacing: 2px; }
+        .footer-disclaimer { font-size: 0.75rem; color: rgba(255,255,255,0.4); max-width: 700px; margin: 0 auto 2rem; line-height: 1.9; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; font-size: 0.75rem; color: rgba(255,255,255,0.3); }
 
         @media (max-width: 1024px) {
-            .wellness-grid { grid-template-columns: repeat(3, 1fr); }
-            .apartment-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero-title { font-size: 3rem; }
-            .hero-tagline { font-size: 1.2rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .section-title { font-size: 2rem; }
-            .value-title { font-size: 2rem; }
-            .price-comparison { flex-direction: column; align-items: center; }
-            .price-card.gpark { transform: scale(1); }
-            section { padding: 5rem 1.5rem; }
             .wellness-grid { grid-template-columns: repeat(2, 1fr); }
-            .apartment-grid { grid-template-columns: 1fr; }
-            .features-grid { flex-direction: column; gap: 2rem; }
-            .interior-content, .pool-content { margin: 2rem; padding: 2rem; }
-            .contact-form { padding: 2rem 1.5rem; }
-            .double-suite { padding: 2.5rem 1.5rem; }
+            .gallery { grid-template-columns: 1fr 1fr; grid-template-rows: 350px 250px; }
+            .gallery-item:first-child { grid-row: span 1; grid-column: span 2; }
+            .apartment-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-wrapper { grid-template-columns: 1fr; gap: 3rem; }
+            .location-grid { grid-template-columns: 1fr; gap: 2rem; }
         }
-
-        @media (max-width: 480px) {
-            .hero-title { font-size: 2.4rem; }
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.5rem; }
+            .logo { height: 35px; }
+            .hero-title { letter-spacing: 4px; }
+            .section-title { font-size: 2rem; }
+            section { padding: 5rem 1.5rem; }
             .wellness-grid { grid-template-columns: 1fr; }
-            .value-title { font-size: 1.7rem; }
-            .savings-badge { font-size: 1rem; padding: 1rem 2rem; }
+            .gallery { grid-template-columns: 1fr; }
+            .gallery-item:first-child { grid-column: span 1; }
+            .apartment-grid { grid-template-columns: 1fr; }
+            .location-features { grid-template-columns: 1fr; }
+            .contact-form { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
     <nav id="navbar">
-        <img src="images/G-Park_Logo.jpg" alt="G-Park Logo" class="logo">
-        <div class="nav-links">
-            <a href="#value" class="nav-link">היתרונות</a>
-            <a href="#wellness" class="nav-link">הוולנס</a>
-            <a href="#apartments" class="nav-link">הדירות</a>
-            <a href="#contact" class="nav-cta">לתיאום פגישה</a>
-        </div>
+        <img src="images/logo.jpg" alt="G-Park" class="logo">
+        <a href="#contact" class="nav-cta">לתיאום פגישה</a>
     </nav>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <p class="hero-overline">מתחם מגורים יוקרתי</p>
+            <div class="hero-badge">Premium Living</div>
             <h1 class="hero-title">G PARK WELLNESS</h1>
-            <p class="hero-tagline">רמת השרון</p>
-            <p class="hero-subtitle">חוויית Wellness Resort פרטית בלב הטבע. מתחם מגורים ייחודי מול פארק אקולוגי עם כל הפינוקים של המלון היוקרתי - בבית שלכם.</p>
+            <p class="hero-subtitle">רמת השרון</p>
+            <div class="hero-line"></div>
+            <p class="hero-tagline">מתחם מגורים יוקרתי מול פארק אקולוגי חוויית Wellness Resort פרטית בתוך העיר</p>
             <a href="#contact" class="hero-cta">לתיאום פגישה במשרד המכירות</a>
         </div>
-        <div class="scroll-indicator">
-            <span>גלו עוד</span>
-            <div class="scroll-line"></div>
-        </div>
+        <div class="scroll-indicator"><span></span></div>
     </section>
 
-    <section class="value-prop" id="value">
+    <!-- Location Section -->
+    <section class="location">
         <div class="container">
-            <div class="value-content animate-on-scroll">
-                <h2 class="value-title">לחיות ליד פארק צפון – במחיר חכם יותר!</h2>
-                <p class="value-details">הפרויקט ממוקם בלב אחד האזורים המתפתחים ברמת השרון. בעוד פרויקטים סמוכים נמכרים במחירים של 53-55 אלף ₪ למ"ר, דירות ב-G Park מוצעות החל מ-38 אלף ₪ למ"ר בלבד.</p>
-                <div class="value-highlight">המשמעות: חיסכון של עד 1,000,000 ₪ לדירה!</div>
-                
-                <div class="price-comparison">
-                    <div class="price-card competitors">
-                        <div class="price-label">פרויקטים סמוכים</div>
-                        <div class="price-value">53-55K</div>
-                        <div class="price-per">₪ למ"ר</div>
-                    </div>
-                    <div class="price-card gpark">
-                        <div class="price-label">G Park Wellness</div>
-                        <div class="price-value">38K</div>
-                        <div class="price-per">₪ למ"ר</div>
+            <div class="section-header reveal">
+                <span class="section-label">Location</span>
+                <h2 class="section-title">המיקום המושלם</h2>
+            </div>
+            <div class="location-grid">
+                <div class="location-image reveal">
+                    <img src="images/G-Park_Project_Aerial_02.png" alt="G-Park Aerial View">
+                </div>
+                <div class="location-content reveal">
+                    <h3 class="location-title">בין תל אביב לרמת השרון</h3>
+                    <p class="location-text">
+                        G-Park Wellness גובל בשכונות הצפוניות של תל אביב: תל ברוך צפון, רמת אביב ג', צהלה ונאות אפקה. 
+                        לפארק צפון גישה קלה ומהירה לנתיבי אילון, כביש 2 (החוף), כביש 5, והכניסה החדשה מכביש 20.
+                    </p>
+                    <div class="location-features">
+                        <div class="location-feature">
+                            <div class="location-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                            </div>
+                            <span class="location-feature-text">גישה לנתיבי אילון ב-2 דקות</span>
+                        </div>
+                        <div class="location-feature">
+                            <div class="location-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                            </div>
+                            <span class="location-feature-text">10 דקות ממרכז תל אביב</span>
+                        </div>
+                        <div class="location-feature">
+                            <div class="location-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <span class="location-feature-text">סמוך לפארק צפון</span>
+                        </div>
+                        <div class="location-feature">
+                            <div class="location-feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                            </div>
+                            <span class="location-feature-text">סביבה ירוקה וכפרית</span>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="savings-badge">חיסכון של עד 1,000,000 ₪</div>
             </div>
         </div>
     </section>
 
-    <section class="wellness" id="wellness">
+    <!-- Concept Section -->
+    <section class="concept">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <p class="section-overline">בלעדי לדיירי הפרויקט</p>
-                <h2 class="section-title">THE WELLNESS RESORT</h2>
-                <p class="section-subtitle">מתחם וולנס פרטי ומפנק לכל דיירי הפרויקט</p>
+            <div class="section-header reveal">
+                <span class="section-label">The Concept</span>
+                <h2 class="section-title">החזון</h2>
             </div>
-            
+            <div class="concept-content reveal">
+                <p class="concept-quote">
+                    הדיאלוג בין הבניינים יוצר רחובות פנימיים, שבילי אופניים והליכה, גינות ומגוון גדול של חללים משותפים מלאי אווירה וסטייל, עם מעבר טבעי בין הפנים לחוץ.
+                </p>
+                <div class="concept-divider"></div>
+                <p class="concept-description">
+                    G-Park Wellness מגדיר מחדש את חוויית המגורים של צפון תל אביב. הפרויקט מציע גישה פוסט-עירונית למשפחה במאה ה-21, 
+                    עם חללים משותפים בסגנון SOCIAL CLUB, היוצרים חוויית מגורים הוליסטית, קהילתית, בריאה וירוקה יותר.
+                </p>
+                <p class="concept-author">— G-Park Wellness</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wellness Section -->
+    <section class="wellness">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">Wellness Facilities</span>
+                <h2 class="section-title">THE WELLNESS RESORT</h2>
+            </div>
             <div class="wellness-grid">
-                <div class="wellness-item animate-on-scroll">
+                <div class="wellness-item reveal">
                     <div class="wellness-icon">
-                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="20" width="36" height="20" rx="2"/><path d="M6 28h36"/><path d="M14 20v-4a6 6 0 0 1 12 0v4"/><path d="M22 8v4"/><circle cx="24" cy="14" r="2"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M2 12h4m12 0h4M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>
                     </div>
                     <div class="wellness-label">בריכת שחייה<br>חצי אולימפית</div>
                 </div>
-                <div class="wellness-item animate-on-scroll">
+                <div class="wellness-item reveal">
                     <div class="wellness-icon">
-                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4c-8 0-14 10-14 22s6 18 14 18 14-6 14-18-6-22-14-22z"/><path d="M24 4c4 6 6 14 6 22s-2 16-6 22"/><path d="M24 44V26"/><circle cx="20" cy="24" r="2"/><circle cx="28" cy="24" r="2"/></svg>
-                    </div>
-                    <div class="wellness-label">מתחם ספא<br>וסאונה</div>
-                </div>
-                <div class="wellness-item animate-on-scroll">
-                    <div class="wellness-icon">
-                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V20"/><path d="M16 40V14"/><path d="M24 40V8"/><path d="M32 40V18"/><path d="M40 40V24"/><rect x="4" y="40" width="40" height="4" rx="1"/><circle cx="24" cy="32" r="4"/><path d="M20 32h8"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
                     </div>
                     <div class="wellness-label">חדר כושר<br>מתקדם</div>
                 </div>
-                <div class="wellness-item animate-on-scroll">
+                <div class="wellness-item reveal">
                     <div class="wellness-icon">
-                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M24 10v14l10 6"/><path d="M12 20c0-8 6-12 12-12"/><circle cx="24" cy="24" r="3"/></svg>
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg>
                     </div>
-                    <div class="wellness-label">סטודיו יוגה<br>ופילאטיס</div>
+                    <div class="wellness-label">ספא וסאונה</div>
                 </div>
-                <div class="wellness-item animate-on-scroll">
+                <div class="wellness-item reveal">
                     <div class="wellness-icon">
-                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4c-10 0-18 8-18 20s8 20 18 20 18-8 18-20-8-20-18-20z"/><path d="M24 4v40"/><path d="M8 24h32"/><path d="M14 14l6-6 8 8"/><path d="M14 34l6 6 8-8"/></svg>
+                        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"/><path d="M10 9v1M14 9v1"/></svg>
                     </div>
-                    <div class="wellness-label">גינת מדיטציה<br>ושקט</div>
+                    <div class="wellness-label">סטודיו פילאטיס<br>ויוגה</div>
+                </div>
+                <div class="wellness-item reveal">
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20"/></svg>
+                    </div>
+                    <div class="wellness-label">חדר קולנוע</div>
+                </div>
+                <div class="wellness-item reveal">
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                    </div>
+                    <div class="wellness-label">מתחם עבודה<br>משותף</div>
+                </div>
+                <div class="wellness-item reveal">
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <div class="wellness-label">חדרי אירוח</div>
+                </div>
+                <div class="wellness-item reveal">
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    </div>
+                    <div class="wellness-label">מתחם ילדים</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="features-banner">
-        <div class="features-grid">
-            <div class="feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>24/7 שמירה</span>
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="gallery-item">
+            <img src="images/apartment-rendering.jpg" alt="Apartment">
+            <div class="gallery-overlay">
+                <h3 class="gallery-title">הנוף המרהיב</h3>
+                <p class="gallery-desc">נוף לפארק ולים</p>
             </div>
-            <div class="feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>לובי מפואר</span>
+        </div>
+        <div class="gallery-item">
+            <img src="images/pool.jpg" alt="Pool">
+            <div class="gallery-overlay">
+                <h3 class="gallery-title">הבריכה</h3>
+                <p class="gallery-desc">בריכה חצי אולימפית</p>
             </div>
-            <div class="feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>מחסן פרטי</span>
+        </div>
+        <div class="gallery-item">
+            <img src="images/interior.jpg" alt="Interior">
+            <div class="gallery-overlay">
+                <h3 class="gallery-title">עיצוב פנים</h3>
+                <p class="gallery-desc">חלל מגורים אלגנטי</p>
             </div>
-            <div class="feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>2 מעליות</span>
-            </div>
-            <div class="feature-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                <span>חניה פרטית</span>
+        </div>
+        <div class="gallery-item">
+            <img src="images/wellness-rendering.jpg" alt="Wellness">
+            <div class="gallery-overlay">
+                <h3 class="gallery-title">Wellness</h3>
+                <p class="gallery-desc">ספא וסאונה</p>
             </div>
         </div>
     </section>
 
-    <section class="interior-preview">
-        <div class="interior-content animate-on-scroll">
-            <p class="interior-label">עיצוב פנים</p>
-            <h2 class="interior-title">אדריכלות מוקפדת</h2>
-            <p class="interior-text">כל דירה תוכננה בקפידה עם חומרי גמר איכותיים ועיצוב יוקרתי. תקרות גבוהות, רצפות פרקט, מטבחים מאובזרים וחדרי אמבטיה ספא. הבית שלכם - ברמה אחרת.</p>
-        </div>
-    </section>
-
-    <section class="apartments" id="apartments">
+    <!-- Apartments Section -->
+    <section class="apartments">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <p class="section-overline">מגוון אפשרויות</p>
-                <h2 class="section-title">הדירות שלנו</h2>
+            <div class="section-header reveal">
+                <span class="section-label">The Apartments</span>
+                <h2 class="section-title">סוגי הדירות</h2>
             </div>
-            
-            <div class="double-suite animate-on-scroll">
-                <div class="double-suite-title">קונספט Double Suite</div>
-                <p class="double-suite-text">כל דירה מתוכננת עם חדר שינה ראשי מפנק + ממ"ד כסוויטה שנייה עם חדר אמבטיה פרטי. פרטיות מושלמת לכל בני המשפחה.</p>
-            </div>
-            
             <div class="apartment-grid">
-                <div class="apartment-card animate-on-scroll">
-                    <div class="apartment-image"><span class="apartment-number">3</span></div>
+                <div class="apartment-card reveal">
+                    <div class="apartment-image">
+                        <img src="images/apartment-rendering.jpg" alt="דירת 3 חדרים">
+                        <span class="apartment-badge">פופולרי</span>
+                    </div>
                     <div class="apartment-details">
-                        <div class="apartment-type">3 חדרים</div>
-                        <div class="apartment-size">80 מ"ר</div>
-                        <span class="apartment-feature">גינה / מרפסת</span>
+                        <h3 class="apartment-type">דירת 3 חדרים</h3>
+                        <p class="apartment-size">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                            95-110 מ"ר
+                        </p>
+                        <div class="apartment-features">
+                            <span class="apartment-feature">מרפסת נוף</span>
+                            <span class="apartment-feature">מטבח מאובזר</span>
+                            <span class="apartment-feature">חניה</span>
+                        </div>
                     </div>
                 </div>
-                <div class="apartment-card animate-on-scroll">
-                    <div class="apartment-image"><span class="apartment-number">4</span></div>
+                <div class="apartment-card reveal">
+                    <div class="apartment-image">
+                        <img src="images/apartment-rendering.jpg" alt="דירת 4 חדרים">
+                    </div>
                     <div class="apartment-details">
-                        <div class="apartment-type">4 חדרים</div>
-                        <div class="apartment-size">102-104 מ"ר</div>
-                        <span class="apartment-feature">מרפסת 12 מ"ר</span>
+                        <h3 class="apartment-type">דירת 4 חדרים</h3>
+                        <p class="apartment-size">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                            120-140 מ"ר
+                        </p>
+                        <div class="apartment-features">
+                            <span class="apartment-feature">מרפסת נוף</span>
+                            <span class="apartment-feature">הורים בנפרד</span>
+                            <span class="apartment-feature">חניה</span>
+                            <span class="apartment-feature">מחסן</span>
+                        </div>
                     </div>
                 </div>
-                <div class="apartment-card animate-on-scroll">
-                    <div class="apartment-image"><span class="apartment-number">5</span></div>
+                <div class="apartment-card reveal">
+                    <div class="apartment-image">
+                        <img src="images/apartment-rendering.jpg" alt="פנטהאוז">
+                        <span class="apartment-badge">יוקרה</span>
+                    </div>
                     <div class="apartment-details">
-                        <div class="apartment-type">5 חדרים</div>
-                        <div class="apartment-size">117-124 מ"ר</div>
-                        <span class="apartment-feature">מרפסת 14 מ"ר</span>
+                        <h3 class="apartment-type">פנטהאוז</h3>
+                        <p class="apartment-size">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+                            180-220 מ"ר
+                        </p>
+                        <div class="apartment-features">
+                            <span class="apartment-feature">גג פרטי</span>
+                            <span class="apartment-feature">נוף לים</span>
+                            <span class="apartment-feature">חניה כפולה</span>
+                            <span class="apartment-feature">מחסן</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="pool-section">
-        <div class="pool-content animate-on-scroll">
-            <p class="pool-label">הבריכה</p>
-            <h2 class="pool-title">חוויית וולנס ייחודית</h2>
-            <p class="pool-text">בריכת שחייה חצי אולימפית מחוממת, מתחם ספא וסאונה, וגינת מדיטציה שקטה. כל זה - בבניין שלכם. בלעדי לדיירים.</p>
-        </div>
-    </section>
-
+    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <div class="section-header animate-on-scroll">
-                <h2 class="contact-title">עשו את הצעד הראשון</h2>
-                <p class="contact-subtitle">לחיים בריאים וחכמים יותר</p>
+            <div class="contact-wrapper">
+                <div class="contact-info reveal">
+                    <h2 class="contact-info-title">לתיאום פגישה</h2>
+                    <p class="contact-info-text">
+                        נשמח להזמין אתכם לבקר במשרד המכירות ולהתרשם מהפרויקט מקרוב. 
+                        הצוות שלנו ישמח ללוות אתכם בתהליך ולענות על כל שאלה.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            <span>03-555-5555</span>
+                        </div>
+                        <div class="contact-detail">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            <span>info@gpark.co.il</span>
+                        </div>
+                        <div class="contact-detail">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <span>רמת השרון, פארק צפון</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form reveal">
+                    <h3 class="form-title">טופס יצירת קשר</h3>
+                    <form>
+                        <div class="form-group">
+                            <label class="form-label">שם מלא</label>
+                            <input type="text" class="form-input" placeholder="השם שלך">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">טלפון</label>
+                            <input type="tel" class="form-input" placeholder="מספר הטלפון שלך">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">אימייל</label>
+                            <input type="email" class="form-input" placeholder="האימייל שלך">
+                        </div>
+                        <button type="submit" class="submit-btn">שליחה</button>
+                    </form>
+                </div>
             </div>
-            
-            <form class="contact-form animate-on-scroll" action="https://formspree.io/f/xpwzgvvl" method="POST">
-                <div class="form-group">
-                    <label class="form-label" for="name">שם מלא</label>
-                    <input type="text" id="name" name="name" class="form-input" placeholder="השם שלכם" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="phone">טלפון</label>
-                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="05X-XXXXXXX" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label" for="email">אימייל (אופציונלי)</label>
-                    <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com">
-                </div>
-                <button type="submit" class="submit-btn">חזרו אליי עם פרטים</button>
-            </form>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <img src="images/G-Park_Logo.jpg" alt="G-Park Logo" class="footer-logo">
-            
-            <div class="footer-disclaimer">
-                מובהר בזאת הדמיה זו על כל המפורט בה, לרבות הבריכה ויתר השטחים הציבוריים, חזיתות, מיקומי פתחים ומרפסות וכד', הנה להמחשה בלבד
-            </div>
-            
-            <div class="footer-contact">
-                <a href="mailto:office@g-group1.com">office@g-group1.com</a>
-                <a href="tel:0523308287">052-3308287</a>
-            </div>
-            
-            <div class="footer-address">
-                מגדלי אקרשטיין, המנופים 11, הרצליה
-            </div>
-            
-            <div class="footer-bottom">
-                © 2024 G Park Wellness. כל הזכויות שמורות.
-            </div>
+            <img src="images/logo.jpg" alt="G-Park" class="footer-logo">
+            <p class="footer-tagline">G PARK WELLNESS</p>
+            <p class="footer-disclaimer">
+                כל התמונות וההדמיות המופיעות באתר הן להמחשה בלבד ואינן מחייבות. 
+                הרשויות טרם אישרו את התוכניות הסופיות. המחירים והפרטים המופיעים באתר עשויים להשתנות. 
+                אין לראות במידע זה התחייבות מכל סוג שהוא.
+            </p>
+            <p class="footer-bottom">© 2024 G-Park Wellness. כל הזכויות שמורות.</p>
         </div>
     </footer>
 
     <script>
+        // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 100) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
         });
 
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+        // Scroll reveal animation
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < triggerBottom) {
+                    element.classList.add('active');
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.animate-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
-
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('.submit-btn');
-            btn.textContent = 'נשלח! תודה רבה';
-            btn.style.background = 'var(--gold-dark)';
-            this.reset();
-            setTimeout(() => {
-                btn.textContent = 'חזרו אליי עם פרטים';
-                btn.style.background = 'var(--charcoal)';
-            }, 3000);
-        });
+        window.addEventListener('scroll', checkReveal);
+        window.addEventListener('load', checkReveal);
     </script>
 </body>
 </html>
-
