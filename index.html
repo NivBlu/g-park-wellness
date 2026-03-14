@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G PARK WELLNESS - רמת השרון</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sage-green: #8B9A7D;
+            --sage-light: #A8B89A;
+            --sage-dark: #6B7A5D;
+            --stone: #8C8680;
+            --stone-light: #A9A29C;
+            --wood: #B8956E;
+            --wood-dark: #8B6F4E;
+            --white: #FAFAFA;
+            --white-warm: #F5F3EF;
+            --text-dark: #2D2D2D;
+            --text-light: #5A5A5A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Assistant', sans-serif;
+            background: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+            transition: background 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            height: 50px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-cta {
+            background: var(--sage-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .nav-cta:hover {
+            background: var(--sage-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 154, 125, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: url('https://raw.githubusercontent.com/nivblu/g-park-wellness/main/images/G-Park_Project_Aerial_02.png') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(0,0,0,0.6) 0%,
+                rgba(0,0,0,0.3) 50%,
+                rgba(0,0,0,0.5) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero-tagline {
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--sage-light);
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--sage-green);
+            color: white;
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 10px 40px rgba(139, 154, 125, 0.4);
+        }
+
+        .hero-cta:hover {
+            background: var(--sage-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(139, 154, 125, 0.5);
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 26px;
+            height: 26px;
+            border-bottom: 2px solid rgba(255,255,255,0.6);
+            border-right: 2px solid rgba(255,255,255,0.6);
+            transform: rotate(45deg);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Value Proposition Section */
+        .value-prop {
+            background: var(--white-warm);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-prop::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sage-green), var(--wood), var(--sage-green));
+        }
+
+        .value-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .value-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--sage-dark);
+            margin-bottom: 2rem;
+        }
+
+        .value-details {
+            font-size: 1.3rem;
+            line-height: 2;
+            color: var(--text-dark);
+        }
+
+        .value-highlight {
+            display: inline-block;
+            background: var(--sage-green);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            margin: 1rem 0;
+        }
+
+        .price-comparison {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .price-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            min-width: 250px;
+            transition: transform 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .price-card.competitors {
+            border: 2px solid var(--stone-light);
+        }
+
+        .price-card.gpark {
+            border: 3px solid var(--sage-green);
+            transform: scale(1.05);
+        }
+
+        .price-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .price-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .price-card.competitors .price-value {
+            color: var(--stone);
+        }
+
+        .price-card.gpark .price-value {
+            color: var(--sage-green);
+        }
+
+        .price-per {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .savings-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--wood), var(--wood-dark));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(184, 149, 110, 0.4);
+        }
+
+        /* Wellness Section */
+        .wellness {
+            background: linear-gradient(180deg, var(--white) 0%, var(--white-warm) 100%);
+        }
+
+        .wellness-title {
+            margin-bottom: 1rem;
+        }
+
+        .wellness-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-light);
+            margin-bottom: 4rem;
+        }
+
+        .wellness-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .wellness-item {
+            background: white;
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 154, 125, 0.1);
+        }
+
+        .wellness-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+            border-color: var(--sage-green);
+        }
+
+        .wellness-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .wellness-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Apartments Section */
+        .apartments {
+            background: var(--white);
+            position: relative;
+        }
+
+        .apartments::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--sage-green), var(--wood), var(--sage-green));
+        }
+
+        .double-suite {
+            background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage-green) 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 4rem;
+            text-align: center;
+            color: white;
+        }
+
+        .double-suite-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .double-suite-text {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .apartment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .apartment-card {
+            background: var(--white-warm);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .apartment-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+        }
+
+        .apartment-image {
+            height: 200px;
+            background: var(--sage-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .apartment-details {
+            padding: 1.5rem;
+        }
+
+        .apartment-type {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--sage-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .apartment-size {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .apartment-feature {
+            display: inline-block;
+            background: var(--sage-green);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(180deg, var(--white-warm) 0%, var(--white) 100%);
+            position: relative;
+        }
+
+        .contact-title {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #E5E5E5;
+            border-radius: 12px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white-warm);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--sage-green);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(139, 154, 125, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--sage-green), var(--sage-dark));
+            color: white;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Assistant', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(139, 154, 125, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(139, 154, 125, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            color: white;
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            height: 60px;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+        }
+
+        .footer-contact {
+            margin-bottom: 2rem;
+        }
+
+        .footer-contact a {
+            color: var(--sage-light);
+            text-decoration: none;
+            display: block;
+            margin: 0.5rem 0;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-contact a:hover {
+            color: white;
+        }
+
+        .footer-address {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .value-title {
+                font-size: 2rem;
+            }
+
+            .price-comparison {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .price-card.gpark {
+                transform: scale(1);
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .wellness-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .wellness-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-cta {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <img src="https://raw.githubusercontent.com/nivblu/g-park-wellness/main/images/G-Park_Logo.jpg" alt="G-Park Logo" class="logo">
+        <a href="#contact" class="nav-cta">לתיאום פגישה</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">G PARK WELLNESS</h1>
+            <p class="hero-tagline">רמת השרון</p>
+            <p class="hero-tagline" style="font-size: 1.4rem; margin-bottom: 1.5rem;">חיים בריאים יותר. חיים חכמים יותר.</p>
+            <p class="hero-subtitle">מתחם מגורים חדש מול פארק אקולוגי. חוויית Wellness Resort פרטית בתוך העיר.</p>
+            <a href="#contact" class="hero-cta">לתיאום פגישה במשרד המכירות</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="value-prop">
+        <div class="container">
+            <div class="value-content animate-on-scroll">
+                <h2 class="value-title">לחיות ליד פארק צפון – במחיר חכם יותר!</h2>
+                <p class="value-details">
+                    הפרויקט ממוקם בלב אחד האזורים המתפתחים ברמת השרון. בעוד פרויקטים סמוכים נמכרים במחירים של 53-55 אלף ₪ למ"ר, דירות ב-G Park מוצעות החל מ-38 אלף ₪ למ"ר בלבד.
+                </p>
+                <div class="value-highlight">המשמעות: חיסכון של עד 1,000,000 ₪ לדירה!</div>
+                
+                <div class="price-comparison">
+                    <div class="price-card competitors">
+                        <div class="price-label">פרויקטים סמוכים</div>
+                        <div class="price-value">53-55K</div>
+                        <div class="price-per">₪ למ"ר</div>
+                    </div>
+                    <div class="price-card gpark">
+                        <div class="price-label">G Park Wellness</div>
+                        <div class="price-value">38K</div>
+                        <div class="price-per">₪ למ"ר</div>
+                    </div>
+                </div>
+                
+                <div class="savings-badge">חיסכון של עד 1,000,000 ₪</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wellness Facilities Section -->
+    <section class="wellness">
+        <div class="container">
+            <h2 class="section-title wellness-title animate-on-scroll">THE WELLNESS RESORT</h2>
+            <p class="wellness-subtitle animate-on-scroll">בלעדי לדיירי הפרויקט</p>
+            
+            <div class="wellness-grid">
+                <div class="wellness-item animate-on-scroll">
+                    <span class="wellness-icon">🏊</span>
+                    <div class="wellness-label">בריכת שחייה<br>חצי אולימפית</div>
+                </div>
+                <div class="wellness-item animate-on-scroll">
+                    <span class="wellness-icon">💆</span>
+                    <div class="wellness-label">מתחם ספא<br>וסאונה</div>
+                </div>
+                <div class="wellness-item animate-on-scroll">
+                    <span class="wellness-icon">🏋️</span>
+                    <div class="wellness-label">חדר כושר<br>מתקדם</div>
+                </div>
+                <div class="wellness-item animate-on-scroll">
+                    <span class="wellness-icon">🧘</span>
+                    <div class="wellness-label">סטודיו יוגה<br>ופילאטיס</div>
+                </div>
+                <div class="wellness-item animate-on-scroll">
+                    <span class="wellness-icon">🌿</span>
+                    <div class="wellness-label">גינת מדיטציה<br>ושקט</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Apartments Section -->
+    <section class="apartments">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">אדריכלות מוקפדת של לייף-סטייל</h2>
+            
+            <div class="double-suite animate-on-scroll">
+                <div class="double-suite-title">🎯 קונספט Double Suite</div>
+                <p class="double-suite-text">כל דירה מתוכננת עם חדר שינה ראשי מפנק + ממ"ד כסוויטה שנייה עם חדר אמבטיה פרטי. פרטיות מושלמת לכל בני המשפחה.</p>
+            </div>
+            
+            <div class="apartment-grid">
+                <div class="apartment-card animate-on-scroll">
+                    <div class="apartment-image">3️⃣</div>
+                    <div class="apartment-details">
+                        <div class="apartment-type">3 חדרים</div>
+                        <div class="apartment-size">80 מ"ר</div>
+                        <span class="apartment-feature">גינה / מרפסת</span>
+                    </div>
+                </div>
+                <div class="apartment-card animate-on-scroll">
+                    <div class="apartment-image">4️⃣</div>
+                    <div class="apartment-details">
+                        <div class="apartment-type">4 חדרים</div>
+                        <div class="apartment-size">102-104 מ"ר</div>
+                        <span class="apartment-feature">מרפסת 12 מ"ר</span>
+                    </div>
+                </div>
+                <div class="apartment-card animate-on-scroll">
+                    <div class="apartment-image">5️⃣</div>
+                    <div class="apartment-details">
+                        <div class="apartment-type">5 חדרים</div>
+                        <div class="apartment-size">117-124 מ"ר</div>
+                        <span class="apartment-feature">מרפסת 14 מ"ר</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title contact-title animate-on-scroll">עשו את הצעד הראשון</h2>
+            <p class="contact-subtitle animate-on-scroll">לחיים בריאים וחכמים יותר</p>
+            
+            <form class="contact-form animate-on-scroll" action="https://formspree.io/f/xpwzgvvl" method="POST">
+                <div class="form-group">
+                    <label class="form-label" for="name">שם מלא</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="השם שלכם" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="phone">טלפון</label>
+                    <input type="tel" id="phone" name="phone" class="form-input" placeholder="05X-XXXXXXX" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="email">אימייל (אופציונלי)</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="your@email.com">
+                </div>
+                <button type="submit" class="submit-btn">חזרו אליי עם פרטים</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <img src="https://raw.githubusercontent.com/nivblu/g-park-wellness/main/images/G-Park_Logo.jpg" alt="G-Park Logo" class="footer-logo">
+            
+            <div class="footer-disclaimer">
+                מובהר בזאת הדמיה זו על כל המפורט בה, לרבות הבריכה ויתר השטחים הציבוריים, חזיתות, מיקומי פתחים ומרפסות וכד', הנה להמחשה בלבד
+            </div>
+            
+            <div class="footer-contact">
+                <a href="mailto:office@g-group1.com">office@g-group1.com</a>
+                <a href="tel:0523308287">052-3308287</a>
+            </div>
+            
+            <div class="footer-address">
+                מגדלי אקרשטיין, המנופים 11, הרצליה
+            </div>
+            
+            <div class="footer-bottom">
+                © 2024 G Park Wellness. כל הזכויות שמורות.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.submit-btn');
+            btn.textContent = 'נשלח! תודה רבה 🙏';
+            btn.style.background = 'linear-gradient(135deg, #6B7A5D, #8B9A7D)';
+            this.reset();
+            setTimeout(() => {
+                btn.textContent = 'חזרו אליי עם פרטים';
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
