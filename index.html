@@ -3,96 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G PARK WELLNESS - רמת השרון</title>
+    <title>G PARK WELLNESS | רמת השרון</title>
+    <meta name="description" content="מתחם מגורים יוקרתי עם חוויית Wellness ברמת השרון">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --sage-green: #8B9A7D;
-            --sage-light: #A8B89A;
-            --sage-dark: #6B7A5D;
-            --stone: #8C8680;
-            --stone-light: #A9A29C;
-            --wood: #B8956E;
-            --wood-dark: #8B6F4E;
-            --white: #FAFAFA;
-            --white-warm: #F5F3EF;
-            --text-dark: #2D2D2D;
-            --text-light: #5A5A5A;
+            --gold: #C9A962;
+            --gold-light: #E5D4A1;
+            --gold-dark: #A88B45;
+            --charcoal: #1A1A1A;
+            --charcoal-light: #2D2D2D;
+            --cream: #F9F7F4;
+            --cream-warm: #F0EDE8;
+            --stone: #6B6B6B;
+            --white: #FFFFFF;
+            --shadow-soft: 0 4px 30px rgba(0,0,0,0.06);
+            --shadow-medium: 0 10px 40px rgba(0,0,0,0.1);
+            --shadow-lift: 0 20px 60px rgba(0,0,0,0.12);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Assistant', sans-serif;
+            font-family: 'Heebo', sans-serif;
             background: var(--white);
-            color: var(--text-dark);
-            line-height: 1.6;
+            color: var(--charcoal);
+            line-height: 1.7;
             overflow-x: hidden;
         }
 
-        /* Animations */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+        }
+
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(30px);
+            transform: translateY(40px);
             transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
@@ -101,54 +63,81 @@
             transform: translateY(0);
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 1rem 2rem;
+            padding: 1.25rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
-            transition: background 0.3s ease;
+            background: linear-gradient(to bottom, rgba(26,26,26,0.7), transparent);
+            transition: var(--transition-smooth);
         }
 
         nav.scrolled {
-            background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 30px rgba(0,0,0,0.08);
         }
+
+        nav.scrolled .logo { height: 45px; }
+        nav.scrolled .nav-link { color: var(--charcoal); }
+        nav.scrolled .nav-cta { background: var(--charcoal); color: var(--white); }
 
         .logo {
-            height: 50px;
+            height: 55px;
             width: auto;
             object-fit: contain;
+            transition: var(--transition-smooth);
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
         .nav-cta {
-            background: var(--sage-green);
-            color: white;
-            padding: 0.75rem 1.5rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 0.85rem 2rem;
             border: none;
-            border-radius: 30px;
-            font-family: 'Assistant', sans-serif;
+            border-radius: 4px;
+            font-family: 'Heebo', sans-serif;
             font-size: 0.9rem;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
             text-decoration: none;
         }
 
-        .nav-cta:hover {
-            background: var(--sage-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(139, 154, 125, 0.4);
-        }
+        .nav-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             position: relative;
@@ -158,7 +147,7 @@
             align-items: center;
             text-align: center;
             padding: 2rem;
-            background: url('https://raw.githubusercontent.com/nivblu/g-park-wellness/main/images/G-Park_Project_Aerial_02.png') center/cover no-repeat;
+            background: url('images/hero.jpg') center/cover no-repeat;
             background-attachment: fixed;
         }
 
@@ -169,122 +158,100 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-                135deg,
-                rgba(0,0,0,0.6) 0%,
-                rgba(0,0,0,0.3) 50%,
-                rgba(0,0,0,0.5) 100%
-            );
+            background: linear-gradient(180deg, rgba(26,26,26,0.5) 0%, rgba(26,26,26,0.35) 40%, rgba(26,26,26,0.5) 100%);
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
             max-width: 900px;
-            animation: fadeInUp 1s ease forwards;
+            animation: fadeInUp 1.2s ease forwards;
+        }
+
+        .hero-overline {
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
         }
 
         .hero-title {
-            font-size: 4rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 0.5rem;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            font-size: 5rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
         }
 
         .hero-tagline {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 300;
-            color: var(--sage-light);
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
+            color: var(--cream);
+            margin-bottom: 2.5rem;
+            letter-spacing: 0.5px;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
-            margin-bottom: 3rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 4rem;
+            max-width: 550px;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.8;
+            line-height: 1.9;
+            font-weight: 300;
         }
 
         .hero-cta {
             display: inline-block;
-            background: var(--sage-green);
-            color: white;
-            padding: 1.2rem 3rem;
+            background: var(--gold);
+            color: var(--charcoal);
+            padding: 1.1rem 3.5rem;
             border: none;
-            border-radius: 50px;
-            font-family: 'Assistant', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
+            border-radius: 4px;
+            font-family: 'Heebo', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition-smooth);
             text-decoration: none;
-            box-shadow: 0 10px 40px rgba(139, 154, 125, 0.4);
+            letter-spacing: 0.5px;
         }
 
-        .hero-cta:hover {
-            background: var(--sage-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 15px 50px rgba(139, 154, 125, 0.5);
-        }
+        .hero-cta:hover { background: var(--gold-dark); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201, 169, 98, 0.3); }
 
-        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
-            bottom: 2rem;
+            bottom: 3rem;
             left: 50%;
             transform: translateX(-50%);
-            animation: bounce 2s infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            animation: gentleFloat 3s ease-in-out infinite;
         }
 
         .scroll-indicator span {
-            display: block;
-            width: 26px;
-            height: 26px;
-            border-bottom: 2px solid rgba(255,255,255,0.6);
-            border-right: 2px solid rgba(255,255,255,0.6);
-            transform: rotate(45deg);
+            font-size: 0.7rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
-            40% { transform: translateX(-50%) translateY(-10px); }
-            60% { transform: translateX(-50%) translateY(-5px); }
-        }
+        .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, var(--gold), transparent); }
 
-        /* Section Styles */
-        section {
-            padding: 6rem 2rem;
-        }
+        section { padding: 8rem 3rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 5rem; }
+        .section-overline { font-size: 0.75rem; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+        .section-title { font-size: 2.8rem; font-weight: 500; color: var(--charcoal); margin-bottom: 1rem; }
+        .section-subtitle { font-size: 1.15rem; color: var(--stone); max-width: 600px; margin: 0 auto; font-weight: 300; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 1.2rem;
-            color: var(--text-light);
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        /* Value Proposition Section */
         .value-prop {
-            background: var(--white-warm);
+            background: var(--cream);
             position: relative;
             overflow: hidden;
         }
@@ -295,481 +262,293 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--sage-green), var(--wood), var(--sage-green));
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
         }
 
-        .value-content {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .value-title {
-            font-size: 2.8rem;
-            font-weight: 700;
-            color: var(--sage-dark);
-            margin-bottom: 2rem;
-        }
-
-        .value-details {
-            font-size: 1.3rem;
-            line-height: 2;
-            color: var(--text-dark);
-        }
-
-        .value-highlight {
-            display: inline-block;
-            background: var(--sage-green);
-            color: white;
-            padding: 0.5rem 1.5rem;
-            border-radius: 10px;
-            font-weight: 600;
-            margin: 1rem 0;
-        }
+        .value-content { text-align: center; max-width: 850px; margin: 0 auto; }
+        .value-title { font-size: 2.8rem; font-weight: 500; color: var(--charcoal); margin-bottom: 2.5rem; line-height: 1.4; }
+        .value-details { font-size: 1.2rem; line-height: 2; color: var(--charcoal-light); font-weight: 300; }
+        .value-highlight { display: inline-block; background: var(--charcoal); color: var(--white); padding: 0.75rem 2rem; border-radius: 4px; font-weight: 500; margin: 2rem 0; }
 
         .price-comparison {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
+            gap: 1.5rem;
+            margin-top: 4rem;
             flex-wrap: wrap;
         }
 
         .price-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            background: var(--white);
+            padding: 2.5rem 3rem;
+            border-radius: 4px;
             text-align: center;
-            min-width: 250px;
-            transition: transform 0.3s ease;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            min-width: 240px;
         }
 
-        .price-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .price-card.competitors {
-            border: 2px solid var(--stone-light);
-        }
-
-        .price-card.gpark {
-            border: 3px solid var(--sage-green);
-            transform: scale(1.05);
-        }
-
-        .price-label {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .price-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
-        .price-card.competitors .price-value {
-            color: var(--stone);
-        }
-
-        .price-card.gpark .price-value {
-            color: var(--sage-green);
-        }
-
-        .price-per {
-            font-size: 0.9rem;
-            color: var(--text-light);
-        }
+        .price-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-medium); }
+        .price-card.competitors { border: 1px solid #E5E5E5; }
+        .price-card.gpark { border: 2px solid var(--gold); transform: scale(1.05); }
+        .price-card.gpark:hover { transform: scale(1.05) translateY(-8px); }
+        .price-label { font-size: 0.9rem; color: var(--stone); margin-bottom: 0.75rem; font-weight: 400; }
+        .price-value { font-size: 2.8rem; font-weight: 600; color: var(--charcoal); font-family: 'Playfair Display', serif; }
+        .price-card.competitors .price-value { color: var(--stone); }
+        .price-card.gpark .price-value { color: var(--gold-dark); }
+        .price-per { font-size: 0.85rem; color: var(--stone); }
 
         .savings-badge {
             display: inline-block;
-            background: linear-gradient(135deg, var(--wood), var(--wood-dark));
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-top: 2rem;
-            box-shadow: 0 10px 30px rgba(184, 149, 110, 0.4);
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--charcoal);
+            padding: 1.25rem 3rem;
+            border-radius: 4px;
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(201, 169, 98, 0.3);
         }
 
-        /* Wellness Section */
-        .wellness {
-            background: linear-gradient(180deg, var(--white) 0%, var(--white-warm) 100%);
-        }
-
-        .wellness-title {
-            margin-bottom: 1rem;
-        }
-
-        .wellness-subtitle {
-            font-size: 1.3rem;
-            color: var(--text-light);
-            margin-bottom: 4rem;
-        }
+        .wellness { background: var(--white); }
 
         .wellness-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .wellness-item {
-            background: white;
-            padding: 2.5rem 1.5rem;
-            border-radius: 20px;
+            background: var(--cream);
+            padding: 3rem 1.5rem;
+            border-radius: 4px;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border: 1px solid rgba(139, 154, 125, 0.1);
+            transition: var(--transition-smooth);
+            border: 1px solid transparent;
         }
 
         .wellness-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-            border-color: var(--sage-green);
-        }
-
-        .wellness-icon {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .wellness-label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        /* Apartments Section */
-        .apartments {
             background: var(--white);
-            position: relative;
+            box-shadow: var(--shadow-medium);
+            border-color: var(--gold-light);
+            transform: translateY(-8px);
         }
 
-        .apartments::before {
+        .wellness-icon { width: 56px; height: 56px; margin: 0 auto 1.25rem; display: flex; align-items: center; justify-content: center; }
+        .wellness-icon svg { width: 48px; height: 48px; stroke: var(--gold-dark); fill: none; stroke-width: 1.5; }
+        .wellness-label { font-size: 1rem; font-weight: 500; color: var(--charcoal); line-height: 1.5; }
+
+        .features-banner { background: var(--charcoal); padding: 5rem 3rem; text-align: center; }
+        .features-title { color: var(--white); font-size: 1.5rem; font-weight: 400; margin-bottom: 3rem; font-family: 'Heebo', sans-serif; }
+        .features-grid { display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+        .feature-item { display: flex; align-items: center; gap: 1rem; color: var(--cream); }
+        .feature-item svg { width: 24px; height: 24px; stroke: var(--gold); }
+
+        .interior-preview {
+            min-height: 70vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            background: url('images/interior.jpg') center/cover no-repeat;
+            background-attachment: fixed;
+        }
+
+        .interior-preview::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--sage-green), var(--wood), var(--sage-green));
+            bottom: 0;
+            background: rgba(26,26,26,0.6);
         }
+
+        .interior-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin-right: 10%;
+            padding: 4rem;
+            background: rgba(255,255,255,0.97);
+            border-radius: 4px;
+        }
+
+        .interior-label { font-size: 0.75rem; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+        .interior-title { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--charcoal); }
+        .interior-text { font-size: 1.05rem; color: var(--stone); line-height: 1.8; font-weight: 300; }
+
+        .apartments { background: var(--cream); position: relative; }
+        .apartments::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
 
         .double-suite {
-            background: linear-gradient(135deg, var(--sage-light) 0%, var(--sage-green) 100%);
-            padding: 3rem;
-            border-radius: 20px;
-            margin-bottom: 4rem;
+            background: var(--charcoal);
+            padding: 4rem;
+            border-radius: 4px;
+            margin-bottom: 5rem;
             text-align: center;
-            color: white;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
         }
 
-        .double-suite-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
+        .double-suite::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--gold); }
+        .double-suite-title { font-size: 1.8rem; font-weight: 500; margin-bottom: 1rem; font-family: 'Playfair Display', serif; }
+        .double-suite-text { font-size: 1.1rem; opacity: 0.9; max-width: 650px; margin: 0 auto; line-height: 1.8; font-weight: 300; }
 
-        .double-suite-text {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .apartment-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
+        .apartment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
 
         .apartment-card {
-            background: var(--white-warm);
-            border-radius: 20px;
+            background: var(--white);
+            border-radius: 4px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
         }
 
-        .apartment-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-        }
+        .apartment-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-lift); }
+        .apartment-image { height: 220px; background: linear-gradient(135deg, #E8E4DE 0%, #D8D4CE 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .apartment-number { font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--charcoal); opacity: 0.15; font-weight: 600; }
+        .apartment-details { padding: 2rem; }
+        .apartment-type { font-size: 1.4rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.5rem; }
+        .apartment-size { font-size: 1rem; color: var(--stone); margin-bottom: 1rem; font-weight: 300; }
+        .apartment-feature { display: inline-block; background: var(--charcoal); color: var(--white); padding: 0.5rem 1.25rem; border-radius: 4px; font-size: 0.85rem; font-weight: 500; }
 
-        .apartment-image {
-            height: 200px;
-            background: var(--sage-light);
+        .pool-section {
+            min-height: 60vh;
+            position: relative;
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: white;
+            background: url('images/pool.jpg') center/cover no-repeat;
+            background-attachment: fixed;
         }
 
-        .apartment-details {
-            padding: 1.5rem;
-        }
+        .pool-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(26,26,26,0.5); }
+        .pool-content { position: relative; z-index: 1; max-width: 550px; margin-left: 10%; padding: 3.5rem; background: rgba(255,255,255,0.97); border-radius: 4px; }
+        .pool-label { font-size: 0.75rem; font-weight: 500; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 1rem; }
+        .pool-title { font-size: 2.2rem; margin-bottom: 1.5rem; color: var(--charcoal); }
+        .pool-text { font-size: 1.05rem; color: var(--stone); line-height: 1.8; font-weight: 300; }
 
-        .apartment-type {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--sage-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .apartment-size {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 0.5rem;
-        }
-
-        .apartment-feature {
-            display: inline-block;
-            background: var(--sage-green);
-            color: white;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        /* Contact Section */
-        .contact {
-            background: linear-gradient(180deg, var(--white-warm) 0%, var(--white) 100%);
-            position: relative;
-        }
-
-        .contact-title {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .contact-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-        }
+        .contact { background: var(--white); position: relative; }
+        .contact::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
+        .contact-title { font-size: 2.4rem; margin-bottom: 0.75rem; }
+        .contact-subtitle { font-size: 1.1rem; color: var(--stone); margin-bottom: 4rem; font-weight: 300; }
 
         .contact-form {
-            max-width: 600px;
+            max-width: 550px;
             margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            background: var(--cream);
+            padding: 4rem;
+            border-radius: 4px;
+            box-shadow: var(--shadow-soft);
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-label {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
+        .form-group { margin-bottom: 1.75rem; }
+        .form-label { display: block; font-size: 0.9rem; font-weight: 500; color: var(--charcoal); margin-bottom: 0.6rem; }
         .form-input {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid #E5E5E5;
-            border-radius: 12px;
-            font-family: 'Assistant', sans-serif;
+            padding: 1rem 1.25rem;
+            border: 1px solid #E0DCD5;
+            border-radius: 4px;
+            font-family: 'Heebo', sans-serif;
             font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--white-warm);
+            transition: var(--transition-smooth);
+            background: var(--white);
+            color: var(--charcoal);
         }
 
-        .form-input:focus {
-            outline: none;
-            border-color: var(--sage-green);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(139, 154, 125, 0.1);
-        }
-
-        .form-input::placeholder {
-            color: #999;
-        }
+        .form-input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201, 169, 98, 0.15); }
+        .form-input::placeholder { color: #A0A0A0; }
 
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, var(--sage-green), var(--sage-dark));
-            color: white;
-            padding: 1.2rem;
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 1.25rem;
             border: none;
-            border-radius: 12px;
-            font-family: 'Assistant', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(139, 154, 125, 0.3);
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(139, 154, 125, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 4rem 2rem 2rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .footer-logo {
-            height: 60px;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .footer-disclaimer {
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.6);
-            max-width: 700px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-            padding: 1.5rem;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-        }
-
-        .footer-contact {
-            margin-bottom: 2rem;
-        }
-
-        .footer-contact a {
-            color: var(--sage-light);
-            text-decoration: none;
-            display: block;
-            margin: 0.5rem 0;
+            border-radius: 4px;
+            font-family: 'Heebo', sans-serif;
             font-size: 1rem;
-            transition: color 0.3s ease;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition-smooth);
         }
 
-        .footer-contact a:hover {
-            color: white;
+        .submit-btn:hover { background: var(--charcoal-light); transform: translateY(-2px); }
+
+        footer { background: var(--charcoal); color: var(--white); padding: 5rem 3rem 2.5rem; }
+        .footer-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+        .footer-logo { height: 60px; margin-bottom: 2.5rem; opacity: 0.9; }
+        .footer-disclaimer { font-size: 0.8rem; color: rgba(255,255,255,0.5); max-width: 700px; margin: 0 auto 2.5rem; line-height: 1.9; padding: 1.5rem 2rem; background: rgba(255,255,255,0.03); border-radius: 4px; border: 1px solid rgba(255,255,255,0.08); }
+        .footer-contact { margin-bottom: 2rem; }
+        .footer-contact a { color: var(--gold-light); text-decoration: none; display: block; margin: 0.6rem 0; font-size: 1rem; transition: var(--transition-smooth); }
+        .footer-contact a:hover { color: var(--white); }
+        .footer-address { color: rgba(255,255,255,0.6); font-size: 0.95rem; margin-bottom: 2.5rem; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.8rem; color: rgba(255,255,255,0.4); }
+
+        @media (max-width: 1024px) {
+            .wellness-grid { grid-template-columns: repeat(3, 1fr); }
+            .apartment-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        .footer-address {
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 2rem;
-            font-size: 0.85rem;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* Responsive */
         @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-
-            .hero-tagline {
-                font-size: 1.3rem;
-            }
-
-            .hero-subtitle {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .value-title {
-                font-size: 2rem;
-            }
-
-            .price-comparison {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .price-card.gpark {
-                transform: scale(1);
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .wellness-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .contact-form {
-                padding: 2rem 1.5rem;
-            }
+            .nav-links { display: none; }
+            .hero-title { font-size: 3rem; }
+            .hero-tagline { font-size: 1.2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .section-title { font-size: 2rem; }
+            .value-title { font-size: 2rem; }
+            .price-comparison { flex-direction: column; align-items: center; }
+            .price-card.gpark { transform: scale(1); }
+            section { padding: 5rem 1.5rem; }
+            .wellness-grid { grid-template-columns: repeat(2, 1fr); }
+            .apartment-grid { grid-template-columns: 1fr; }
+            .features-grid { flex-direction: column; gap: 2rem; }
+            .interior-content, .pool-content { margin: 2rem; padding: 2rem; }
+            .contact-form { padding: 2rem 1.5rem; }
+            .double-suite { padding: 2.5rem 1.5rem; }
         }
 
         @media (max-width: 480px) {
-            .hero-title {
-                font-size: 2rem;
-            }
-
-            .wellness-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-cta {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
+            .hero-title { font-size: 2.4rem; }
+            .wellness-grid { grid-template-columns: 1fr; }
+            .value-title { font-size: 1.7rem; }
+            .savings-badge { font-size: 1rem; padding: 1rem 2rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav id="navbar">
-        <img src="https://raw.githubusercontent.com/nivblu/g-park-wellness/main/images/G-Park_Logo.jpg" alt="G-Park Logo" class="logo">
-        <a href="#contact" class="nav-cta">לתיאום פגישה</a>
+        <img src="images/logo.jpg" alt="G-Park Logo" class="logo">
+        <div class="nav-links">
+            <a href="#value" class="nav-link">היתרונות</a>
+            <a href="#wellness" class="nav-link">הוולנס</a>
+            <a href="#apartments" class="nav-link">הדירות</a>
+            <a href="#contact" class="nav-cta">לתיאום פגישה</a>
+        </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
+            <p class="hero-overline">מתחם מגורים יוקרתי</p>
             <h1 class="hero-title">G PARK WELLNESS</h1>
             <p class="hero-tagline">רמת השרון</p>
-            <p class="hero-tagline" style="font-size: 1.4rem; margin-bottom: 1.5rem;">חיים בריאים יותר. חיים חכמים יותר.</p>
-            <p class="hero-subtitle">מתחם מגורים חדש מול פארק אקולוגי. חוויית Wellness Resort פרטית בתוך העיר.</p>
+            <p class="hero-subtitle">חוויית Wellness Resort פרטית בלב הטבע. מתחם מגורים ייחודי מול פארק אקולוגי עם כל הפינוקים של המלון היוקרתי - בבית שלכם.</p>
             <a href="#contact" class="hero-cta">לתיאום פגישה במשרד המכירות</a>
         </div>
         <div class="scroll-indicator">
-            <span></span>
+            <span>גלו עוד</span>
+            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- Value Proposition Section -->
-    <section class="value-prop">
+    <section class="value-prop" id="value">
         <div class="container">
             <div class="value-content animate-on-scroll">
                 <h2 class="value-title">לחיות ליד פארק צפון – במחיר חכם יותר!</h2>
-                <p class="value-details">
-                    הפרויקט ממוקם בלב אחד האזורים המתפתחים ברמת השרון. בעוד פרויקטים סמוכים נמכרים במחירים של 53-55 אלף ₪ למ"ר, דירות ב-G Park מוצעות החל מ-38 אלף ₪ למ"ר בלבד.
-                </p>
+                <p class="value-details">הפרויקט ממוקם בלב אחד האזורים המתפתחים ברמת השרון. בעוד פרויקטים סמוכים נמכרים במחירים של 53-55 אלף ₪ למ"ר, דירות ב-G Park מוצעות החל מ-38 אלף ₪ למ"ר בלבד.</p>
                 <div class="value-highlight">המשמעות: חיסכון של עד 1,000,000 ₪ לדירה!</div>
                 
                 <div class="price-comparison">
@@ -790,50 +569,97 @@
         </div>
     </section>
 
-    <!-- Wellness Facilities Section -->
-    <section class="wellness">
+    <section class="wellness" id="wellness">
         <div class="container">
-            <h2 class="section-title wellness-title animate-on-scroll">THE WELLNESS RESORT</h2>
-            <p class="wellness-subtitle animate-on-scroll">בלעדי לדיירי הפרויקט</p>
+            <div class="section-header animate-on-scroll">
+                <p class="section-overline">בלעדי לדיירי הפרויקט</p>
+                <h2 class="section-title">THE WELLNESS RESORT</h2>
+                <p class="section-subtitle">מתחם וולנס פרטי ומפנק לכל דיירי הפרויקט</p>
+            </div>
             
             <div class="wellness-grid">
                 <div class="wellness-item animate-on-scroll">
-                    <span class="wellness-icon">🏊</span>
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="20" width="36" height="20" rx="2"/><path d="M6 28h36"/><path d="M14 20v-4a6 6 0 0 1 12 0v4"/><path d="M22 8v4"/><circle cx="24" cy="14" r="2"/></svg>
+                    </div>
                     <div class="wellness-label">בריכת שחייה<br>חצי אולימפית</div>
                 </div>
                 <div class="wellness-item animate-on-scroll">
-                    <span class="wellness-icon">💆</span>
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4c-8 0-14 10-14 22s6 18 14 18 14-6 14-18-6-22-14-22z"/><path d="M24 4c4 6 6 14 6 22s-2 16-6 22"/><path d="M24 44V26"/><circle cx="20" cy="24" r="2"/><circle cx="28" cy="24" r="2"/></svg>
+                    </div>
                     <div class="wellness-label">מתחם ספא<br>וסאונה</div>
                 </div>
                 <div class="wellness-item animate-on-scroll">
-                    <span class="wellness-icon">🏋️</span>
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V20"/><path d="M16 40V14"/><path d="M24 40V8"/><path d="M32 40V18"/><path d="M40 40V24"/><rect x="4" y="40" width="40" height="4" rx="1"/><circle cx="24" cy="32" r="4"/><path d="M20 32h8"/></svg>
+                    </div>
                     <div class="wellness-label">חדר כושר<br>מתקדם</div>
                 </div>
                 <div class="wellness-item animate-on-scroll">
-                    <span class="wellness-icon">🧘</span>
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M24 10v14l10 6"/><path d="M12 20c0-8 6-12 12-12"/><circle cx="24" cy="24" r="3"/></svg>
+                    </div>
                     <div class="wellness-label">סטודיו יוגה<br>ופילאטיס</div>
                 </div>
                 <div class="wellness-item animate-on-scroll">
-                    <span class="wellness-icon">🌿</span>
+                    <div class="wellness-icon">
+                        <svg viewBox="0 0 48 48" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4c-10 0-18 8-18 20s8 20 18 20 18-8 18-20-8-20-18-20z"/><path d="M24 4v40"/><path d="M8 24h32"/><path d="M14 14l6-6 8 8"/><path d="M14 34l6 6 8-8"/></svg>
+                    </div>
                     <div class="wellness-label">גינת מדיטציה<br>ושקט</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Apartments Section -->
-    <section class="apartments">
+    <section class="features-banner">
+        <div class="features-grid">
+            <div class="feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>24/7 שמירה</span>
+            </div>
+            <div class="feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>לובי מפואר</span>
+            </div>
+            <div class="feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>מחסן פרטי</span>
+            </div>
+            <div class="feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>2 מעליות</span>
+            </div>
+            <div class="feature-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <span>חניה פרטית</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="interior-preview">
+        <div class="interior-content animate-on-scroll">
+            <p class="interior-label">עיצוב פנים</p>
+            <h2 class="interior-title">אדריכלות מוקפדת</h2>
+            <p class="interior-text">כל דירה תוכננה בקפידה עם חומרי גמר איכותיים ועיצוב יוקרתי. תקרות גבוהות, רצפות פרקט, מטבחים מאובזרים וחדרי אמבטיה ספא. הבית שלכם - ברמה אחרת.</p>
+        </div>
+    </section>
+
+    <section class="apartments" id="apartments">
         <div class="container">
-            <h2 class="section-title animate-on-scroll">אדריכלות מוקפדת של לייף-סטייל</h2>
+            <div class="section-header animate-on-scroll">
+                <p class="section-overline">מגוון אפשרויות</p>
+                <h2 class="section-title">הדירות שלנו</h2>
+            </div>
             
             <div class="double-suite animate-on-scroll">
-                <div class="double-suite-title">🎯 קונספט Double Suite</div>
+                <div class="double-suite-title">קונספט Double Suite</div>
                 <p class="double-suite-text">כל דירה מתוכננת עם חדר שינה ראשי מפנק + ממ"ד כסוויטה שנייה עם חדר אמבטיה פרטי. פרטיות מושלמת לכל בני המשפחה.</p>
             </div>
             
             <div class="apartment-grid">
                 <div class="apartment-card animate-on-scroll">
-                    <div class="apartment-image">3️⃣</div>
+                    <div class="apartment-image"><span class="apartment-number">3</span></div>
                     <div class="apartment-details">
                         <div class="apartment-type">3 חדרים</div>
                         <div class="apartment-size">80 מ"ר</div>
@@ -841,7 +667,7 @@
                     </div>
                 </div>
                 <div class="apartment-card animate-on-scroll">
-                    <div class="apartment-image">4️⃣</div>
+                    <div class="apartment-image"><span class="apartment-number">4</span></div>
                     <div class="apartment-details">
                         <div class="apartment-type">4 חדרים</div>
                         <div class="apartment-size">102-104 מ"ר</div>
@@ -849,7 +675,7 @@
                     </div>
                 </div>
                 <div class="apartment-card animate-on-scroll">
-                    <div class="apartment-image">5️⃣</div>
+                    <div class="apartment-image"><span class="apartment-number">5</span></div>
                     <div class="apartment-details">
                         <div class="apartment-type">5 חדרים</div>
                         <div class="apartment-size">117-124 מ"ר</div>
@@ -860,11 +686,20 @@
         </div>
     </section>
 
-    <!-- Contact Form Section -->
+    <section class="pool-section">
+        <div class="pool-content animate-on-scroll">
+            <p class="pool-label">הבריכה</p>
+            <h2 class="pool-title">חוויית וולנס ייחודית</h2>
+            <p class="pool-text">בריכת שחייה חצי אולימפית מחוממת, מתחם ספא וסאונה, וגינת מדיטציה שקטה. כל זה - בבניין שלכם. בלעדי לדיירים.</p>
+        </div>
+    </section>
+
     <section class="contact" id="contact">
         <div class="container">
-            <h2 class="section-title contact-title animate-on-scroll">עשו את הצעד הראשון</h2>
-            <p class="contact-subtitle animate-on-scroll">לחיים בריאים וחכמים יותר</p>
+            <div class="section-header animate-on-scroll">
+                <h2 class="contact-title">עשו את הצעד הראשון</h2>
+                <p class="contact-subtitle">לחיים בריאים וחכמים יותר</p>
+            </div>
             
             <form class="contact-form animate-on-scroll" action="https://formspree.io/f/xpwzgvvl" method="POST">
                 <div class="form-group">
@@ -884,10 +719,9 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-content">
-            <img src="https://raw.githubusercontent.com/nivblu/g-park-wellness/main/images/G-Park_Logo.jpg" alt="G-Park Logo" class="footer-logo">
+            <img src="images/logo.jpg" alt="G-Park Logo" class="footer-logo">
             
             <div class="footer-disclaimer">
                 מובהר בזאת הדמיה זו על כל המפורט בה, לרבות הבריכה ויתר השטחים הציבוריים, חזיתות, מיקומי פתחים ומרפסות וכד', הנה להמחשה בלבד
@@ -909,7 +743,6 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -919,7 +752,6 @@
             }
         });
 
-        // Scroll animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -937,18 +769,18 @@
             observer.observe(el);
         });
 
-        // Form submission
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = this.querySelector('.submit-btn');
-            btn.textContent = 'נשלח! תודה רבה 🙏';
-            btn.style.background = 'linear-gradient(135deg, #6B7A5D, #8B9A7D)';
+            btn.textContent = 'נשלח! תודה רבה';
+            btn.style.background = 'var(--gold-dark)';
             this.reset();
             setTimeout(() => {
                 btn.textContent = 'חזרו אליי עם פרטים';
+                btn.style.background = 'var(--charcoal)';
             }, 3000);
         });
     </script>
 </body>
 </html>
-<!-- Updated -->
+
