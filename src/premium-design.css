@@ -1,0 +1,508 @@
+/* G-Park Wellness - Premium Design System v2 */
+
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@100;200;300;400;500;600;700&display=swap');
+
+/* ========================================
+   DESIGN TOKENS
+   ======================================== */
+:root {
+  /* Colors */
+  --color-primary: #F7F8F3;
+  --color-text: #1A2421;
+  --color-gold: #B38B59;
+  --color-gold-light: #C9A676;
+  --color-gold-dark: #96723F;
+  --color-surface: #FFFFFF;
+  --color-dark-sage: #1A2421;
+  --color-muted: #7A8A83;
+  
+  /* Fonts */
+  --font-heading: 'Frank Ruhl Libre', serif;
+  --font-body: 'Heebo', sans-serif;
+  
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --space-4xl: 96px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(26, 36, 33, 0.06);
+  --shadow-md: 0 4px 20px rgba(26, 36, 33, 0.08);
+  --shadow-lg: 0 8px 40px rgba(26, 36, 33, 0.12);
+  --shadow-xl: 0 20px 60px rgba(26, 36, 33, 0.15);
+  --shadow-gold: 0 8px 32px rgba(179, 139, 89, 0.2);
+  
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--color-text);
+  background: var(--color-primary);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+/* ========================================
+   LAYOUT UTILITIES
+   ======================================== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: var(--space-4xl) 0;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+.heading-xl {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.heading-lg {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+}
+
+.heading-md {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 500;
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.text-md {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-gold {
+  color: var(--color-gold);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+
+/* ========================================
+   SPACING UTILITIES
+   ======================================== */
+.mt-xs { margin-top: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mt-md { margin-top: var(--space-md); }
+.mt-lg { margin-top: var(--space-lg); }
+.mt-xl { margin-top: var(--space-xl); }
+.mt-2xl { margin-top: var(--space-2xl); }
+.mt-3xl { margin-top: var(--space-3xl); }
+
+.mb-xs { margin-bottom: var(--space-xs); }
+.mb-sm { margin-bottom: var(--space-sm); }
+.mb-md { margin-bottom: var(--space-md); }
+.mb-lg { margin-bottom: var(--space-lg); }
+.mb-xl { margin-bottom: var(--space-xl); }
+.mb-2xl { margin-bottom: var(--space-2xl); }
+.mb-3xl { margin-bottom: var(--space-3xl); }
+
+.py-section { padding: var(--space-4xl) 0; }
+.py-lg { padding: var(--space-3xl) 0; }
+.py-md { padding: var(--space-2xl) 0; }
+
+/* ========================================
+   CARDS & CONTAINERS
+   ======================================== */
+.card {
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: var(--space-xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.card-gold {
+  border: 1px solid rgba(179, 139, 89, 0.2);
+}
+
+.card-gold:hover {
+  border-color: var(--color-gold);
+  box-shadow: var(--shadow-gold);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md) var(--space-xl);
+  border-radius: 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-smooth);
+  border: none;
+}
+
+.btn-primary {
+  background: var(--color-gold);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-gold-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-outline {
+  background: transparent;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline:hover {
+  border-color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-outline-dark {
+  background: transparent;
+  color: var(--color-text);
+  border: 1px solid rgba(26, 36, 33, 0.2);
+}
+
+.btn-outline-dark:hover {
+  border-color: var(--color-gold);
+  color: var(--color-gold);
+}
+
+/* ========================================
+   INPUTS
+   ======================================== */
+.input {
+  width: 100%;
+  padding: var(--space-md);
+  border: none;
+  border-bottom: 1px solid rgba(26, 36, 33, 0.15);
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  transition: border-color 0.3s;
+  outline: none;
+}
+
+.input:focus {
+  border-color: var(--color-gold);
+}
+
+.input::placeholder {
+  color: var(--color-muted);
+}
+
+.input-group {
+  margin-bottom: var(--space-lg);
+}
+
+/* ========================================
+   GRID SYSTEMS
+   ======================================== */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-xl);
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-xl);
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+@media (max-width: 900px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s var(--ease-smooth) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-slide-in {
+  animation: slideInRight 0.6s var(--ease-smooth) forwards;
+}
+
+/* Stagger delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* ========================================
+   GOLD ACCENTS
+   ======================================== */
+.gold-line {
+  width: 40px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+.gold-line-center {
+  width: 40px;
+  height: 2px;
+  background: var(--color-gold);
+  margin: 0 auto;
+}
+
+.gold-border {
+  border-left: 3px solid var(--color-gold);
+  padding-left: var(--space-md);
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-light), var(--color-gold), var(--color-gold-dark));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========================================
+   BACKGROUND EFFECTS
+   ======================================== */
+.bg-dark {
+  background: var(--color-dark-sage);
+  color: white;
+}
+
+.bg-gold {
+  background: var(--color-gold);
+  color: white;
+}
+
+.bg-surface {
+  background: var(--color-surface);
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(180deg, rgba(26, 36, 33, 0.95) 0%, rgba(26, 36, 33, 0.7) 50%, rgba(26, 36, 33, 0.4) 100%);
+}
+
+/* Overlay */
+.overlay-dark {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.overlay-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 36, 33, 0.4) 0%, rgba(26, 36, 33, 0.7) 100%);
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+.section-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.section-dark {
+  background: var(--color-dark-sage);
+  color: white;
+  padding: var(--space-4xl) 0;
+}
+
+.section-light {
+  background: var(--color-primary);
+  padding: var(--space-4xl) 0;
+}
+
+.section-surface {
+  background: var(--color-surface);
+  padding: var(--space-4xl) 0;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  background: var(--color-dark-sage);
+  color: white;
+  padding: var(--space-2xl) 0;
+  text-align: center;
+}
+
+.footer a {
+  color: white;
+  opacity: 0.8;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.footer a:hover {
+  opacity: 1;
+}
+
+/* ========================================
+   NAVBAR
+   ======================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: var(--space-md) 0;
+  transition: all 0.4s var(--ease-smooth);
+}
+
+.navbar.scrolled {
+  background: rgba(247, 248, 243, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-sm);
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: color 0.3s;
+  opacity: 0.85;
+}
+
+.navbar.scrolled .nav-link {
+  color: var(--color-text);
+}
+
+.nav-link:hover {
+  color: var(--color-gold);
+  opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVE HERLPERS
+   ======================================== */
+@media (max-width: 768px) {
+  .hide-mobile { display: none; }
+  .section { padding: var(--space-2xl) 0; }
+  .container { padding: 0 var(--space-md); }
+}

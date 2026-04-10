@@ -1,0 +1,659 @@
+/* G-Park Wellness - Premium Design System v3 */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Heebo:wght@300;400;500;600;700&family=Assistant:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors */
+  --sage-green: #2A3B32;
+  --sage-light: #3D4F45;
+  --natural-stone: #F5F3EF;
+  --warm-cream: #E8E4DC;
+  --wood: #A58B75;
+  --wood-dark: #8B735F;
+  --white: #FFFFFF;
+  --charcoal: #1A1A1A;
+  
+  /* Typography */
+  --font-display: 'Playfair Display', serif;
+  --font-body: 'Heebo', sans-serif;
+  --font-alt: 'Assistant', sans-serif;
+  
+  /* Spacing */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
+  --space-3xl: 96px;
+  --space-4xl: 128px;
+  
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(42, 59, 50, 0.06);
+  --shadow-md: 0 4px 16px rgba(42, 59, 50, 0.08);
+  --shadow-lg: 0 8px 32px rgba(42, 59, 50, 0.12);
+  --shadow-xl: 0 16px 48px rgba(42, 59, 50, 0.16);
+  
+  /* Layout */
+  --max-width: 1400px;
+  --section-padding: var(--space-4xl) 0;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--charcoal);
+  background: var(--natural-stone);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.15;
+  color: inherit;
+}
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+}
+
+.section {
+  padding: var(--section-padding);
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.center-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(42, 59, 50, 0.6) 0%,
+    rgba(42, 59, 50, 0.3) 40%,
+    rgba(42, 59, 50, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  color: var(--white);
+  padding: var(--space-lg);
+}
+
+.hero-subtitle {
+  font-family: var(--font-alt);
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-bottom: var(--space-md);
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: var(--space-md);
+}
+
+.hero-description {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  max-width: 550px;
+  margin: 0 auto var(--space-xl);
+  opacity: 0.92;
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-alt);
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.btn-primary {
+  background: var(--white);
+  color: var(--charcoal);
+}
+
+.btn-primary:hover {
+  background: var(--sage-green);
+  color: var(--white);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.btn-outline:hover {
+  background: var(--white);
+  color: var(--charcoal);
+  border-color: var(--white);
+}
+
+/* ========================================
+   SECTION HEADERS
+   ======================================== */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.section-label {
+  font-family: var(--font-alt);
+  font-size: 0.75rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--wood);
+  margin-bottom: var(--space-sm);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: var(--space-md);
+}
+
+.section-line {
+  width: 48px;
+  height: 2px;
+  background: var(--sage-green);
+  margin: 0 auto;
+}
+
+/* ========================================
+   LOCATION SECTION
+   ======================================== */
+.location-map {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .location-map {
+    grid-template-columns: 1fr;
+  }
+}
+
+.location-card {
+  background: var(--white);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.location-card img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+
+.location-info {
+  padding: var(--space-md);
+}
+
+.location-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  margin-bottom: var(--space-xs);
+}
+
+.location-desc {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* ========================================
+   LIFESTYLE SECTION
+   ======================================== */
+.lifestyle {
+  background: var(--white);
+}
+
+.lifestyle-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .lifestyle-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .lifestyle-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.lifestyle-card {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+.lifestyle-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-sm);
+}
+
+.lifestyle-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: var(--space-xs);
+}
+
+.lifestyle-desc {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* ========================================
+   APARTMENTS SECTION
+   ======================================== */
+.apartments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .apartments-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.apartment-card {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s ease;
+}
+
+.apartment-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+.apartment-image {
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+}
+
+.apartment-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.apartment-card:hover .apartment-image img {
+  transform: scale(1.08);
+}
+
+.apartment-details {
+  padding: var(--space-md);
+}
+
+.apartment-type {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: var(--space-xs);
+}
+
+.apartment-specs {
+  display: flex;
+  gap: var(--space-md);
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: var(--space-sm);
+}
+
+.apartment-specs span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.apartment-price {
+  font-family: var(--font-alt);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--sage-green);
+}
+
+.apartment-note {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: var(--space-xs);
+}
+
+/* ========================================
+   VALUE SECTION (Green Background)
+   ======================================== */
+.value-section {
+  background: var(--sage-green);
+  color: var(--white);
+}
+
+.value-section .section-label {
+  color: var(--wood);
+}
+
+.value-section .section-title {
+  color: var(--white);
+}
+
+.value-section .section-line {
+  background: var(--wood);
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+}
+
+@media (max-width: 768px) {
+  .value-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.value-card {
+  text-align: center;
+  padding: var(--space-xl);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+}
+
+.value-label {
+  font-size: 0.85rem;
+  opacity: 0.8;
+  margin-bottom: var(--space-xs);
+}
+
+.value-price {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  color: var(--white);
+}
+
+.value-highlight {
+  background: rgba(165, 139, 117, 0.2);
+  border-color: var(--wood);
+}
+
+.value-highlight .value-price {
+  color: var(--wood);
+}
+
+.value-savings {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--wood);
+  color: var(--white);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+/* ========================================
+   CONTACT SECTION
+   ======================================== */
+.contact-section {
+  background: var(--warm-cream);
+}
+
+.contact-form {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+@media (max-width: 500px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-group {
+  margin-bottom: var(--space-md);
+}
+
+.form-input {
+  width: 100%;
+  padding: var(--space-sm);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  border: 1px solid rgba(42, 59, 50, 0.15);
+  border-radius: 8px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: var(--sage-green);
+  box-shadow: 0 0 0 3px rgba(42, 59, 50, 0.1);
+}
+
+.form-input::placeholder {
+  color: #999;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: var(--space-md);
+  font-size: 1rem;
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+.footer {
+  background: var(--sage-green);
+  color: var(--white);
+  padding: var(--space-xl) 0;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+}
+
+.footer-contact {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+
+.footer-legal {
+  width: 100%;
+  font-size: 0.75rem;
+  opacity: 0.5;
+  margin-top: var(--space-md);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   NAVBAR
+   ======================================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: var(--space-md) 0;
+  transition: all 0.4s ease;
+}
+
+.navbar.scrolled {
+  background: rgba(245, 243, 239, 0.95);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-md);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--white);
+  text-decoration: none;
+}
+
+.navbar.scrolled .nav-logo {
+  color: var(--sage-green);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 400;
+  opacity: 0.85;
+  transition: all 0.3s;
+}
+
+.navbar.scrolled .nav-link {
+  color: var(--charcoal);
+}
+
+.nav-link:hover {
+  opacity: 1;
+  color: var(--wood);
+}
+
+/* ========================================
+   RESPONSIVE
+   ======================================== */
+@media (max-width: 768px) {
+  :root {
+    --section-padding: var(--space-2xl) 0;
+  }
+  
+  .container {
+    padding: 0 var(--space-md);
+  }
+  
+  .nav-links {
+    display: none;
+  }
+}
+
+@media (max-width: 500px) {
+  .hide-mobile {
+    display: none !important;
+  }
+}
