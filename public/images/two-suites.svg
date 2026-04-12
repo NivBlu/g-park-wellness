@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 720" width="1100" height="720" font-family="Heebo, Assistant, sans-serif">
+  <defs>
+    <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAF7F0"/>
+      <stop offset="100%" stop-color="#F2EDE1"/>
+    </linearGradient>
+    <!-- Suite 1 highlight: warm sage -->
+    <pattern id="suite1-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#2A3B32" stroke-width="0.6" opacity="0.18"/>
+    </pattern>
+    <!-- Suite 2 highlight: warm terracotta -->
+    <pattern id="suite2-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#A58B75" stroke-width="0.6" opacity="0.22"/>
+    </pattern>
+    <!-- Floor tile pattern -->
+    <pattern id="tile" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" fill="#F5F3EE"/>
+      <rect width="7" height="7" fill="#EDE9E0" opacity="0.6"/>
+      <rect x="7" y="7" width="7" height="7" fill="#EDE9E0" opacity="0.6"/>
+    </pattern>
+    <filter id="shadow" x="-3%" y="-3%" width="106%" height="112%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#1E2821" flood-opacity="0.10"/>
+    </filter>
+    <filter id="badge-shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#1E2821" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1100" height="720" fill="url(#bg-grad)"/>
+
+  <!-- ═══ TITLE ═══ -->
+  <text x="550" y="42" text-anchor="middle" fill="#6B6B65" font-size="11" font-weight="400" letter-spacing="4">תשריט עקרוני — קונספט ״שתי הסוויטות״</text>
+
+  <!-- ═══ FLOOR PLAN OUTER WALLS (thick) ═══ -->
+  <!-- Main apartment boundary -->
+  <rect x="60" y="68" width="980" height="580" rx="0" fill="none" stroke="#1E2821" stroke-width="7"/>
+  <!-- Inner background fill -->
+  <rect x="63" y="71" width="974" height="574" fill="url(#tile)" opacity="0.5"/>
+
+  <!-- ═══ INTERIOR WALLS ═══ -->
+  <!-- Vertical spine separating left from right zones -->
+  <line x1="440" y1="68" x2="440" y2="648" stroke="#1E2821" stroke-width="5"/>
+  <!-- Horizontal wall separating living area from bedrooms/mamad (top zone) -->
+  <line x1="440" y1="310" x2="1040" y2="310" stroke="#1E2821" stroke-width="5"/>
+  <!-- Wall separating master bed from master bath -->
+  <line x1="700" y1="68" x2="700" y2="310" stroke="#1E2821" stroke-width="4"/>
+  <!-- Wall separating mamad from mamad bath -->
+  <line x1="700" y1="310" x2="700" y2="648" stroke="#1E2821" stroke-width="4"/>
+  <!-- Horizontal wall separating mamad from kids bedroom -->
+  <line x1="440" y1="490" x2="700" y2="490" stroke="#1E2821" stroke-width="4"/>
+  <!-- Corridor inner wall -->
+  <line x1="440" y1="420" x2="700" y2="420" stroke="#1E2821" stroke-width="3"/>
+
+  <!-- ═══ SUITE 1 HIGHLIGHT — חדר הורים + מקלחת ═══ -->
+  <!-- Master bedroom suite overlay -->
+  <rect x="64" y="71" width="375" height="574" fill="#2A3B32" opacity="0.055"/>
+  <rect x="441" y="71" width="258" height="238" fill="#2A3B32" opacity="0.055"/>
+  <rect x="700" y="71" width="338" height="238" fill="#2A3B32" opacity="0.055"/>
+
+  <!-- Master bedroom area highlight -->
+  <rect x="441" y="71" width="258" height="238" fill="#2A3B32" opacity="0.06"/>
+  <rect x="700" y="71" width="338" height="238" fill="#2A3B32" opacity="0.06"/>
+
+  <!-- ═══ SUITE 2 HIGHLIGHT — ממ״ד + מקלחת ═══ -->
+  <rect x="441" y="311" width="258" height="175" fill="#A58B75" opacity="0.10"/>
+  <rect x="700" y="311" width="338" height="336" fill="#A58B75" opacity="0.10"/>
+  <!-- Kids room - not a suite -->
+  <rect x="441" y="491" width="258" height="156" fill="#E3DCCB" opacity="0.25"/>
+
+  <!-- ═══ ROOM LABELS ═══ -->
+
+  <!-- Left zone — Living, Kitchen, Entrance -->
+  <!-- Entrance -->
+  <text x="252" y="104" text-anchor="middle" fill="#6B6B65" font-size="10" font-weight="300" letter-spacing="1.5">כניסה</text>
+  <!-- Corridor door (bottom of entrance) -->
+  <rect x="200" y="108" width="100" height="2" fill="#1E2821" opacity="0.3"/>
+
+  <!-- Living room -->
+  <text x="252" y="310" text-anchor="middle" fill="#2A3B32" font-size="13" font-weight="400" letter-spacing="1">סלון</text>
+  <!-- Sofa shape -->
+  <rect x="160" y="210" width="120" height="55" rx="4" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1.5"/>
+  <rect x="160" y="210" width="120" height="14" rx="4" fill="#C9BFA8"/>
+  <!-- Coffee table -->
+  <rect x="186" y="278" width="68" height="35" rx="2" fill="#E3DCCB" stroke="#C9BFA8" stroke-width="1"/>
+
+  <!-- Kitchen -->
+  <text x="252" y="490" text-anchor="middle" fill="#2A3B32" font-size="13" font-weight="400" letter-spacing="1">מטבח</text>
+  <!-- Kitchen counter L-shape -->
+  <rect x="90" y="400" width="290" height="22" rx="0" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1.2"/>
+  <rect x="90" y="400" width="22" height="110" rx="0" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1.2"/>
+  <!-- Stove burners -->
+  <circle cx="140" cy="411" r="5" fill="#C9BFA8"/>
+  <circle cx="165" cy="411" r="5" fill="#C9BFA8"/>
+  <circle cx="195" cy="411" r="5" fill="#C9BFA8"/>
+  <circle cx="220" cy="411" r="5" fill="#C9BFA8"/>
+  <!-- Kitchen island -->
+  <rect x="140" y="450" width="130" height="40" rx="2" fill="#E3DCCB" stroke="#C9BFA8" stroke-width="1.2"/>
+
+  <!-- Balcony door gap -->
+  <rect x="60" y="565" width="3" height="55" fill="url(#bg-grad)"/>
+  <line x1="60" y1="565" x2="170" y2="565" stroke="#1E2821" stroke-width="3" stroke-dasharray="6 4"/>
+  <line x1="170" y1="565" x2="380" y2="565" stroke="#1E2821" stroke-width="2"/>
+
+  <!-- Balcony dashed -->
+  <rect x="63" y="566" width="376" height="55" rx="0" fill="none" stroke="#2A3B32" stroke-width="1.5" stroke-dasharray="7 5"/>
+  <text x="252" y="600" text-anchor="middle" fill="#2A3B32" font-size="10" font-weight="300" letter-spacing="2">מרפסת שמש — נוף לפארק</text>
+
+  <!-- ═══ SUITE 1: MASTER BEDROOM ═══ -->
+  <!-- חדר הורים -->
+  <text x="570" y="100" text-anchor="middle" fill="#2A3B32" font-size="13" font-weight="400" letter-spacing="1">חדר שינה הורים</text>
+  <!-- Bed -->
+  <rect x="450" y="120" width="135" height="105" rx="3" fill="#E8E4DC" stroke="#C9BFA8" stroke-width="1.5"/>
+  <rect x="462" y="110" width="111" height="20" rx="10" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <!-- Bed details -->
+  <line x1="515" y1="120" x2="515" y2="225" stroke="#C9BFA8" stroke-width="0.8"/>
+  <!-- Wardrobe -->
+  <rect x="450" y="236" width="238" height="30" rx="0" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <line x1="569" y1="236" x2="569" y2="266" stroke="#C9BFA8" stroke-width="0.8"/>
+  <text x="569" y="256" text-anchor="middle" fill="#8B735F" font-size="8" letter-spacing="1">ארון הורים</text>
+
+  <!-- Master bathroom — Suite 1 bath -->
+  <!-- חדר רחצה הורים -->
+  <text x="869" y="100" text-anchor="middle" fill="#2A3B32" font-size="12" font-weight="400" letter-spacing="1">חדר רחצה הורים</text>
+  <!-- Bathtub -->
+  <rect x="715" y="118" width="95" height="50" rx="22" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1.5"/>
+  <ellipse cx="762" cy="143" rx="38" ry="18" fill="none" stroke="#9ABFB0" stroke-width="0.8"/>
+  <!-- Shower -->
+  <rect x="825" y="118" width="65" height="65" rx="2" fill="#E3DCCB" stroke="#C9BFA8" stroke-width="1.2"/>
+  <rect x="830" y="123" width="55" height="55" rx="1" fill="none" stroke="#C9BFA8" stroke-width="0.6" stroke-dasharray="3 2"/>
+  <!-- Double vanity -->
+  <rect x="715" y="193" width="90" height="28" rx="2" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1.2"/>
+  <circle cx="735" cy="207" r="8" fill="#EAE6DC" stroke="#C9BFA8" stroke-width="1"/>
+  <circle cx="785" cy="207" r="8" fill="#EAE6DC" stroke="#C9BFA8" stroke-width="1"/>
+  <!-- WC -->
+  <rect x="910" y="193" width="30" height="44" rx="4" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <rect x="915" y="220" width="20" height="18" rx="9" fill="#C9BFA8"/>
+  <text x="869" y="258" text-anchor="middle" fill="#8B735F" font-size="9" font-weight="300" letter-spacing="1">אמבטיה · מקלחת · כיור כפול</text>
+
+  <!-- ═══ SUITE 2: MAMAD ═══ -->
+  <!-- Mamad room -->
+  <text x="570" y="360" text-anchor="middle" fill="#8B5E3C" font-size="13" font-weight="500" letter-spacing="1">ממ״ד — 15 מ״ר</text>
+  <text x="570" y="378" text-anchor="middle" fill="#A58B75" font-size="9" font-weight="300" letter-spacing="1">בטון מחוזק · 40 ס״מ</text>
+  <!-- Mamad bed/furniture -->
+  <rect x="450" y="388" width="100" height="75" rx="3" fill="#E8E4DC" stroke="#C9BFA8" stroke-width="1.2"/>
+  <rect x="461" y="379" width="78" height="16" rx="8" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <!-- Small wardrobe -->
+  <rect x="567" y="388" width="60" height="48" rx="0" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <text x="597" y="417" text-anchor="middle" fill="#8B735F" font-size="8">ארון</text>
+
+  <!-- Mamad bathroom — Suite 2 bath -->
+  <text x="869" y="360" text-anchor="middle" fill="#8B5E3C" font-size="12" font-weight="500" letter-spacing="1">חדר רחצה ממ״ד</text>
+  <!-- Shower only -->
+  <rect x="715" y="375" width="75" height="75" rx="2" fill="#E3DCCB" stroke="#C9BFA8" stroke-width="1.2"/>
+  <rect x="720" y="380" width="65" height="65" rx="1" fill="none" stroke="#C9BFA8" stroke-width="0.6" stroke-dasharray="3 2"/>
+  <!-- Sink -->
+  <rect x="806" y="375" width="70" height="28" rx="2" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1.2"/>
+  <circle cx="841" cy="389" r="9" fill="#EAE6DC" stroke="#C9BFA8" stroke-width="1"/>
+  <!-- WC -->
+  <rect x="910" y="375" width="30" height="44" rx="4" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <rect x="915" y="400" width="20" height="18" rx="9" fill="#C9BFA8"/>
+  <text x="869" y="466" text-anchor="middle" fill="#8B735F" font-size="9" font-weight="300" letter-spacing="1">מקלחת · כיור · שירותים</text>
+
+  <!-- Kids bedroom -->
+  <text x="570" y="538" text-anchor="middle" fill="#6B6B65" font-size="12" font-weight="300" letter-spacing="1">חדר ילדים</text>
+  <rect x="455" y="510" width="100" height="80" rx="3" fill="#E8E4DC" stroke="#C9BFA8" stroke-width="1.2"/>
+  <rect x="466" y="500" width="78" height="16" rx="8" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+
+  <!-- Second bathroom (for kids/guests) -->
+  <rect x="700" y="491" width="338" height="156" fill="#F5F3EE" opacity="0.7"/>
+  <text x="869" y="540" text-anchor="middle" fill="#6B6B65" font-size="11" font-weight="300" letter-spacing="1">חדר רחצה שני</text>
+  <!-- Shower -->
+  <rect x="720" y="550" width="60" height="60" rx="2" fill="#E3DCCB" stroke="#C9BFA8" stroke-width="1.2"/>
+  <!-- Sink -->
+  <rect x="800" y="557" width="60" height="24" rx="2" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1.2"/>
+  <circle cx="830" cy="569" r="8" fill="#EAE6DC" stroke="#C9BFA8" stroke-width="1"/>
+  <!-- WC -->
+  <rect x="918" y="550" width="28" height="42" rx="4" fill="#D9D2C2" stroke="#C9BFA8" stroke-width="1"/>
+  <rect x="923" y="574" width="18" height="16" rx="8" fill="#C9BFA8"/>
+
+  <!-- ═══ DOORS (arc indicators) ═══ -->
+  <!-- Entrance door -->
+  <path d="M160 648 L160 608" stroke="#1E2821" stroke-width="3" fill="none"/>
+  <path d="M160 608 Q120 608 120 648" stroke="#1E2821" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+  <!-- Master bed door -->
+  <path d="M440 260 L480 260" stroke="#1E2821" stroke-width="3" fill="none"/>
+  <path d="M480 260 Q480 230 440 230" stroke="#1E2821" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+  <!-- Master bath door -->
+  <path d="M700 220 L700 185" stroke="#1E2821" stroke-width="3" fill="none"/>
+  <path d="M700 185 Q730 185 730 220" stroke="#1E2821" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+  <!-- Mamad door -->
+  <path d="M440 380 L480 380" stroke="#1E2821" stroke-width="3" fill="none"/>
+  <path d="M480 380 Q480 350 440 350" stroke="#1E2821" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+  <!-- Mamad bath door -->
+  <path d="M700 410 L700 375" stroke="#1E2821" stroke-width="3" fill="none"/>
+  <path d="M700 375 Q730 375 730 410" stroke="#1E2821" stroke-width="1" fill="none" stroke-dasharray="3 2"/>
+
+  <!-- ═══ WINDOWS ═══ -->
+  <!-- North wall windows (top) -->
+  <rect x="140" y="64" width="100" height="7" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <rect x="280" y="64" width="100" height="7" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <rect x="460" y="64" width="90" height="7" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <rect x="720" y="64" width="110" height="7" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <rect x="875" y="64" width="110" height="7" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <!-- East wall windows -->
+  <rect x="1033" y="130" width="7" height="90" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <rect x="1033" y="380" width="7" height="90" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <!-- West wall windows (opening to balcony direction) -->
+  <rect x="53" y="200" width="7" height="90" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+  <rect x="53" y="380" width="7" height="90" fill="#C9DDD4" stroke="#9ABFB0" stroke-width="1"/>
+
+  <!-- ═══ SUITE BADGES ═══ -->
+  <!-- Suite 1 badge — MASTER -->
+  <rect x="64" y="71" width="375" height="32" fill="#2A3B32"/>
+  <rect x="441" y="71" width="597" height="32" fill="#2A3B32"/>
+  <text x="252" y="91" text-anchor="middle" fill="#FAF7F0" font-size="11" font-weight="400" letter-spacing="3">סוויטה ראשונה — חדר הורים + חדר רחצה פרטי</text>
+  <text x="740" y="91" text-anchor="middle" fill="#C9BFA8" font-size="10" font-weight="300" letter-spacing="2">— יחידת ההורים המלאה</text>
+
+  <!-- Suite 2 badge — MAMAD -->
+  <rect x="441" y="311" width="597" height="28" fill="#A58B75"/>
+  <text x="740" y="329" text-anchor="middle" fill="#FAF7F0" font-size="11" font-weight="400" letter-spacing="3">סוויטה שנייה — ממ״ד 15 מ״ר + חדר רחצה פרטי</text>
+
+  <!-- ═══ LEGEND ═══ -->
+  <rect x="64" y="660" width="18" height="12" fill="#2A3B32" opacity="0.5"/>
+  <text x="88" y="672" fill="#2A3B32" font-size="11" font-weight="400" letter-spacing="0.5">סוויטה 1 — יחידת ההורים</text>
+  <rect x="310" y="660" width="18" height="12" fill="#A58B75" opacity="0.6"/>
+  <text x="334" y="672" fill="#8B5E3C" font-size="11" font-weight="400" letter-spacing="0.5">סוויטה 2 — ממ״ד מורחב</text>
+  <rect x="556" y="660" width="18" height="12" fill="#E3DCCB" opacity="0.8" stroke="#C9BFA8" stroke-width="0.8"/>
+  <text x="580" y="672" fill="#6B6B65" font-size="11" font-weight="300" letter-spacing="0.5">חדרי ילדים + חדרי רחצה</text>
+
+  <!-- Compass -->
+  <g transform="translate(1040, 670)">
+    <circle cx="0" cy="0" r="20" fill="none" stroke="#C9BFA8" stroke-width="1"/>
+    <polygon points="0,-16 4,0 0,4 -4,0" fill="#2A3B32"/>
+    <polygon points="0,16 4,0 0,-4 -4,0" fill="#C9BFA8"/>
+    <text x="0" y="-20" text-anchor="middle" fill="#2A3B32" font-size="8" font-weight="500">N</text>
+  </g>
+
+  <!-- Decorative corner marks -->
+  <line x1="40" y1="55" x2="40" y2="42" stroke="#A58B75" stroke-width="1" opacity="0.6"/>
+  <line x1="40" y1="55" x2="53" y2="55" stroke="#A58B75" stroke-width="1" opacity="0.6"/>
+  <line x1="1060" y1="55" x2="1060" y2="42" stroke="#A58B75" stroke-width="1" opacity="0.6"/>
+  <line x1="1060" y1="55" x2="1047" y2="55" stroke="#A58B75" stroke-width="1" opacity="0.6"/>
+</svg>
