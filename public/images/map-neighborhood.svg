@@ -1,233 +1,355 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 900" width="1400" height="900" font-family="Heebo, Assistant, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 800" width="1400" height="800" font-family="Heebo, Assistant, sans-serif">
   <defs>
-    <linearGradient id="park-fill" x1="0" y1="0" x2="0.3" y2="1">
-      <stop offset="0%" stop-color="#2D6B3F"/>
-      <stop offset="40%" stop-color="#357A4A"/>
-      <stop offset="100%" stop-color="#2A5E38"/>
+    <!-- Terrain gradients -->
+    <linearGradient id="park-main" x1="0" y1="0" x2="0.3" y2="1">
+      <stop offset="0%" stop-color="#3A6B35"/>
+      <stop offset="35%" stop-color="#4A7C42"/>
+      <stop offset="65%" stop-color="#3D6E38"/>
+      <stop offset="100%" stop-color="#336130"/>
     </linearGradient>
-    <linearGradient id="park-fill2" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#3A8050"/>
-      <stop offset="100%" stop-color="#2D6B3F"/>
+    <linearGradient id="construction" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#C4A66A"/>
+      <stop offset="40%" stop-color="#D4B87A"/>
+      <stop offset="100%" stop-color="#BFA060"/>
     </linearGradient>
-    <linearGradient id="dev-zone" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#C8B88A"/>
-      <stop offset="100%" stop-color="#B8A87A"/>
-    </linearGradient>
-    <linearGradient id="gpark-fill" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#2A3B32"/>
-      <stop offset="100%" stop-color="#1E2821"/>
-    </linearGradient>
-    <filter id="pin-shadow">
-      <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#1E2821" flood-opacity="0.3"/>
+    <!-- Tree patterns -->
+    <radialGradient id="tree1" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#5C9250"/>
+      <stop offset="70%" stop-color="#3D7035"/>
+      <stop offset="100%" stop-color="#2D5828"/>
+    </radialGradient>
+    <radialGradient id="tree2" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#6DA060"/>
+      <stop offset="70%" stop-color="#4A8040"/>
+      <stop offset="100%" stop-color="#3A6830"/>
+    </radialGradient>
+    <radialGradient id="tree-dark" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="#4A7C42"/>
+      <stop offset="100%" stop-color="#2A5020"/>
+    </radialGradient>
+    <!-- Building shadow -->
+    <filter id="bldg-shadow">
+      <feDropShadow dx="2" dy="3" stdDeviation="3" flood-color="#1E2821" flood-opacity="0.3"/>
     </filter>
     <filter id="label-shadow">
-      <feDropShadow dx="0" dy="1" stdDeviation="3" flood-color="#000" flood-opacity="0.15"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#000" flood-opacity="0.25"/>
     </filter>
-    <pattern id="tree-dots" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse">
-      <circle cx="11" cy="11" r="5.5" fill="#246535" opacity="0.45"/>
-    </pattern>
-    <pattern id="tree-dots2" x="8" y="8" width="30" height="30" patternUnits="userSpaceOnUse">
-      <circle cx="15" cy="15" r="8" fill="#1D5A2E" opacity="0.3"/>
-    </pattern>
+    <!-- Noise texture for terrain -->
+    <filter id="terrain-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gray-noise"/>
+      <feBlend in="SourceGraphic" in2="gray-noise" mode="soft-light" result="blended"/>
+      <feComposite in="blended" in2="SourceGraphic" operator="in"/>
+    </filter>
   </defs>
 
-  <!-- ══ BACKGROUND ══ -->
-  <rect width="1400" height="900" fill="#E8DFC8"/>
+  <!-- ═══ BACKGROUND — overall ground ═══ -->
+  <rect width="1400" height="800" fill="#3A5A30"/>
 
-  <!-- ══ AYALON HIGHWAY — left vertical strip ══ -->
-  <rect x="0" y="0" width="100" height="900" fill="#555045"/>
-  <rect x="42" y="0" width="16" height="900" fill="#6A645A"/>
-  <line x1="50" y1="0" x2="50" y2="900" stroke="#B8A87A" stroke-width="1.5" stroke-dasharray="20 12" opacity="0.4"/>
-  <!-- Highway label -->
-  <text transform="translate(28,600) rotate(-90)" fill="#D8D0C0" font-size="11" font-weight="300" letter-spacing="4" opacity="0.7">AYALON — אילון צפון</text>
+  <!-- ═══ ECOLOGICAL PARK — TOP (large green area) ═══ -->
+  <path d="M0 0 L1400 0 L1400 340 Q1200 350 1000 330 Q800 320 600 340 Q400 355 200 340 Q100 330 0 345 Z" fill="url(#park-main)" filter="url(#terrain-noise)"/>
+  <!-- Park paths (walking trails) -->
+  <path d="M100 120 Q250 100 400 130 Q550 155 700 140 Q850 125 1000 150" stroke="#5A8C52" stroke-width="3" fill="none" opacity="0.6" stroke-dasharray="8 4"/>
+  <path d="M200 220 Q400 200 600 230 Q750 250 900 220" stroke="#5A8C52" stroke-width="2.5" fill="none" opacity="0.5" stroke-dasharray="6 4"/>
+  <!-- Park internal road -->
+  <path d="M50 180 Q300 170 500 190 Q700 205 950 185 Q1100 175 1300 195" stroke="#7A8A72" stroke-width="6" fill="none" opacity="0.5"/>
 
-  <!-- ══ ECOLOGICAL PARK — TOP, spanning most of width ══ -->
-  <!-- Main park mass -->
-  <path d="M 100 0 L 1400 0 L 1400 420 L 100 420 Z" fill="url(#park-fill)"/>
-  <!-- Tree texture -->
-  <path d="M 100 0 L 1400 0 L 1400 420 L 100 420 Z" fill="url(#tree-dots)"/>
-  <path d="M 100 0 L 1400 0 L 1400 420 L 100 420 Z" fill="url(#tree-dots2)"/>
-  <!-- Lighter meadow areas -->
-  <ellipse cx="500" cy="180" rx="180" ry="90" fill="#3A8050" opacity="0.35"/>
-  <ellipse cx="900" cy="250" rx="220" ry="100" fill="#3A8050" opacity="0.3"/>
-  <ellipse cx="1200" cy="150" rx="130" ry="75" fill="#448B58" opacity="0.25"/>
-  <!-- Walking paths through park -->
-  <path d="M 150 200 Q 350 170 550 220 Q 750 270 950 200 Q 1100 150 1300 180" fill="none" stroke="#D8D0C0" stroke-width="2" opacity="0.3"/>
-  <path d="M 200 350 Q 450 300 700 340 Q 900 370 1100 320" fill="none" stroke="#D8D0C0" stroke-width="1.5" opacity="0.25"/>
-  <!-- Scattered trees (varying sizes) -->
-  <circle cx="200" cy="100" r="16" fill="#1D5A2E" opacity="0.5"/>
-  <circle cx="320" cy="70" r="20" fill="#246535" opacity="0.4"/>
-  <circle cx="480" cy="130" r="18" fill="#1D5A2E" opacity="0.45"/>
-  <circle cx="620" cy="80" r="22" fill="#246535" opacity="0.35"/>
-  <circle cx="780" cy="160" r="15" fill="#1D5A2E" opacity="0.5"/>
-  <circle cx="950" cy="100" r="24" fill="#246535" opacity="0.35"/>
-  <circle cx="1100" cy="70" r="18" fill="#1D5A2E" opacity="0.45"/>
-  <circle cx="1250" cy="130" r="20" fill="#246535" opacity="0.4"/>
-  <circle cx="350" cy="300" r="14" fill="#1D5A2E" opacity="0.45"/>
-  <circle cx="550" cy="350" r="17" fill="#246535" opacity="0.4"/>
-  <circle cx="800" cy="310" r="20" fill="#1D5A2E" opacity="0.35"/>
-  <circle cx="1050" cy="360" r="16" fill="#246535" opacity="0.4"/>
-  <circle cx="1300" cy="300" r="19" fill="#1D5A2E" opacity="0.35"/>
-  <!-- Park labels -->
-  <text x="750" y="195" text-anchor="middle" fill="#F0EAD8" font-size="22" font-weight="200" letter-spacing="6" opacity="0.85">פארק אקולוגי</text>
-  <text x="750" y="228" text-anchor="middle" fill="#F0EAD8" font-size="14" font-weight="300" letter-spacing="3" opacity="0.6">282 דונם</text>
-
-  <!-- ══ DEVELOPMENT ZONE — sandy area between park and neighborhoods ══ -->
-  <rect x="100" y="420" width="1300" height="200" fill="url(#dev-zone)"/>
-  <!-- Grid roads within development -->
-  <line x1="100" y1="520" x2="1400" y2="520" stroke="#A89870" stroke-width="10" opacity="0.6"/>
-  <line x1="350" y1="420" x2="350" y2="620" stroke="#A89870" stroke-width="6" opacity="0.5"/>
-  <line x1="570" y1="420" x2="570" y2="620" stroke="#A89870" stroke-width="6" opacity="0.5"/>
-  <line x1="780" y1="420" x2="780" y2="620" stroke="#A89870" stroke-width="6" opacity="0.5"/>
-  <line x1="990" y1="420" x2="990" y2="620" stroke="#A89870" stroke-width="6" opacity="0.5"/>
-  <line x1="1200" y1="420" x2="1200" y2="620" stroke="#A89870" stroke-width="6" opacity="0.5"/>
-  <!-- Development plots -->
-  <rect x="115" y="430" width="220" height="80" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="365" y="430" width="190" height="80" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="585" y="430" width="180" height="80" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="795" y="430" width="180" height="80" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="1005" y="430" width="180" height="80" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="1215" y="430" width="170" height="80" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="115" y="535" width="220" height="70" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="365" y="535" width="190" height="70" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="585" y="535" width="180" height="70" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="795" y="535" width="180" height="70" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="1005" y="535" width="180" height="70" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-  <rect x="1215" y="535" width="170" height="70" rx="2" fill="#D4C8A0" stroke="#B8A87A" stroke-width="1" opacity="0.7"/>
-
-  <!-- ══ MAIN ROAD separating dev zone from neighborhoods ══ -->
-  <rect x="100" y="620" width="1300" height="24" fill="#8A8070"/>
-  <line x1="100" y1="632" x2="1400" y2="632" stroke="#C8B88A" stroke-width="2" stroke-dasharray="16 10" opacity="0.5"/>
-
-  <!-- ══ PROJECT BUILDINGS ROW — just below park ══ -->
-
-  <!-- G-PARK — Tower + Boutique buildings -->
-  <rect x="130" y="530" width="90" height="100" rx="2" fill="url(#gpark-fill)" filter="url(#pin-shadow)"/>
-  <rect x="130" y="460" width="35" height="170" rx="2" fill="#1E2821" filter="url(#pin-shadow)"/>
-  <!-- Building window lines -->
-  <line x1="133" y1="480" x2="162" y2="480" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-  <line x1="133" y1="500" x2="162" y2="500" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-  <line x1="133" y1="520" x2="162" y2="520" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-  <line x1="133" y1="540" x2="162" y2="540" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-  <line x1="133" y1="560" x2="162" y2="560" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-  <line x1="133" y1="580" x2="162" y2="580" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-  <line x1="133" y1="600" x2="162" y2="600" stroke="#3D4F45" stroke-width="1" opacity="0.6"/>
-
-  <!-- G-Park PIN marker -->
-  <circle cx="175" cy="500" r="22" fill="#A58B75" opacity="0.25"/>
-  <circle cx="175" cy="500" r="13" fill="#A58B75"/>
-  <circle cx="175" cy="500" r="6" fill="#FAF7F0"/>
-
-  <!-- G-PARK label -->
-  <rect x="115" y="640" width="130" height="34" rx="3" fill="#FAF7F0" filter="url(#label-shadow)"/>
-  <text x="180" y="662" text-anchor="middle" fill="#1E2821" font-size="14" font-weight="600" letter-spacing="1">G-Park</text>
-
-  <!-- Connection line from G-Park to park -->
-  <line x1="175" y1="460" x2="175" y2="420" stroke="#A58B75" stroke-width="2" stroke-dasharray="5 4" opacity="0.7"/>
-
-  <!-- EVE -->
-  <rect x="385" y="530" width="140" height="80" rx="2" fill="#7A9A82" filter="url(#pin-shadow)" opacity="0.85"/>
-  <rect x="385" y="640" width="140" height="34" rx="3" fill="#F0EAD8" filter="url(#label-shadow)"/>
-  <text x="455" y="662" text-anchor="middle" fill="#3D5A45" font-size="14" font-weight="500" letter-spacing="1">EVE</text>
-
-  <!-- North Park -->
-  <rect x="600" y="530" width="140" height="80" rx="2" fill="#7A9A82" filter="url(#pin-shadow)" opacity="0.8"/>
-  <rect x="585" y="640" width="170" height="34" rx="3" fill="#F0EAD8" filter="url(#label-shadow)"/>
-  <text x="670" y="662" text-anchor="middle" fill="#3D5A45" font-size="14" font-weight="500" letter-spacing="1">North Park</text>
-
-  <!-- Avisroor -->
-  <rect x="815" y="530" width="130" height="80" rx="2" fill="#7A9A82" filter="url(#pin-shadow)" opacity="0.75"/>
-  <rect x="800" y="640" width="160" height="34" rx="3" fill="#F0EAD8" filter="url(#label-shadow)"/>
-  <text x="880" y="662" text-anchor="middle" fill="#3D5A45" font-size="14" font-weight="500" letter-spacing="1">Avisroor</text>
-
-  <!-- "קו ראשון לפארק" label between park and projects -->
-  <rect x="280" y="400" width="200" height="28" rx="14" fill="#FAF7F0" opacity="0.85" filter="url(#label-shadow)"/>
-  <text x="380" y="419" text-anchor="middle" fill="#2A3B32" font-size="11" font-weight="400" letter-spacing="2">קו ראשון לפארק</text>
-
-  <!-- ══ NEIGHBORHOODS — bottom dense area ══ -->
-  <rect x="100" y="680" width="1300" height="220" fill="#DDD5C0"/>
-
-  <!-- Building blocks rows -->
-  <!-- Row 1 -->
-  <rect x="120" y="695" width="55" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="182" y="695" width="60" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="249" y="695" width="48" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="304" y="695" width="62" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="373" y="695" width="50" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="430" y="695" width="58" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="495" y="695" width="44" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="546" y="695" width="55" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="608" y="695" width="62" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="677" y="695" width="48" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="732" y="695" width="56" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="795" y="695" width="60" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="862" y="695" width="50" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="919" y="695" width="55" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="981" y="695" width="62" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="1050" y="695" width="48" height="38" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
+  <!-- Scattered trees in park (dense canopy) -->
+  <!-- Row 1 — top -->
+  <circle cx="80" cy="60" r="22" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="130" cy="45" r="18" fill="url(#tree2)" opacity="0.8"/>
+  <circle cx="175" cy="70" r="20" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="230" cy="50" r="24" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="290" cy="65" r="19" fill="url(#tree2)" opacity="0.8"/>
+  <circle cx="340" cy="40" r="22" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="400" cy="55" r="17" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="460" cy="45" r="23" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="530" cy="60" r="20" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="590" cy="42" r="18" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="650" cy="58" r="22" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="720" cy="50" r="19" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="790" cy="65" r="24" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="860" cy="45" r="20" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="930" cy="55" r="18" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="1000" cy="40" r="22" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="1070" cy="60" r="21" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="1140" cy="48" r="17" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="1210" cy="55" r="23" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="1280" cy="42" r="20" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="1350" cy="58" r="18" fill="url(#tree1)" opacity="0.8"/>
   <!-- Row 2 -->
-  <rect x="120" y="742" width="62" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="189" y="742" width="50" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="246" y="742" width="58" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="311" y="742" width="44" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="362" y="742" width="55" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="424" y="742" width="60" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="491" y="742" width="48" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="546" y="742" width="56" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="609" y="742" width="62" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="678" y="742" width="50" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="735" y="742" width="55" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="797" y="742" width="62" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="866" y="742" width="48" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="921" y="742" width="56" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="984" y="742" width="60" height="35" rx="1" fill="#C0B8A2" stroke="#B8B09A" stroke-width="0.5"/>
-  <!-- Row 3 -->
-  <rect x="120" y="786" width="55" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="182" y="786" width="60" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="249" y="786" width="48" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="304" y="786" width="58" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="369" y="786" width="55" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="431" y="786" width="50" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="488" y="786" width="62" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="557" y="786" width="48" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="612" y="786" width="56" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="675" y="786" width="60" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="742" y="786" width="48" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="797" y="786" width="55" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="859" y="786" width="62" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
-  <rect x="928" y="786" width="50" height="36" rx="1" fill="#C8C0AA" stroke="#B8B09A" stroke-width="0.5"/>
+  <circle cx="60" cy="120" r="20" fill="url(#tree2)" opacity="0.8"/>
+  <circle cx="120" cy="135" r="24" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="190" cy="115" r="18" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="260" cy="140" r="22" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="330" cy="125" r="19" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="410" cy="145" r="21" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="480" cy="118" r="23" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="555" cy="138" r="18" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="630" cy="120" r="22" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="710" cy="142" r="20" fill="url(#tree2)" opacity="0.85"/>
+  <circle cx="785" cy="128" r="19" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="860" cy="140" r="24" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="940" cy="122" r="18" fill="url(#tree2)" opacity="0.8"/>
+  <circle cx="1020" cy="135" r="22" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="1100" cy="145" r="20" fill="url(#tree-dark)" opacity="0.75"/>
+  <circle cx="1180" cy="128" r="19" fill="url(#tree2)" opacity="0.8"/>
+  <circle cx="1260" cy="140" r="23" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="1340" cy="120" r="17" fill="url(#tree-dark)" opacity="0.75"/>
+  <!-- Row 3 — deeper park -->
+  <circle cx="100" cy="200" r="22" fill="url(#tree1)" opacity="0.8"/>
+  <circle cx="180" cy="215" r="19" fill="url(#tree2)" opacity="0.75"/>
+  <circle cx="260" cy="195" r="24" fill="url(#tree-dark)" opacity="0.8"/>
+  <circle cx="350" cy="210" r="20" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="440" cy="225" r="18" fill="url(#tree2)" opacity="0.75"/>
+  <circle cx="530" cy="205" r="22" fill="url(#tree-dark)" opacity="0.8"/>
+  <circle cx="620" cy="218" r="20" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="710" cy="200" r="19" fill="url(#tree2)" opacity="0.75"/>
+  <circle cx="800" cy="222" r="23" fill="url(#tree-dark)" opacity="0.8"/>
+  <circle cx="890" cy="208" r="18" fill="url(#tree1)" opacity="0.85"/>
+  <circle cx="975" cy="220" r="21" fill="url(#tree2)" opacity="0.75"/>
+  <!-- Row 4 — sparse -->
+  <circle cx="150" cy="280" r="18" fill="url(#tree2)" opacity="0.7"/>
+  <circle cx="300" cy="290" r="20" fill="url(#tree1)" opacity="0.75"/>
+  <circle cx="450" cy="275" r="16" fill="url(#tree-dark)" opacity="0.7"/>
+  <circle cx="600" cy="295" r="19" fill="url(#tree2)" opacity="0.75"/>
+  <circle cx="750" cy="280" r="17" fill="url(#tree1)" opacity="0.7"/>
+  <circle cx="900" cy="290" r="21" fill="url(#tree-dark)" opacity="0.75"/>
+
+  <!-- Park label -->
+  <text x="500" y="170" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="600" letter-spacing="4" opacity="0.9" filter="url(#label-shadow)">פארק אקולוגי</text>
+  <text x="500" y="198" text-anchor="middle" fill="#FFFFFF" font-size="13" font-weight="300" letter-spacing="2" opacity="0.7">דונם 282</text>
+
+  <!-- Kiriyat Shaul label (east green area) -->
+  <text x="1200" y="180" text-anchor="middle" fill="#E8E4DC" font-size="13" font-weight="300" letter-spacing="2" opacity="0.7">קריית שאול</text>
+
+  <!-- East side — dense forest/green area (Kiryat Shaul) -->
+  <path d="M1050 0 L1400 0 L1400 400 Q1350 380 1300 390 Q1200 400 1100 380 Q1050 370 1050 0 Z" fill="#2D5828" opacity="0.4"/>
+  <circle cx="1100" cy="80" r="20" fill="url(#tree-dark)" opacity="0.6"/>
+  <circle cx="1160" cy="100" r="18" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="1220" cy="75" r="22" fill="url(#tree-dark)" opacity="0.6"/>
+  <circle cx="1280" cy="95" r="19" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="1340" cy="80" r="17" fill="url(#tree-dark)" opacity="0.6"/>
+  <circle cx="1130" cy="250" r="22" fill="url(#tree-dark)" opacity="0.5"/>
+  <circle cx="1200" cy="270" r="18" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="1270" cy="240" r="20" fill="url(#tree-dark)" opacity="0.5"/>
+  <circle cx="1340" cy="260" r="16" fill="url(#tree1)" opacity="0.5"/>
+
+  <!-- ═══ CONSTRUCTION / DEVELOPMENT ZONE ═══ -->
+  <path d="M0 340 Q200 335 400 350 Q600 360 800 345 Q1000 330 1050 340 L1050 550 Q800 545 600 555 Q400 560 200 550 Q100 548 0 555 Z" fill="url(#construction)" filter="url(#terrain-noise)" opacity="0.9"/>
+
+  <!-- Construction zone internal roads (grid pattern) -->
+  <rect x="60" y="378" width="970" height="8" fill="#9A9080" rx="1" opacity="0.5"/>
+  <rect x="60" y="450" width="970" height="8" fill="#9A9080" rx="1" opacity="0.5"/>
+  <rect x="60" y="520" width="970" height="6" fill="#9A9080" rx="1" opacity="0.4"/>
+  <rect x="200" y="350" width="7" height="200" fill="#9A9080" rx="1" opacity="0.4"/>
+  <rect x="380" y="350" width="7" height="200" fill="#9A9080" rx="1" opacity="0.4"/>
+  <rect x="560" y="350" width="7" height="200" fill="#9A9080" rx="1" opacity="0.4"/>
+  <rect x="740" y="350" width="7" height="200" fill="#9A9080" rx="1" opacity="0.4"/>
+  <rect x="920" y="350" width="7" height="200" fill="#9A9080" rx="1" opacity="0.4"/>
+
+  <!-- Construction zone blocks (building pads) -->
+  <rect x="72" y="390" width="120" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.7" rx="2"/>
+  <rect x="210" y="390" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.7" rx="2"/>
+  <rect x="390" y="390" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.7" rx="2"/>
+  <rect x="570" y="390" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.7" rx="2"/>
+  <rect x="750" y="390" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.7" rx="2"/>
+  <rect x="210" y="460" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.6" rx="2"/>
+  <rect x="390" y="460" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.6" rx="2"/>
+  <rect x="570" y="460" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.6" rx="2"/>
+  <rect x="750" y="460" width="160" height="55" fill="#D4B87A" stroke="#BFA060" stroke-width="1" opacity="0.6" rx="2"/>
+
+  <!-- ═══ AYALON HIGHWAY — LEFT SIDE ═══ -->
+  <path d="M0 200 Q20 300 30 400 Q35 500 25 600 Q20 700 0 800" fill="none" stroke="#5A5A50" stroke-width="40" opacity="0.8"/>
+  <path d="M0 200 Q20 300 30 400 Q35 500 25 600 Q20 700 0 800" fill="none" stroke="#E8E480" stroke-width="1.5" stroke-dasharray="15 10" opacity="0.6"/>
+  <text x="15" y="450" fill="#E8E4DC" font-size="10" font-weight="300" letter-spacing="3" opacity="0.8" transform="rotate(-85, 15, 450)">איילון צפון</text>
+  <text x="45" y="350" fill="#E8E4DC" font-size="10" font-weight="300" letter-spacing="3" opacity="0.7" transform="rotate(-85, 45, 350)">איילון דרום</text>
+
+  <!-- ═══ MAIN ROAD — separating construction from neighborhoods ═══ -->
+  <path d="M50 555 Q300 548 600 558 Q900 562 1050 555 L1050 570 Q900 577 600 573 Q300 563 50 570 Z" fill="#6B6B5E" opacity="0.7"/>
+
+  <!-- ═══ G-PARK BUILDING — highlighted ═══ -->
+  <g filter="url(#bldg-shadow)">
+    <rect x="72" y="460" width="120" height="90" fill="#1E2821" rx="3"/>
+    <rect x="77" y="465" width="110" height="80" fill="#2A3B32" rx="2"/>
+    <rect x="82" y="470" width="12" height="8" fill="#4A6A55" opacity="0.7" rx="1"/>
+    <rect x="98" y="470" width="12" height="8" fill="#4A6A55" opacity="0.7" rx="1"/>
+    <rect x="114" y="470" width="12" height="8" fill="#4A6A55" opacity="0.7" rx="1"/>
+    <rect x="130" y="470" width="12" height="8" fill="#4A6A55" opacity="0.7" rx="1"/>
+    <rect x="150" y="470" width="12" height="8" fill="#4A6A55" opacity="0.7" rx="1"/>
+    <rect x="82" y="485" width="12" height="8" fill="#4A6A55" opacity="0.6" rx="1"/>
+    <rect x="98" y="485" width="12" height="8" fill="#4A6A55" opacity="0.6" rx="1"/>
+    <rect x="114" y="485" width="12" height="8" fill="#4A6A55" opacity="0.6" rx="1"/>
+    <rect x="130" y="485" width="12" height="8" fill="#4A6A55" opacity="0.6" rx="1"/>
+    <rect x="150" y="485" width="12" height="8" fill="#4A6A55" opacity="0.6" rx="1"/>
+    <rect x="82" y="500" width="12" height="8" fill="#4A6A55" opacity="0.5" rx="1"/>
+    <rect x="98" y="500" width="12" height="8" fill="#4A6A55" opacity="0.5" rx="1"/>
+    <rect x="114" y="500" width="12" height="8" fill="#4A6A55" opacity="0.5" rx="1"/>
+    <rect x="130" y="500" width="12" height="8" fill="#4A6A55" opacity="0.5" rx="1"/>
+    <rect x="150" y="500" width="12" height="8" fill="#4A6A55" opacity="0.5" rx="1"/>
+    <rect x="82" y="515" width="12" height="8" fill="#4A6A55" opacity="0.4" rx="1"/>
+    <rect x="98" y="515" width="12" height="8" fill="#4A6A55" opacity="0.4" rx="1"/>
+    <rect x="114" y="515" width="12" height="8" fill="#4A6A55" opacity="0.4" rx="1"/>
+    <rect x="130" y="515" width="12" height="8" fill="#4A6A55" opacity="0.4" rx="1"/>
+    <rect x="150" y="515" width="12" height="8" fill="#4A6A55" opacity="0.4" rx="1"/>
+  </g>
+
+  <!-- G-Park pin marker -->
+  <g transform="translate(132, 440)">
+    <circle cx="0" cy="0" r="10" fill="#FF3B30" opacity="0.25"/>
+    <circle cx="0" cy="0" r="6" fill="#FF3B30"/>
+    <circle cx="0" cy="0" r="3" fill="#FFFFFF"/>
+  </g>
+  <!-- G-Park label -->
+  <rect x="68" y="555" width="130" height="32" fill="#FAF7F0" rx="3" filter="url(#label-shadow)"/>
+  <text x="133" y="576" text-anchor="middle" fill="#1E2821" font-size="14" font-weight="600" letter-spacing="1">G-Park</text>
+
+  <!-- "קו ראשון לפארק" arrow line -->
+  <line x1="132" y1="440" x2="132" y2="345" stroke="#FAF7F0" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.8"/>
+  <rect x="68" y="328" width="130" height="22" fill="#FAF7F0" rx="2" opacity="0.9"/>
+  <text x="133" y="343" text-anchor="middle" fill="#2A3B32" font-size="10" font-weight="500" letter-spacing="1">קו ראשון לפארק</text>
+
+  <!-- ═══ NEIGHBORING PROJECTS ═══ -->
+  <!-- EVE building cluster -->
+  <g filter="url(#bldg-shadow)">
+    <rect x="310" y="470" width="80" height="65" fill="#8A8575" rx="2"/>
+    <rect x="400" y="480" width="55" height="55" fill="#8A8575" rx="2"/>
+  </g>
+  <rect x="298" y="555" width="80" height="28" fill="#FAF7F0" rx="3" filter="url(#label-shadow)"/>
+  <text x="338" y="574" text-anchor="middle" fill="#4A4A42" font-size="12" font-weight="500">EVE</text>
+
+  <!-- North Park building cluster -->
+  <g filter="url(#bldg-shadow)">
+    <rect x="520" y="465" width="70" height="75" fill="#8A8575" rx="2"/>
+    <rect x="600" y="470" width="65" height="70" fill="#8A8575" rx="2"/>
+    <rect x="530" y="540" width="50" height="25" fill="#7A7565" rx="2"/>
+  </g>
+  <rect x="528" y="555" width="120" height="28" fill="#FAF7F0" rx="3" filter="url(#label-shadow)"/>
+  <text x="588" y="574" text-anchor="middle" fill="#4A4A42" font-size="12" font-weight="500">North Park</text>
+
+  <!-- Avisroor building cluster -->
+  <g filter="url(#bldg-shadow)">
+    <rect x="730" y="470" width="75" height="70" fill="#8A8575" rx="2"/>
+    <rect x="815" y="465" width="65" height="75" fill="#8A8575" rx="2"/>
+    <rect x="890" y="475" width="55" height="60" fill="#8A8575" rx="2"/>
+  </g>
+  <rect x="768" y="555" width="110" height="28" fill="#FAF7F0" rx="3" filter="url(#label-shadow)"/>
+  <text x="823" y="574" text-anchor="middle" fill="#4A4A42" font-size="12" font-weight="500">Avisroor</text>
+
+  <!-- ═══ LOWER NEIGHBORHOODS ═══ -->
+  <rect x="50" y="575" width="1000" height="225" fill="#3D5E35" opacity="0.5"/>
+
+  <!-- Neighborhood buildings (small blocks) -->
+  <rect x="80" y="600" width="40" height="35" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="130" y="605" width="45" height="30" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="185" y="598" width="38" height="37" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="240" y="603" width="50" height="32" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="310" y="600" width="42" height="35" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="365" y="605" width="48" height="30" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="430" y="598" width="40" height="37" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="485" y="603" width="55" height="32" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="560" y="600" width="42" height="35" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="620" y="605" width="48" height="30" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="690" y="598" width="40" height="37" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="750" y="602" width="55" height="33" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="825" y="600" width="42" height="35" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="885" y="605" width="48" height="30" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="950" y="598" width="40" height="37" fill="#6A6A5E" opacity="0.5" rx="1"/>
+  <rect x="90" y="650" width="45" height="32" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="150" y="655" width="40" height="28" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="210" y="648" width="50" height="35" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="280" y="652" width="42" height="30" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="340" y="650" width="48" height="32" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="410" y="655" width="40" height="28" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="470" y="648" width="55" height="35" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="545" y="652" width="42" height="30" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="610" y="650" width="48" height="32" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="680" y="655" width="40" height="28" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="740" y="648" width="55" height="35" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="815" y="652" width="42" height="30" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="880" y="650" width="48" height="32" fill="#5A5A4E" opacity="0.45" rx="1"/>
+  <rect x="110" y="700" width="40" height="30" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="170" y="703" width="48" height="28" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="240" y="698" width="42" height="32" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="310" y="702" width="50" height="28" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="385" y="700" width="40" height="30" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="450" y="703" width="48" height="28" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="520" y="698" width="42" height="32" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="590" y="702" width="55" height="28" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="670" y="700" width="40" height="30" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="730" y="703" width="48" height="28" fill="#505044" opacity="0.4" rx="1"/>
+  <rect x="800" y="698" width="42" height="32" fill="#505044" opacity="0.4" rx="1"/>
+
+  <!-- Trees among buildings -->
+  <circle cx="125" cy="640" r="10" fill="url(#tree2)" opacity="0.5"/>
+  <circle cx="275" cy="645" r="12" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="425" cy="638" r="11" fill="url(#tree-dark)" opacity="0.4"/>
+  <circle cx="575" cy="642" r="10" fill="url(#tree2)" opacity="0.5"/>
+  <circle cx="725" cy="640" r="12" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="875" cy="645" r="11" fill="url(#tree-dark)" opacity="0.4"/>
+  <circle cx="160" cy="695" r="9" fill="url(#tree2)" opacity="0.4"/>
+  <circle cx="360" cy="698" r="11" fill="url(#tree1)" opacity="0.4"/>
+  <circle cx="560" cy="695" r="10" fill="url(#tree-dark)" opacity="0.4"/>
+  <circle cx="760" cy="698" r="12" fill="url(#tree2)" opacity="0.4"/>
 
   <!-- Neighborhood labels -->
-  <text x="250" y="860" text-anchor="middle" fill="#7A7060" font-size="12" font-weight="300" letter-spacing="1.5" opacity="0.75">רמת אביב ג׳</text>
-  <text x="530" y="860" text-anchor="middle" fill="#7A7060" font-size="12" font-weight="300" letter-spacing="1.5" opacity="0.75">נווה גן</text>
-  <text x="780" y="860" text-anchor="middle" fill="#7A7060" font-size="12" font-weight="300" letter-spacing="1.5" opacity="0.75">אפקה</text>
-  <text x="1020" y="860" text-anchor="middle" fill="#7A7060" font-size="12" font-weight="300" letter-spacing="1.5" opacity="0.75">תל ברוך צפון</text>
-  <!-- Park neighborhood label -->
-  <text x="1250" y="390" text-anchor="middle" fill="#D8E8D0" font-size="12" font-weight="300" letter-spacing="1.5" opacity="0.55">קריית שאול</text>
+  <text x="200" y="745" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.7">הסיטי</text>
+  <text x="420" y="745" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.7">חורב מכאבי</text>
+  <text x="680" y="745" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.7">אפקה</text>
+  <text x="900" y="745" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.7">תל ברוך צפון</text>
 
-  <!-- ══ COMPASS ROSE ══ -->
-  <g transform="translate(1340,60)">
-    <circle cx="0" cy="0" r="24" fill="none" stroke="#F0EAD8" stroke-width="1" opacity="0.5"/>
-    <path d="M0 -18 L3 -6 L0 -10 L-3 -6 Z" fill="#F0EAD8" opacity="0.8"/>
-    <path d="M0 18 L3 6 L0 10 L-3 6 Z" fill="#F0EAD8" opacity="0.35"/>
-    <text x="0" y="-27" text-anchor="middle" fill="#F0EAD8" font-size="10" font-weight="400" opacity="0.8">N</text>
+  <!-- Right side — forest/residential -->
+  <path d="M1050 340 L1400 340 L1400 800 L1050 800 Z" fill="#2D5828" opacity="0.35"/>
+  <circle cx="1100" cy="400" r="18" fill="url(#tree-dark)" opacity="0.5"/>
+  <circle cx="1150" cy="430" r="15" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="1200" cy="410" r="20" fill="url(#tree2)" opacity="0.5"/>
+  <circle cx="1250" cy="440" r="17" fill="url(#tree-dark)" opacity="0.5"/>
+  <circle cx="1300" cy="420" r="14" fill="url(#tree1)" opacity="0.5"/>
+  <circle cx="1350" cy="400" r="19" fill="url(#tree-dark)" opacity="0.5"/>
+  <circle cx="1120" cy="500" r="16" fill="url(#tree2)" opacity="0.45"/>
+  <circle cx="1180" cy="520" r="20" fill="url(#tree-dark)" opacity="0.45"/>
+  <circle cx="1240" cy="490" r="15" fill="url(#tree1)" opacity="0.45"/>
+  <circle cx="1310" cy="510" r="18" fill="url(#tree2)" opacity="0.45"/>
+  <circle cx="1370" cy="490" r="14" fill="url(#tree-dark)" opacity="0.45"/>
+  <text x="1200" y="580" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.6">ליעד מהנדסים</text>
+  <text x="1250" y="650" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.6">עיילת הרוחם</text>
+  <text x="1300" y="720" text-anchor="middle" fill="#D4D0C5" font-size="11" font-weight="300" letter-spacing="1.5" opacity="0.6">מפיזרותם</text>
+  <rect x="1090" y="590" width="50" height="40" fill="#5A5A4E" opacity="0.35" rx="1"/>
+  <rect x="1160" y="600" width="45" height="35" fill="#5A5A4E" opacity="0.35" rx="1"/>
+  <rect x="1230" y="595" width="55" height="42" fill="#5A5A4E" opacity="0.35" rx="1"/>
+  <rect x="1090" y="650" width="48" height="38" fill="#505044" opacity="0.3" rx="1"/>
+  <rect x="1160" y="660" width="42" height="32" fill="#505044" opacity="0.3" rx="1"/>
+  <rect x="1240" y="655" width="50" height="35" fill="#505044" opacity="0.3" rx="1"/>
+
+  <!-- Merkaz El-Kof label -->
+  <text x="55" y="600" fill="#D4D0C5" font-size="10" font-weight="300" letter-spacing="1" opacity="0.6" transform="rotate(-90, 55, 600)">מרכז אל קוף</text>
+
+  <!-- ═══ DIAGONAL ROAD (northeast) ═══ -->
+  <line x1="1000" y1="340" x2="1150" y2="150" stroke="#6B6B5E" stroke-width="12" opacity="0.5" stroke-linecap="round"/>
+
+  <!-- ═══ COMPASS ROSE ═══ -->
+  <g transform="translate(1340, 90)">
+    <circle cx="0" cy="0" r="28" fill="rgba(250,247,240,0.1)" stroke="#FAF7F0" stroke-width="0.8" opacity="0.6"/>
+    <polygon points="0,-22 5,0 0,6 -5,0" fill="#FAF7F0" opacity="0.8"/>
+    <polygon points="0,22 5,0 0,-6 -5,0" fill="#FAF7F0" opacity="0.3"/>
+    <text x="0" y="-30" text-anchor="middle" fill="#FAF7F0" font-size="10" font-weight="500" opacity="0.9">N</text>
   </g>
 
-  <!-- ══ SCALE BAR ══ -->
-  <g transform="translate(1180,875)">
-    <line x1="0" y1="0" x2="120" y2="0" stroke="#7A7060" stroke-width="1.5" opacity="0.6"/>
-    <line x1="0" y1="-4" x2="0" y2="4" stroke="#7A7060" stroke-width="1.5" opacity="0.6"/>
-    <line x1="120" y1="-4" x2="120" y2="4" stroke="#7A7060" stroke-width="1.5" opacity="0.6"/>
-    <text x="60" y="-8" text-anchor="middle" fill="#7A7060" font-size="10" font-weight="300" opacity="0.7">500 מ׳</text>
+  <!-- ═══ SCALE BAR ═══ -->
+  <g transform="translate(1050, 770)">
+    <line x1="0" y1="0" x2="120" y2="0" stroke="#D4D0C5" stroke-width="1.5" opacity="0.6"/>
+    <line x1="0" y1="-4" x2="0" y2="4" stroke="#D4D0C5" stroke-width="1.5" opacity="0.6"/>
+    <line x1="120" y1="-4" x2="120" y2="4" stroke="#D4D0C5" stroke-width="1.5" opacity="0.6"/>
+    <text x="60" y="16" text-anchor="middle" fill="#D4D0C5" font-size="9" font-weight="300" opacity="0.6">500 מ׳</text>
   </g>
 
-  <!-- ══ LEGEND ══ -->
-  <g transform="translate(120, 875)">
-    <rect x="0" y="-8" width="14" height="14" rx="2" fill="#1E2821"/>
-    <text x="20" y="4" fill="#5A5550" font-size="11" font-weight="400">G-Park Wellness</text>
-    <rect x="170" y="-8" width="14" height="14" rx="2" fill="#7A9A82"/>
-    <text x="190" y="4" fill="#5A5550" font-size="11" font-weight="400">פרויקטים סמוכים</text>
-    <rect x="340" y="-8" width="14" height="14" rx="2" fill="#2D6B3F"/>
-    <text x="360" y="4" fill="#5A5550" font-size="11" font-weight="400">פארק אקולוגי 282 דונם</text>
+  <!-- ═══ LEGEND ═══ -->
+  <g transform="translate(60, 770)">
+    <rect x="0" y="-8" width="14" height="10" fill="#1E2821" rx="1"/>
+    <text x="20" y="0" fill="#D4D0C5" font-size="9" font-weight="400" opacity="0.7">G-Park Wellness</text>
+    <rect x="150" y="-8" width="14" height="10" fill="#8A8575" rx="1"/>
+    <text x="170" y="0" fill="#D4D0C5" font-size="9" font-weight="300" opacity="0.7">פרויקטים סמוכים</text>
+    <rect x="300" y="-8" width="14" height="10" fill="#4A7C42" rx="1"/>
+    <text x="320" y="0" fill="#D4D0C5" font-size="9" font-weight="300" opacity="0.7">פארק אקולוגי 282 דונם</text>
   </g>
 </svg>

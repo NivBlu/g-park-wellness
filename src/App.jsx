@@ -288,8 +288,7 @@ function Hero() {
             transition={{ duration: 1.2, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
             className="mt-6 md:mt-8 max-w-xl text-base md:text-xl font-light opacity-80 leading-relaxed text-pretty"
           >
-            קומפלקס מגורים אקסקלוסיבי, קו ראשון לפארק האקולוגי
-            של צפון תל אביב — חוויית ריזורט שקטה, בלב העיר.
+            קומפלקס מגורים אקסקלוסיבי, קו ראשון לפארק האקולוגי של רמת השרון — חוויית ריזורט שקטה, בלב העיר.
           </motion.p>
 
           <motion.div
@@ -385,12 +384,10 @@ function Location() {
             <h2 className="display-md mb-8 md:mb-10 text-balance">
               צמוד לפארק של 282 דונם.
               <br />
-              <span className="serif-display text-[var(--color-wood)]">בלב הריאה הירוקה</span> של צפון תל אביב.
+              <span className="serif-display text-[var(--color-wood)]">בלב הריאה הירוקה</span> בין צפון תל אביב לרמת השרון.
             </h2>
             <p className="text-base md:text-lg font-light leading-relaxed text-[var(--color-mist)] mb-10 text-pretty">
-              מיקום אסטרטגי ויוקרתי בנווה גן שברמת השרון — גובל ישירות עם
-              רמת אביב ג׳, אפקה, תל ברוך צפון ונווה גן. קו ראשון לריאה
-              הירוקה הגדולה ביותר באזור.
+              קומפלקס מגורים אקסקלוסיבי, קו ראשון לפארק האקולוגי של רמת השרון — חוויית ריזורט שקטה, בלב העיר.
             </p>
 
             <ul className="space-y-0">
@@ -424,8 +421,8 @@ function Location() {
           <Reveal delay={0.15} className="lg:col-span-7 order-1 lg:order-2">
             <div className="image-art rounded-sm overflow-hidden shadow-lg">
               <img
-                src="/images/map-neighborhood.svg"
-                alt="מפת השכונה — G Park, EVE, North Park, Avisroor"
+                src="/images/map-masterplan.png"
+                alt="מפת מיקום — G Park בצמוד לפארק האקולוגי"
                 className="w-full h-auto"
               />
             </div>
@@ -519,8 +516,8 @@ function TwoSuites() {
   return (
     <section id="suites" className="section-rhythm bg-[var(--color-paper)]">
       <div className="container-editorial">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-20 items-start mb-12 md:mb-20">
-          <Reveal className="lg:col-span-5">
+        <div className="max-w-2xl mx-auto mb-12 md:mb-20">
+          <Reveal>
             <p className="eyebrow mb-6 md:mb-8">— הקונספט</p>
             <h2 className="display-md text-balance">
               <span className="serif-display text-[var(--color-wood)]">Two Suites.</span>
@@ -547,11 +544,11 @@ function TwoSuites() {
               <div className="border border-[var(--color-wood)] p-6 relative">
                 <span className="eyebrow text-[var(--color-wood)] mb-3 block">סוויטה שנייה</span>
                 <p className="text-lg font-light text-[var(--color-ink)] leading-snug mb-2">
-                  ממ״ד מורחב 15 מ״ר + חדר רחצה
+                  ממ״ד מורחב 15 מ״ר כולל חדר רחצה
                 </p>
                 <p className="text-sm font-light text-[var(--color-mist)]">
                   בניגוד לממ״ד הסטנדרטי (10 מ״ר), אנו מציעים ממ״ד של 15 מ״ר
-                  עם חדר רחצה פרטי משלו — חלל גמיש שיכול לשמש כחדר עבודה,
+                  הכולל חדר רחצה פרטי משלו — חלל גמיש שיכול לשמש כחדר עבודה,
                   חדר אורחים, או חדר לבן ובת עם פרטיות מלאה.
                 </p>
               </div>
@@ -562,26 +559,13 @@ function TwoSuites() {
               פרטיות, אורחים בכבוד — הכל בתוך הדירה עצמה.
             </p>
           </Reveal>
-
-          <Reveal delay={0.15} className="lg:col-span-7">
-            <div className="image-art rounded-sm overflow-hidden shadow-lg">
-              <img
-                src="/images/two-suites.svg"
-                alt="תשריט קונספט שתי הסוויטות — יחידת הורים + ממ״ד מורחב"
-                className="w-full h-auto"
-              />
-            </div>
-            <p className="mt-3 text-xs text-[var(--color-mist)] text-center tracking-wider opacity-70">
-              תשריט עקרוני — אינו מייצג דירה ספציפית
-            </p>
-          </Reveal>
         </div>
 
         {/* Spec row */}
         <Reveal delay={0.2}>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[var(--color-stone)] border border-[var(--color-stone)]">
             {[
-              { label: 'ממ״ד', value: '15 מ״ר + חדר רחצה' },
+              { label: 'ממ״ד', value: '15 מ״ר כולל חדר רחצה' },
               { label: 'יחידת הורים', value: 'כיור כפול + אמבטיה' },
               { label: 'חלונות', value: 'מסך מהקרקע לתקרה' },
               { label: 'אינסטלציה', value: 'GROHE בכל הדירה' },
