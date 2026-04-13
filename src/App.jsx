@@ -941,7 +941,11 @@ function Footer() {
 
         <div className="pt-6 md:pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[0.7rem] opacity-45 font-light">
           <p>© 2026 G Park Wellness Living. כל הזכויות שמורות.</p>
-          <p>הדמיות להמחשה בלבד · ט.ל.ח.</p>
+          <div className="flex items-center gap-4">
+            <a href="/privacy-policy" className="hover:opacity-100 transition-opacity">מדיניות פרטיות</a>
+            <span>·</span>
+            <p>הדמיות להמחשה בלבד · ט.ל.ח.</p>
+          </div>
         </div>
       </div>
     </footer>
