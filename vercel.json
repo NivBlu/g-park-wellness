@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    { "source": "/catalog/g-park/:path*", "destination": "/catalog", "permanent": false },
+    { "source": "/share/gpark-catalog",   "destination": "/catalog", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/((?!floorplans|images|assets|.*\\..*).*)", "destination": "/index.html" }
+  ]
+}

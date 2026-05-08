@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import Lenis from 'lenis'
 import {
   ChefHat,
@@ -593,10 +594,18 @@ function Residences() {
                   ))}
                 </ul>
               </div>
-              <a href="#contact" className="btn btn-primary mt-12 self-start">
-                <span>לקבלת מחירון מלא</span>
-                <ArrowLeft size={16} strokeWidth={1.25} />
-              </a>
+              <div className="flex flex-wrap gap-3 mt-12">
+                <Link
+                  to={`/catalog?building=${active}`}
+                  className="btn btn-primary"
+                >
+                  <span>חקרו את הבניין</span>
+                  <ArrowLeft size={16} strokeWidth={1.25} />
+                </Link>
+                <a href="#contact" className="btn btn-ghost on-light">
+                  <span>צרו קשר</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         </AnimatePresence>
