@@ -20,7 +20,9 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-15-setback.webp',
     note: 'דירה אחת ייחודית — מגה־פנטהאוז של 185 מ״ר עם 117 מ״ר מרפסת גג.',
     apartments: [
-      { code: 'MEGA', rect: { x: 0.685, y: 0.435, w: 0.130, h: 0.180 } },
+      { code: 'MEGA', polygon: [
+        [0.680, 0.430], [0.680, 0.620], [0.820, 0.620], [0.820, 0.430]
+      ]},
     ],
   },
 
@@ -34,8 +36,12 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-14-ph.webp',
     note: 'שני פנטהאוזים — מערבי 5 חדרים (155 + 128 גג) ומזרחי 6 חדרים (160 + 178 גג).',
     apartments: [
-      { code: 'PH-W', rect: { x: 0.660, y: 0.330, w: 0.130, h: 0.300 } },
-      { code: 'PH-E', rect: { x: 0.790, y: 0.330, w: 0.130, h: 0.300 } },
+      { code: 'PH-W', polygon: [
+        [0.640, 0.330], [0.640, 0.640], [0.770, 0.640], [0.770, 0.330]
+      ]},
+      { code: 'PH-E', polygon: [
+        [0.770, 0.330], [0.770, 0.640], [0.913, 0.640], [0.913, 0.330]
+      ]},
     ],
   },
 
@@ -49,14 +55,12 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-mini-ph.webp',
     note: 'מיני פנטהאוזים במגדל; בבנייני הבוטיק — דירות 5 חדרים בקצה.',
     apartments: [
-      { code: 'PH-W',  rect: { x: 0.660, y: 0.330, w: 0.130, h: 0.300 } },
-      { code: 'PH-E',  rect: { x: 0.790, y: 0.330, w: 0.130, h: 0.300 } },
-      // Boutique penthouses on north (top row 3 buildings)
-      { code: 'BPH-N', rect: { x: 0.245, y: 0.135, w: 0.110, h: 0.080 } },
-      { code: 'BPH-N', rect: { x: 0.380, y: 0.135, w: 0.115, h: 0.080 } },
-      { code: 'BPH-N', rect: { x: 0.530, y: 0.135, w: 0.130, h: 0.080 } },
-      // Boutique penthouse west (lower-left building)
-      { code: 'BPH-W', rect: { x: 0.235, y: 0.510, w: 0.115, h: 0.170 } },
+      { code: 'PH-W', polygon: [
+        [0.640, 0.330], [0.640, 0.640], [0.770, 0.640], [0.770, 0.330]
+      ]},
+      { code: 'PH-E', polygon: [
+        [0.770, 0.330], [0.770, 0.640], [0.913, 0.640], [0.913, 0.330]
+      ]},
     ],
   },
 
@@ -70,10 +74,18 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-9-13.webp',
     note: 'רק המגדל מאוכלס — 4 דירות בקומה: 2× 132 מ״ר באמצע + 2× 150 מ״ר בפינות.',
     apartments: [
-      { code: 'T-132', rect: { x: 0.660, y: 0.330, w: 0.115, h: 0.190 } }, // top-left
-      { code: 'T-132', rect: { x: 0.795, y: 0.330, w: 0.115, h: 0.190 } }, // top-right
-      { code: 'T-150', rect: { x: 0.660, y: 0.520, w: 0.115, h: 0.230 } }, // bottom-left
-      { code: 'T-150', rect: { x: 0.795, y: 0.520, w: 0.115, h: 0.230 } }, // bottom-right
+      { code: 'T-132', polygon: [
+        [0.640, 0.330], [0.640, 0.522], [0.770, 0.522], [0.770, 0.330]
+      ]}, // top-left
+      { code: 'T-132', polygon: [
+        [0.770, 0.330], [0.770, 0.522], [0.913, 0.522], [0.913, 0.330]
+      ]}, // top-right
+      { code: 'T-150', polygon: [
+        [0.620, 0.522], [0.620, 0.755], [0.770, 0.755], [0.770, 0.522]
+      ]}, // bottom-left
+      { code: 'T-150', polygon: [
+        [0.770, 0.522], [0.770, 0.755], [0.913, 0.755], [0.913, 0.522]
+      ]}, // bottom-right
     ],
   },
 
@@ -87,18 +99,38 @@ export const FLOORS = [
     plate: '/floorplans/plates/boutique-7-ph.webp',
     note: 'הקומה העליונה של בנייני הבוטיק — פנטהאוזים עם מרפסת גג.',
     apartments: [
-      // North boutique penthouses (3 buildings)
-      { code: 'BPH-N', rect: { x: 0.245, y: 0.135, w: 0.110, h: 0.080 } },
-      { code: 'BPH-N', rect: { x: 0.380, y: 0.135, w: 0.115, h: 0.080 } },
-      { code: 'BPH-N', rect: { x: 0.530, y: 0.135, w: 0.130, h: 0.080 } },
+      // North boutique penthouses (3 buildings) — same polygon shape as floor 2-6 north strip
+      { code: 'BPH-N', polygon: [
+        [0.295, 0.165], [0.295, 0.265], [0.448, 0.265], [0.448, 0.158],
+        [0.305, 0.155]
+      ]},
+      { code: 'BPH-N', polygon: [
+        [0.468, 0.158], [0.468, 0.265], [0.602, 0.265], [0.602, 0.158]
+      ]},
+      { code: 'BPH-N', polygon: [
+        [0.625, 0.158], [0.625, 0.265], [0.762, 0.265], [0.762, 0.180],
+        [0.715, 0.155]
+      ]},
       // West boutique penthouses (2 buildings)
-      { code: 'BPH-W', rect: { x: 0.235, y: 0.305, w: 0.115, h: 0.165 } },
-      { code: 'BPH-W', rect: { x: 0.235, y: 0.510, w: 0.115, h: 0.170 } },
+      { code: 'BPH-W', polygon: [
+        [0.243, 0.302], [0.243, 0.485], [0.358, 0.485], [0.358, 0.302]
+      ]},
+      { code: 'BPH-W', polygon: [
+        [0.243, 0.510], [0.243, 0.695], [0.358, 0.695], [0.358, 0.510]
+      ]},
       // Tower at this level — typical high
-      { code: 'T-132', rect: { x: 0.660, y: 0.330, w: 0.115, h: 0.190 } },
-      { code: 'T-132', rect: { x: 0.795, y: 0.330, w: 0.115, h: 0.190 } },
-      { code: 'T-150', rect: { x: 0.660, y: 0.520, w: 0.115, h: 0.230 } },
-      { code: 'T-150', rect: { x: 0.795, y: 0.520, w: 0.115, h: 0.230 } },
+      { code: 'T-132', polygon: [
+        [0.640, 0.330], [0.640, 0.522], [0.770, 0.522], [0.770, 0.330]
+      ]},
+      { code: 'T-132', polygon: [
+        [0.770, 0.330], [0.770, 0.522], [0.913, 0.522], [0.913, 0.330]
+      ]},
+      { code: 'T-150', polygon: [
+        [0.620, 0.522], [0.620, 0.755], [0.770, 0.755], [0.770, 0.522]
+      ]},
+      { code: 'T-150', polygon: [
+        [0.770, 0.522], [0.770, 0.755], [0.913, 0.755], [0.913, 0.522]
+      ]},
     ],
   },
 
@@ -112,34 +144,83 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-2-6.webp',
     note: 'הקומה הטיפוסית — 17 דירות בקומה: 7 במגדל + 4 במערבי + 6 בצפוני.',
     apartments: [
-      // ─── North boutique top row (3 buildings × 2 apts) ───
-      // North building 1 (left)
-      { code: 'B-123', rect: { x: 0.293, y: 0.162, w: 0.091, h: 0.111 } },
-      { code: 'A',     rect: { x: 0.384, y: 0.162, w: 0.061, h: 0.111 } },
-      // North building 2 (middle, two 3-room)
-      { code: 'D-b',   rect: { x: 0.468, y: 0.162, w: 0.068, h: 0.111 } },
-      { code: 'A',     rect: { x: 0.536, y: 0.162, w: 0.066, h: 0.111 } },
-      // North building 3 (right)
-      { code: 'A',     rect: { x: 0.624, y: 0.162, w: 0.055, h: 0.111 } },
-      { code: 'B-134', rect: { x: 0.679, y: 0.162, w: 0.080, h: 0.111 } },
+      // ─── North boutique top row — polygons follow the curved-top outline ───
+      // North building 1 (left): B-123 + A (under the curve)
+      { code: 'B-123', polygon: [
+        [0.295, 0.180], [0.295, 0.265], [0.385, 0.265], [0.385, 0.165],
+        [0.305, 0.155], [0.298, 0.165]
+      ]},
+      { code: 'A', polygon: [
+        [0.385, 0.165], [0.385, 0.265], [0.448, 0.265], [0.448, 0.158],
+        [0.420, 0.150]
+      ]},
+      // North building 2 (middle): D-b + A
+      { code: 'D-b', polygon: [
+        [0.468, 0.158], [0.468, 0.265], [0.535, 0.265], [0.535, 0.158]
+      ]},
+      { code: 'A', polygon: [
+        [0.535, 0.158], [0.535, 0.265], [0.602, 0.265], [0.602, 0.158]
+      ]},
+      // North building 3 (right): A + B-134 (B-134 has the right curve)
+      { code: 'A', polygon: [
+        [0.625, 0.158], [0.625, 0.265], [0.685, 0.265], [0.685, 0.165],
+        [0.655, 0.150]
+      ]},
+      { code: 'B-134', polygon: [
+        [0.685, 0.165], [0.685, 0.265], [0.762, 0.265], [0.762, 0.180],
+        [0.755, 0.165], [0.715, 0.155]
+      ]},
 
       // ─── West boutique left column (2 buildings × 2 apts) ───
       // West building 1 (upper)
-      { code: 'G',     rect: { x: 0.241, y: 0.300, w: 0.114, h: 0.091 } },
-      { code: 'H',     rect: { x: 0.241, y: 0.391, w: 0.114, h: 0.091 } },
+      { code: 'G', polygon: [
+        [0.243, 0.302], [0.243, 0.395], [0.358, 0.395], [0.358, 0.302]
+      ]},
+      { code: 'H', polygon: [
+        [0.243, 0.395], [0.243, 0.485], [0.358, 0.485], [0.358, 0.395]
+      ]},
       // West building 2 (lower)
-      { code: 'H',     rect: { x: 0.241, y: 0.510, w: 0.114, h: 0.091 } },
-      { code: 'G',     rect: { x: 0.241, y: 0.601, w: 0.114, h: 0.091 } },
+      { code: 'H', polygon: [
+        [0.243, 0.510], [0.243, 0.600], [0.358, 0.600], [0.358, 0.510]
+      ]},
+      { code: 'G', polygon: [
+        [0.243, 0.600], [0.243, 0.695], [0.358, 0.695], [0.358, 0.600]
+      ]},
 
-      // ─── Tower (8 visible apartments) ───
-      { code: 'D',     rect: { x: 0.677, y: 0.300, w: 0.084, h: 0.090 } }, // top center
-      { code: 'C',     rect: { x: 0.761, y: 0.300, w: 0.155, h: 0.180 } }, // top-right corner (134)
-      { code: 'E',     rect: { x: 0.761, y: 0.480, w: 0.084, h: 0.085 } }, // right-upper (67)
-      { code: 'E',     rect: { x: 0.761, y: 0.565, w: 0.084, h: 0.090 } }, // right-lower (67)
-      { code: 'A',     rect: { x: 0.591, y: 0.430, w: 0.090, h: 0.130 } }, // left-center A 82
-      { code: 'E',     rect: { x: 0.591, y: 0.560, w: 0.090, h: 0.095 } }, // left-lower (67)
-      { code: 'F',     rect: { x: 0.620, y: 0.655, w: 0.141, h: 0.105 } }, // bottom-left (113)
-      { code: 'F',     rect: { x: 0.761, y: 0.655, w: 0.155, h: 0.105 } }, // bottom-right (113)
+      // ─── Tower — irregular cross shape, polygons trace each apartment ───
+      // D-82 (top center, north-facing)
+      { code: 'D', polygon: [
+        [0.677, 0.302], [0.677, 0.395], [0.770, 0.395], [0.770, 0.302]
+      ]},
+      // C-134 (top-right corner, larger L-shape extending east)
+      { code: 'C', polygon: [
+        [0.770, 0.302], [0.770, 0.480], [0.913, 0.480], [0.913, 0.330],
+        [0.880, 0.302]
+      ]},
+      // E-67 right-upper
+      { code: 'E', polygon: [
+        [0.770, 0.480], [0.770, 0.563], [0.870, 0.563], [0.870, 0.480]
+      ]},
+      // E-67 right-lower
+      { code: 'E', polygon: [
+        [0.770, 0.563], [0.770, 0.645], [0.870, 0.645], [0.870, 0.563]
+      ]},
+      // A-82 (left-center, small L near tower core)
+      { code: 'A', polygon: [
+        [0.595, 0.430], [0.595, 0.515], [0.685, 0.515], [0.685, 0.430]
+      ]},
+      // E-67 left-lower
+      { code: 'E', polygon: [
+        [0.595, 0.515], [0.595, 0.620], [0.685, 0.620], [0.685, 0.515]
+      ]},
+      // F-113 bottom-left (large)
+      { code: 'F', polygon: [
+        [0.625, 0.660], [0.625, 0.770], [0.770, 0.770], [0.770, 0.660]
+      ]},
+      // F-113 bottom-right (large, extends east)
+      { code: 'F', polygon: [
+        [0.770, 0.660], [0.770, 0.770], [0.913, 0.770], [0.913, 0.660]
+      ]},
     ],
   },
 
@@ -153,9 +234,15 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-ground.webp',
     note: 'דירות גן בקומה הקרקע, לובי ראשי, חזית מסחרית וגישה לפארק הפנימי.',
     apartments: [
-      { code: 'G-128', rect: { x: 0.595, y: 0.305, w: 0.130, h: 0.180 } },
-      { code: 'G-66',  rect: { x: 0.725, y: 0.305, w: 0.115, h: 0.180 } },
-      { code: 'G-59',  rect: { x: 0.840, y: 0.305, w: 0.080, h: 0.180 } },
+      { code: 'G-128', polygon: [
+        [0.595, 0.300], [0.595, 0.490], [0.725, 0.490], [0.725, 0.300]
+      ]},
+      { code: 'G-66', polygon: [
+        [0.725, 0.300], [0.725, 0.490], [0.840, 0.490], [0.840, 0.300]
+      ]},
+      { code: 'G-59', polygon: [
+        [0.840, 0.300], [0.840, 0.490], [0.915, 0.490], [0.915, 0.300]
+      ]},
     ],
   },
 ]

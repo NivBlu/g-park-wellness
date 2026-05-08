@@ -18,6 +18,7 @@ export default function FloorPlate({ floor, selectedCode, onSelect, buildingFilt
         ...a,
         idx,
         apt: apartmentByCode(a.code),
+        polygon: a.polygon,
       })),
     [floor]
   )
@@ -51,29 +52,51 @@ export default function FloorPlate({ floor, selectedCode, onSelect, buildingFilt
           const dimmed =
             buildingFilter &&
             !h.apt.buildings.includes(buildingFilter)
-          return (
-            <g key={`${h.code}-${h.idx}`}>
-              <rect
-                x={h.rect.x}
-                y={h.rect.y}
-                width={h.rect.w}
-                height={h.rect.h}
-                className={`hotspot ${isActive ? 'is-active' : ''} ${dimmed ? 'is-dimmed' : ''}`}
+          const className = `hotspot ${isActive ? 'is-active' : ''} ${dimmed ? 'is-dimmed' : ''}`
+          const onActivate = () => onSelect(h.code)
+          const handleKey = (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault()
+              onSelect(h.code)
+            }
+          }
+          // Polygon hotspot — preferred when shape is irregular.
+          if (Array.isArray(h.polygon) && h.polygon.length >= 3) {
+            const pointsStr = h.polygon.map(([x, y]) => `${x},${y}`).join(' ')
+            return (
+              <polygon
+                key={`${h.code}-${h.idx}`}
+                points={pointsStr}
+                className={className}
                 tabIndex={0}
                 role="button"
-                aria-label={`${h.apt.title}`}
+                aria-label={h.apt.title}
                 aria-pressed={isActive}
-                onClick={() => onSelect(h.code)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault()
-                    onSelect(h.code)
-                  }
-                }}
+                onClick={onActivate}
+                onKeyDown={handleKey}
               >
                 <title>{h.apt.title}</title>
-              </rect>
-            </g>
+              </polygon>
+            )
+          }
+          // Rectangle fallback.
+          return (
+            <rect
+              key={`${h.code}-${h.idx}`}
+              x={h.rect.x}
+              y={h.rect.y}
+              width={h.rect.w}
+              height={h.rect.h}
+              className={className}
+              tabIndex={0}
+              role="button"
+              aria-label={h.apt.title}
+              aria-pressed={isActive}
+              onClick={onActivate}
+              onKeyDown={handleKey}
+            >
+              <title>{h.apt.title}</title>
+            </rect>
           )
         })}
       </svg>
