@@ -1,0 +1,28 @@
+{
+  "_comment": "Maps source PDFs to clean ASCII output names. Run scripts/build-floorplan-assets.mjs after editing.",
+  "sourceDirs": {
+    "plates": "/Users/nivblushinsky/Downloads/תוכנית העמדה",
+    "units":  "/Users/nivblushinsky/Downloads/תוכניות מעודכנות מאי 26"
+  },
+  "plates": {
+    "קרקע.pdf":                                    "tower-ground",
+    "קומות 2-6 טיפוסיות.pdf":                      "tower-2-6",
+    "קומות טיפוסיות גבוהות 9-13.pdf":              "tower-9-13",
+    "מיני פנטהאוזים קומה 14 בניין גבוה.pdf":       "tower-mini-ph",
+    "פנטהאוז בניין גבוה.pdf":                      "tower-14-ph",
+    "נסיגה מגדל .pdf":                             "tower-15-setback",
+    "קומה 7 פנטהאוזים בוטיק.pdf":                  "boutique-7-ph"
+  },
+  "units": {
+    "Ggp_Type_A_82sqm (2).pdf":     "A",
+    "Ggp_Type_B_123sqm (1).pdf":    "B-123",
+    "Ggp_Type_B_134sqm.pdf":        "B-134",
+    "Ggp_Type_C_134sqm.pdf":        "C",
+    "Ggp_Type_D_82sqm.pdf":         "D",
+    "Ggp_Type_D_82sqm_b (1).pdf":   "D-b",
+    "Ggp_Type_E_67sqm.pdf":         "E",
+    "Ggp_Type_F_113sqm.pdf":        "F",
+    "Ggp_Type_G_123sqm.pdf":        "G",
+    "Ggp_Type_H_82sqm (2).pdf":     "H"
+  }
+}
