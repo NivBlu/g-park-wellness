@@ -16,7 +16,10 @@
  */
 
 export const APARTMENTS = [
-  // ────── 82 m² family — three layout variants ──────
+  // ────── 82 m² · 3 חדרים family ──────
+  // Tower:        only TYPE D (north exposure).
+  // Boutique-N:   only TYPE A (north strip).
+  // Boutique-W:   only TYPE H (west buildings).
   {
     code: 'A',
     title: 'טיפוס A · 82 מ״ר',
@@ -26,8 +29,8 @@ export const APARTMENTS = [
     builtSqm: 82,
     outdoorKind: 'מרפסת',
     outdoorSqm: 12,
-    buildings: ['tower', 'boutique-n'],
-    description: 'דירת 3 חדרים נפח קומפקטי וחלוקה יעילה — זמינה במגדל ובבניינים הצפוניים של מתחם הבוטיק.',
+    buildings: ['boutique-n'],
+    description: 'דירת 3 חדרים בבנייני הבוטיק הצפוניים — חלוקה יעילה ומרפסת מזרחית.',
     planImage: '/floorplans/units/A.webp',
     planPdf:   '/floorplans/units/A.pdf',
     planAvailable: true,
@@ -42,24 +45,10 @@ export const APARTMENTS = [
     outdoorKind: 'מרפסת',
     outdoorSqm: 12,
     buildings: ['tower'],
-    description: 'דירת 3 חדרים בקומה הצפונית של המגדל — תכנון פתוח לכיוון הפארק.',
+    description:
+      'דירת 3 חדרים בקומות הטיפוסיות הנמוכות של המגדל — הטיפוס היחיד בגודל זה במגדל. תכנון פתוח לכיוון הפארק עם מרפסת של 12 מ״ר.',
     planImage: '/floorplans/units/D.webp',
     planPdf:   '/floorplans/units/D.pdf',
-    planAvailable: true,
-  },
-  {
-    code: 'D-b',
-    title: 'טיפוס D · 82 מ״ר (וריאנט)',
-    categoryLabel: '3 חדרים',
-    category: 'apartment',
-    rooms: 3,
-    builtSqm: 82,
-    outdoorKind: 'מרפסת',
-    outdoorSqm: 12,
-    buildings: ['boutique-n'],
-    description: 'וריאנט נוסף של 3 חדרים בבניין האמצעי של מרקמי צפוני.',
-    planImage: '/floorplans/units/D-b.webp',
-    planPdf:   '/floorplans/units/D-b.pdf',
     planAvailable: true,
   },
   {
@@ -288,32 +277,70 @@ export const APARTMENTS = [
   },
 
   // ────── Boutique penthouses (floor 7) ──────
+  // Each boutique building has its own penthouse on top.
+  // West (2 buildings): identical penthouses — 155 m² + 68 m² roof.
+  // North (3 buildings): same built area (155 m²) but different roof terraces
+  // depending on the building's position along the strip.
   {
     code: 'BPH-W',
-    title: 'פנטהאוז בוטיק מערבי · 5 חדרים',
+    title: 'פנטהאוז בוטיק מערבי · 155 מ״ר',
     categoryLabel: 'פנטהאוז מרקמי מערבי',
     category: 'penthouse',
     rooms: 5,
-    builtSqm: 141,
+    builtSqm: 155,
     outdoorKind: 'מרפסת גג',
-    outdoorSqm: 100,
+    outdoorSqm: 68,
     buildings: ['boutique-w'],
-    description: 'פנטהאוז בקומה 7 של מרקמי מערבי. התוכנית המפורטת תפורסם בקרוב.',
+    description:
+      'פנטהאוז בקומה 7 של מרקמי מערבי — 155 מ״ר בנוי עם מרפסת גג של 68 מ״ר. דירה אחת בכל אחד משני בנייני הבוטיק המערביים. התוכנית המפורטת תפורסם בקרוב.',
     planImage: null,
     planPdf:   null,
     planAvailable: false,
   },
   {
-    code: 'BPH-N',
-    title: 'פנטהאוז בוטיק צפוני · 5 חדרים',
+    code: 'BPH-N-NW',
+    title: 'פנטהאוז בוטיק צפוני־מערבי · 155 מ״ר',
     categoryLabel: 'פנטהאוז מרקמי צפוני',
     category: 'penthouse',
     rooms: 5,
-    builtSqm: 141,
+    builtSqm: 155,
     outdoorKind: 'מרפסת גג',
-    outdoorSqm: 105,
+    outdoorSqm: 68,
     buildings: ['boutique-n'],
-    description: 'פנטהאוז בקומה 7 של מרקמי צפוני. התוכנית המפורטת תפורסם בקרוב.',
+    description:
+      'פנטהאוז על הבניין הצפון־מערבי של מרקמי צפוני — 155 מ״ר בנוי עם מרפסת גג של 68 מ״ר. התוכנית המפורטת תפורסם בקרוב.',
+    planImage: null,
+    planPdf:   null,
+    planAvailable: false,
+  },
+  {
+    code: 'BPH-N-M',
+    title: 'פנטהאוז בוטיק צפוני־אמצעי · 155 מ״ר',
+    categoryLabel: 'פנטהאוז מרקמי צפוני',
+    category: 'penthouse',
+    rooms: 5,
+    builtSqm: 155,
+    outdoorKind: 'מרפסת גג',
+    outdoorSqm: 37,
+    buildings: ['boutique-n'],
+    description:
+      'פנטהאוז על הבניין האמצעי של מרקמי צפוני — 155 מ״ר בנוי עם מרפסת גג של 37 מ״ר, בחזית הצפונית. התוכנית המפורטת תפורסם בקרוב.',
+    planImage: null,
+    planPdf:   null,
+    planAvailable: false,
+  },
+  {
+    code: 'BPH-N-NE',
+    title: 'פנטהאוז בוטיק צפוני־מזרחי · 155 מ״ר',
+    categoryLabel: 'פנטהאוז מרקמי צפוני',
+    category: 'penthouse',
+    rooms: 5,
+    builtSqm: 155,
+    outdoorKind: 'מרפסת גג',
+    outdoorSqm: 80,
+    buildings: ['boutique-n'],
+    description:
+      'פנטהאוז על הבניין הצפון־מזרחי של מרקמי צפוני — 155 מ״ר בנוי עם מרפסת גג גדולה של 80 מ״ר. התוכנית המפורטת תפורסם בקרוב.',
     planImage: null,
     planPdf:   null,
     planAvailable: false,
@@ -365,12 +392,50 @@ export const APARTMENTS = [
     planPdf:   null,
     planAvailable: false,
   },
+  // Boutique-west garden apartment — east-facing, opens onto the inner park.
+  {
+    code: 'BG-134',
+    title: 'דירת גן בוטיק מערבי · 134 מ״ר',
+    categoryLabel: 'דירת גן · מרקמי מערבי',
+    category: 'garden',
+    rooms: 5,
+    builtSqm: 134,
+    outdoorKind: 'גינה',
+    outdoorSqm: 65,
+    buildings: ['boutique-w'],
+    description:
+      'דירת גן בקומת הקרקע של מרקמי מערבי — חזית מזרחית פתוחה לפארק הפנימי השקט. 134 מ״ר בנוי וגינה פרטית מדהימה של 65 מ״ר. התוכנית המפורטת תפורסם בקרוב.',
+    planImage: null,
+    planPdf:   null,
+    planAvailable: false,
+  },
 ]
 
 export const BUILDINGS = {
-  tower: { id: 'tower', label: 'The Tower', he: 'מגדל הפארק' },
-  'boutique-w': { id: 'boutique-w', label: 'Boutique · West', he: 'מרקמי מערבי' },
-  'boutique-n': { id: 'boutique-n', label: 'Boutique · North', he: 'מרקמי צפוני' },
+  tower: {
+    id: 'tower',
+    label: 'The Tower',
+    he: 'מגדל הפארק',
+    description:
+      'מגדל המגורים המרכזי — 15 קומות מעל קומת קרקע, עם מגוון רחב של דירות מ-3 עד 6 חדרים, פנטהאוזים ומגה־פנטהאוז. נוף פתוח לפארק האקולוגי ולקו הים מהקומות הגבוהות.',
+    floorsLabel: 'קרקע · 2–13 · 14 · 15',
+  },
+  'boutique-w': {
+    id: 'boutique-w',
+    label: 'Boutique · West',
+    he: 'מרקמי מערבי',
+    description:
+      'שני בנייני בוטיק מערביים — קנה מידה אינטימי, 7 קומות בלבד, חזיתות שטוחות לחלל הציבורי הירוק. הקומה העליונה עם פנטהאוזים פינתיים.',
+    floorsLabel: 'קרקע · 2–6 · 7 פנטהאוז',
+  },
+  'boutique-n': {
+    id: 'boutique-n',
+    label: 'Boutique · North',
+    he: 'מרקמי צפוני',
+    description:
+      'שלושה בנייני בוטיק לאורך החזית הצפונית — חזית מעוגלת לכיוון השדרה הציבורית, דירות 3–5 חדרים ופנטהאוזים מעוגלים בקומה העליונה.',
+    floorsLabel: 'קרקע · 2–6 · 7 פנטהאוז',
+  },
 }
 
 export const apartmentByCode = (code) => APARTMENTS.find((a) => a.code === code)

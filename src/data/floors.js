@@ -7,25 +7,13 @@
  *
  * The plates are SITE PLANS — every level shows the entire project (tower +
  * 5 boutique buildings). Each typical floor has up to 17 apartments visible.
+ *
+ * Source order below is high → low (penthouse first); we export FLOORS
+ * reversed so the public order is low → high (ground first), matching the
+ * Hebrew reading flow ("התחל מקומה הנמוכה ואז עלה").
  */
 
-export const FLOORS = [
-  // ════════════════════════════════════════════════════
-  // FLOOR 15 — מגה־פנטהאוז (tower only)
-  // ════════════════════════════════════════════════════
-  {
-    id: 'tower-15-setback',
-    label: 'קומה 15 · מגה־פנטהאוז',
-    short: '15',
-    plate: '/floorplans/plates/tower-15-setback.webp',
-    note: 'דירה אחת ייחודית — מגה־פנטהאוז של 185 מ״ר עם 117 מ״ר מרפסת גג.',
-    apartments: [
-      { code: 'MEGA', polygon: [
-        [0.680, 0.430], [0.680, 0.620], [0.820, 0.620], [0.820, 0.430]
-      ]},
-    ],
-  },
-
+const _FLOORS_HIGH_FIRST = [
   // ════════════════════════════════════════════════════
   // FLOOR 14 — שני פנטהאוזים (tower)
   // ════════════════════════════════════════════════════
@@ -90,6 +78,32 @@ export const FLOORS = [
   },
 
   // ════════════════════════════════════════════════════
+  // FLOOR 8 — קומת נסיגה (setback) במגדל; מיני־פנטהאוזים על גגות הבוטיק
+  // ════════════════════════════════════════════════════
+  {
+    id: 'tower-8-setback',
+    label: 'קומה 8 · נסיגה',
+    short: '8',
+    plate: '/floorplans/plates/tower-15-setback.webp',
+    note: 'קומת נסיגה במגדל — דירות SB-132 (אמצע) ו-SB-150 (פינה). על גגות הבוטיק נראים מיני־פנטהאוזים.',
+    apartments: [
+      // Tower setback — same 4-apartment layout as floors 9-13, but as SB units
+      { code: 'SB-132', polygon: [
+        [0.640, 0.330], [0.640, 0.522], [0.770, 0.522], [0.770, 0.330]
+      ]},
+      { code: 'SB-132', polygon: [
+        [0.770, 0.330], [0.770, 0.522], [0.913, 0.522], [0.913, 0.330]
+      ]},
+      { code: 'SB-150', polygon: [
+        [0.620, 0.522], [0.620, 0.755], [0.770, 0.755], [0.770, 0.522]
+      ]},
+      { code: 'SB-150', polygon: [
+        [0.770, 0.522], [0.770, 0.755], [0.913, 0.755], [0.913, 0.522]
+      ]},
+    ],
+  },
+
+  // ════════════════════════════════════════════════════
   // FLOOR 7 — פנטהאוזים בוטיק (top of all 5 boutique buildings)
   // ════════════════════════════════════════════════════
   {
@@ -99,19 +113,25 @@ export const FLOORS = [
     plate: '/floorplans/plates/boutique-7-ph.webp',
     note: 'הקומה העליונה של בנייני הבוטיק — פנטהאוזים עם מרפסת גג.',
     apartments: [
-      // North boutique penthouses (3 buildings) — same polygon shape as floor 2-6 north strip
-      { code: 'BPH-N', polygon: [
+      // North boutique penthouses (3 buildings — distinct codes per building
+      // because each one has a different roof-terrace area).
+      // Plate orientation: looking at the site plan from above, "left" on the
+      // plate is the EAST side and "right" is the WEST side of the project.
+      // Building 1 (left polygon) → north-east penthouse
+      { code: 'BPH-N-NE', polygon: [
         [0.295, 0.165], [0.295, 0.265], [0.448, 0.265], [0.448, 0.158],
         [0.305, 0.155]
       ]},
-      { code: 'BPH-N', polygon: [
+      // Building 2 (middle polygon) → middle penthouse facing north
+      { code: 'BPH-N-M', polygon: [
         [0.468, 0.158], [0.468, 0.265], [0.602, 0.265], [0.602, 0.158]
       ]},
-      { code: 'BPH-N', polygon: [
+      // Building 3 (right polygon) → north-west penthouse
+      { code: 'BPH-N-NW', polygon: [
         [0.625, 0.158], [0.625, 0.265], [0.762, 0.265], [0.762, 0.180],
         [0.715, 0.155]
       ]},
-      // West boutique penthouses (2 buildings)
+      // West boutique penthouses (2 buildings) — both identical (BPH-W).
       { code: 'BPH-W', polygon: [
         [0.243, 0.302], [0.243, 0.485], [0.358, 0.485], [0.358, 0.302]
       ]},
@@ -154,8 +174,10 @@ export const FLOORS = [
         [0.385, 0.165], [0.385, 0.265], [0.448, 0.265], [0.448, 0.158],
         [0.420, 0.150]
       ]},
-      // North building 2 (middle): D-b + A
-      { code: 'D-b', polygon: [
+      // North building 2 (middle): A + A
+      // (Boutique-North only contains types A-82 / B-123 / B-134 + BPH-N.
+      //  Type D variants are tower-only.)
+      { code: 'A', polygon: [
         [0.468, 0.158], [0.468, 0.265], [0.535, 0.265], [0.535, 0.158]
       ]},
       { code: 'A', polygon: [
@@ -205,8 +227,9 @@ export const FLOORS = [
       { code: 'E', polygon: [
         [0.770, 0.563], [0.770, 0.645], [0.870, 0.645], [0.870, 0.563]
       ]},
-      // A-82 (left-center, small L near tower core)
-      { code: 'A', polygon: [
+      // D-82 (left-center, small L near tower core).
+      // Tower's 3-room 82 m² is type D only — no A or D-b in the tower.
+      { code: 'D', polygon: [
         [0.595, 0.430], [0.595, 0.515], [0.685, 0.515], [0.685, 0.430]
       ]},
       // E-67 left-lower
@@ -232,8 +255,14 @@ export const FLOORS = [
     label: 'קומת קרקע · דירות גן',
     short: 'קרקע',
     plate: '/floorplans/plates/tower-ground.webp',
-    note: 'דירות גן בקומה הקרקע, לובי ראשי, חזית מסחרית וגישה לפארק הפנימי.',
+    note: 'דירות גן בקומה הקרקע, לובי ראשי, חזית מסחרית וגישה לפארק הפנימי. במגדל — שלוש דירות גן; במרקמי המערבי — דירת גן מזרחית עם נוף לפארק.',
     apartments: [
+      // Boutique-W garden apartment — east-facing, opens onto the inner park.
+      // Polygon extends from the western boutique footprint eastward into the
+      // private garden strip toward the courtyard.
+      { code: 'BG-134', polygon: [
+        [0.243, 0.395], [0.243, 0.490], [0.470, 0.490], [0.470, 0.395]
+      ]},
       { code: 'G-128', polygon: [
         [0.595, 0.300], [0.595, 0.490], [0.725, 0.490], [0.725, 0.300]
       ]},
@@ -246,6 +275,9 @@ export const FLOORS = [
     ],
   },
 ]
+
+// Public order: ground → penthouse (low to high).
+export const FLOORS = _FLOORS_HIGH_FIRST.slice().reverse()
 
 export const floorById = (id) => FLOORS.find((f) => f.id === id)
 
