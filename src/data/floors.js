@@ -216,7 +216,7 @@ export const FLOORS = [
     plate: '/floorplans/plates/tower-2-6.webp',
     note: 'הקומה הטיפוסית — 17 דירות בקומה: 7 במגדל + 4 במערבי + 6 בצפוני.',
     apartments: [
-      // ─── North boutique top strip — 3 buildings × 2 apts each ───
+      // ─── North boutique top strip — left → right: B-123, A, A, A, A, B-134
       // Building 1 (leftmost, with curve on left)
       {
         code: 'B-123',
@@ -233,9 +233,9 @@ export const FLOORS = [
         ],
         labelPos: [0.413, 0.215],
       },
-      // Building 2 (middle)
+      // Building 2 (middle) — both A
       {
-        code: 'D-b',
+        code: 'A',
         polygon: [
           [0.468, 0.165], [0.535, 0.165], [0.535, 0.265], [0.468, 0.265],
         ],

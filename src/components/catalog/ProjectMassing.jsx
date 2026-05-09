@@ -33,20 +33,26 @@ const cuboid = (ox, oy, w, d, h) => {
 const polyStr = (pts) => pts.map((p) => p.join(',')).join(' ')
 
 // Building defs — each `building` is { id, x, y, w, d, h, label }
+// X axis runs west→east, Y axis runs south→north (larger Y = further north).
+// Layout per developer's spec:
+//   Tower            = east side (right) — 15 floors, 38 apts
+//   "מרקמי מערבי"     = 2 buildings on the NORTH edge (top strip)   — 22 apts
+//   "מרקמי צפוני"     = 3 buildings on the WEST edge  (left column) — 33 apts
+//   Park             = courtyard between them
 const BUILDINGS_3D = [
-  // Northern boutique strip — 3 buildings, 7 floors each
-  { id: 'boutique-n', x: 1.0, y: 6.5, w: 1.4, d: 1.0, h: 2.1, label: 'מרקמי צפוני' },
-  { id: 'boutique-n', x: 2.6, y: 6.5, w: 1.4, d: 1.0, h: 2.1 },
-  { id: 'boutique-n', x: 4.2, y: 6.5, w: 1.4, d: 1.0, h: 2.1 },
-  // Western boutique pair — 2 buildings, 7 floors each
-  { id: 'boutique-w', x: 0.5, y: 4.2, w: 1.4, d: 1.0, h: 2.1, label: 'מרקמי מערבי' },
-  { id: 'boutique-w', x: 0.5, y: 2.8, w: 1.4, d: 1.0, h: 2.1 },
-  // Tower — 15 floors, taller, on the east side
-  { id: 'tower', x: 4.0, y: 2.4, w: 1.8, d: 1.6, h: 4.6, label: 'מגדל הפארק' },
+  // 2 western-boutique buildings — placed on the NORTH edge per spec
+  { id: 'boutique-w', x: 1.6, y: 4.6, w: 1.2, d: 0.7, h: 1.7, label: 'מרקמי מערבי · 22 דירות' },
+  { id: 'boutique-w', x: 3.0, y: 4.6, w: 1.2, d: 0.7, h: 1.7 },
+  // 3 northern-boutique buildings — placed on the WEST edge per spec
+  { id: 'boutique-n', x: 0.5, y: 1.6, w: 0.7, d: 0.9, h: 1.7, label: 'מרקמי צפוני · 33 דירות' },
+  { id: 'boutique-n', x: 0.5, y: 2.5, w: 0.7, d: 0.9, h: 1.7 },
+  { id: 'boutique-n', x: 0.5, y: 3.4, w: 0.7, d: 0.9, h: 1.7 },
+  // Tower — east side, 15 floors
+  { id: 'tower', x: 4.2, y: 1.8, w: 1.3, d: 1.5, h: 3.8, label: 'מגדל הפארק · 38 דירות' },
 ]
 
-// Park (low platform with trees)
-const PARK = { x: 2.4, y: 2.4, w: 2.6, d: 3.4 }
+// Park — central courtyard between the buildings
+const PARK = { x: 1.5, y: 1.8, w: 2.6, d: 2.7 }
 
 export default function ProjectMassing({ activeBuilding, onSelect }) {
   // Sort back-to-front so painter's algorithm gives correct overlaps.
@@ -61,7 +67,7 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
   return (
     <div className="project-massing" dir="ltr">
       <svg
-        viewBox="-3 -8 12 12"
+        viewBox="-5.2 -6.5 10.4 9"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
         className="project-massing-svg"
@@ -71,14 +77,19 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
         <polygon
           points={polyStr([
             project(0, 0, 0),
-            project(7, 0, 0),
-            project(7, 8, 0),
-            project(0, 8, 0),
+            project(5.7, 0, 0),
+            project(5.7, 5.5, 0),
+            project(0, 5.5, 0),
           ])}
           fill="var(--color-cream)"
           stroke="var(--color-stone)"
           strokeWidth="0.02"
         />
+        {/* Compass marker */}
+        <g transform={`translate(${project(0.2, 5.2, 0)[0]}, ${project(0.2, 5.2, 0)[1]})`}>
+          <circle r="0.32" fill="var(--color-paper)" stroke="var(--color-stone)" strokeWidth="0.02" />
+          <text textAnchor="middle" dominantBaseline="central" fontSize="0.32" fill="var(--color-mist)" fontStyle="italic" fontFamily="serif">N</text>
+        </g>
 
         {/* Park (lower box) */}
         {(() => {
@@ -88,14 +99,14 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
               <polygon points={polyStr(c.top)} fill="#E6ECDA" stroke="#8A9A7B" strokeWidth="0.015" />
               {/* Trees */}
               {[
-                [PARK.x + 0.5, PARK.y + 0.7],
-                [PARK.x + 1.4, PARK.y + 0.5],
-                [PARK.x + 2.2, PARK.y + 1.1],
-                [PARK.x + 0.7, PARK.y + 1.8],
-                [PARK.x + 1.7, PARK.y + 2.0],
-                [PARK.x + 2.3, PARK.y + 2.7],
-                [PARK.x + 0.5, PARK.y + 2.9],
-                [PARK.x + 1.3, PARK.y + 2.5],
+                [PARK.x + 0.4, PARK.y + 0.5],
+                [PARK.x + 1.2, PARK.y + 0.4],
+                [PARK.x + 2.1, PARK.y + 0.6],
+                [PARK.x + 0.6, PARK.y + 1.4],
+                [PARK.x + 1.4, PARK.y + 1.7],
+                [PARK.x + 2.2, PARK.y + 1.5],
+                [PARK.x + 0.5, PARK.y + 2.3],
+                [PARK.x + 1.6, PARK.y + 2.4],
               ].map(([tx, ty], i) => {
                 const [px, py] = project(tx, ty, 0.05)
                 return (
@@ -133,7 +144,7 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
           const stroke    = isActive ? '#0E0F0C' : '#3D4F45'
           const labelPos  = project(b.x + b.w / 2, b.y + b.d / 2, b.h + 0.4)
           // Floor lines (ribbons) on the front face.
-          const floors = b.h > 3 ? 15 : 7
+          const floors = b.h > 2.5 ? 15 : 7
           const floorLines = []
           for (let f = 1; f < floors; f++) {
             const z = (f / floors) * b.h
