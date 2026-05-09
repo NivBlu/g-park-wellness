@@ -15,6 +15,27 @@
 
 const _FLOORS_HIGH_FIRST = [
   // ════════════════════════════════════════════════════
+  // FLOOR 15 — מגה־פנטהאוז (tower roof, single residence)
+  // The entire roof is occupied by ONE penthouse: 185 m² built + 117 m²
+  // roof terrace. Plate references the same overhead view as floor 8 until
+  // a dedicated floor-15 plate is rendered.
+  // ════════════════════════════════════════════════════
+  {
+    id: 'tower-15-mega',
+    label: 'קומה 15 · מגה־פנטהאוז',
+    short: '15',
+    plate: '/floorplans/plates/tower-15-setback.webp',
+    note: 'הקומה העליונה של המגדל — דירה אחת ייחודית: מגה־פנטהאוז של 185 מ״ר בנוי עם 117 מ״ר מרפסת גג.',
+    apartments: [
+      // The MEGA covers the entire central tower roof — single hotspot
+      // spanning the whole footprint of the tower core.
+      { code: 'MEGA', polygon: [
+        [0.620, 0.330], [0.620, 0.755], [0.913, 0.755], [0.913, 0.330]
+      ]},
+    ],
+  },
+
+  // ════════════════════════════════════════════════════
   // FLOOR 14 — שני פנטהאוזים (tower)
   // ════════════════════════════════════════════════════
   {
