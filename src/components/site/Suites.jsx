@@ -2,16 +2,16 @@ import { motion } from 'framer-motion'
 
 const features = [
   {
-    title: 'פרטיות מוחלטת',
-    body: 'שתי סוויטות מאסטר נפרדות בכל דירה, כל אחת עם חדר רחצה פרטי ומרחב עצמאי.',
+    title: 'יחידת הורים נוספת',
+    body: 'שתי סוויטות מאסטר עצמאיות בכל דירה — לא חדר נוסף, אלא יחידת הורים מלאה משלה: חדר שינה, ארונות וחדר רחצה פרטי.',
   },
   {
-    title: 'גמישות מושלמת',
-    body: 'אידיאלי למשפחות מתבגרות, אירוח פרימיום, או שילוב של קליניקה / משרד ביתי.',
+    title: 'פרטיות אמיתית',
+    body: 'הפרדה אדריכלית בין שתי הסוויטות, עם חדרי רחצה נפרדים ומרחבי שירות עצמאיים — נוחות מלאה לבני זוג עם זמנים שונים.',
   },
   {
-    title: 'זרימה אדריכלית',
-    body: 'הפרדה חכמה המייצרת הרמוניה, שקט ונוחות מקסימלית בתוך הבית.',
+    title: 'גמישות לכל סיטואציה',
+    body: 'אידיאלי למשפחות מתבגרות, להורים מבוגרים, אירוח פרימיום, או שילוב של קליניקה ומשרד ביתי בלי להתפשר על המגורים.',
   },
 ]
 
@@ -73,7 +73,7 @@ export default function Suites() {
           </ul>
         </div>
 
-        <motion.div
+        <motion.figure
           className="suites-media"
           initial={{ opacity: 0, scale: 1.03 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -81,12 +81,16 @@ export default function Suites() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <img
-            src="/images/scenes/page-08.jpg"
-            alt="תכנית קומה — קונספט שתי הסוויטות עם שני חדרי רחצה ומרחבים נפרדים"
+            src="/images/floorplan-2-suites.png"
+            alt="תכנית קומה תלת־ממדית — קונספט 2 הסוויטות בדירה מסוג G Park: שתי סוויטות מאסטר נפרדות, כל אחת עם חדר רחצה פרטי ומרחב הורים עצמאי, סלון משולב מטבח-פינת אוכל ומרפסת מעוגלת."
             loading="lazy"
             decoding="async"
           />
-        </motion.div>
+          <figcaption className="suites-media-caption">
+            <span className="suites-media-eyebrow">תכנית להמחשה</span>
+            <span>שתי סוויטות מאסטר · שני חדרי רחצה · מרחב הורים נוסף</span>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   )
