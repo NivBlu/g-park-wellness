@@ -1,74 +1,60 @@
 /**
- * G Park · Wellness Living wordmark — inline SVG so it renders crisply at
- * every size, picks up `currentColor`, and scales to whatever `height` the
- * caller asks for.
+ * G Park · Wellness Living wordmark.
  *
- * The "G Park" line uses a script-cursive treatment to echo the official
- * project logo; "WELLNESS LIVING" sits underneath in spaced caps, and an
- * optional "By G-Group" attribution can be toggled on.
+ * The user-supplied script logo lives at /images/logo-g-park-{dark,light}.png
+ * — pre-processed into transparent-background variants so it sits cleanly
+ * on either cream or sage-deep surfaces.
+ *
+ *   variant="light"  →  cream script (dark backgrounds — Hero, Footer, Value)
+ *   variant="dark"   →  sage script  (light backgrounds — scrolled Nav)
+ *   variant="auto"   →  alias for "dark"
+ *
+ * The "By G‑Group" byline is composited as live text underneath so it picks
+ * up the surrounding color and stays crisp at any size.
  */
 export default function Logo({
-  height = 36,
+  height = 40,
   byline = false,
   className = '',
-  variant = 'auto',  // 'auto' | 'light' | 'dark'
+  variant = 'dark',
 }) {
-  const w = height * 4.4
-  const fillMain =
-    variant === 'light' ? 'var(--cream)'
-      : variant === 'dark' ? 'var(--sage-deep)'
-        : 'currentColor'
+  const v = variant === 'auto' ? 'dark' : variant
+  const src = v === 'light'
+    ? '/images/logo-g-park-light.png'
+    : '/images/logo-g-park-dark.png'
+
+  // Image is 419×178 → ~2.35:1 aspect.
+  const width = Math.round(height * 2.35)
 
   return (
     <span
       className={`gpk-logo ${className}`}
-      style={{ display: 'inline-flex', flexDirection: 'column', alignItems: 'flex-start', lineHeight: 1, color: fillMain }}
+      style={{
+        display: 'inline-flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        lineHeight: 1,
+        gap: byline ? '0.45em' : 0,
+      }}
     >
-      <svg
+      <img
+        src={src}
+        alt="G Park · Wellness Living"
+        width={width}
         height={height}
-        width={w}
-        viewBox="0 0 220 50"
-        xmlns="http://www.w3.org/2000/svg"
-        role="img"
-        aria-label="G Park · Wellness Living"
-      >
-        <text
-          x="110"
-          y="32"
-          textAnchor="middle"
-          fontFamily="'Playfair Display', 'Times New Roman', serif"
-          fontStyle="italic"
-          fontWeight="500"
-          fontSize="34"
-          letterSpacing="0.5"
-          fill={fillMain}
-        >
-          G&nbsp;Park
-        </text>
-        <text
-          x="110"
-          y="46"
-          textAnchor="middle"
-          fontFamily="'Heebo', sans-serif"
-          fontWeight="400"
-          fontSize="6.5"
-          letterSpacing="3.6"
-          fill={fillMain}
-          opacity="0.85"
-        >
-          WELLNESS LIVING
-        </text>
-      </svg>
-
+        decoding="async"
+        loading="eager"
+        style={{ display: 'block', height, width: 'auto', userSelect: 'none' }}
+      />
       {byline && (
         <span
           style={{
             fontFamily: "'Playfair Display', serif",
             fontStyle: 'italic',
-            fontSize: '0.72em',
-            opacity: 0.75,
-            marginTop: '0.35em',
-            color: 'var(--bronze)',
+            fontSize: '0.36em',
+            letterSpacing: '0.06em',
+            color: v === 'light' ? 'var(--bronze)' : 'var(--wood-dark)',
+            opacity: 0.92,
           }}
         >
           By G‑Group

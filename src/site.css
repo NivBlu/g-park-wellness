@@ -392,6 +392,8 @@
   .hero-meta { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
   .hero-stats { gap: 1.5rem; }
   .hero-stat-num { font-size: 1.5rem; }
+  /* Hide the scroll cue on phones — the stats already terminate the hero. */
+  .hero-scroll-cue { display: none; }
 }
 
 /* ════════════════════════════════════════════════════════════════
