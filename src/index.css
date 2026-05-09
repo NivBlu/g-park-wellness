@@ -1367,17 +1367,16 @@ a {
 }
 .project-massing-svg {
   display: block;
-  width: 100%;
-  height: auto;
-  /* Aspect ratio matching the viewBox (13:10) — keeps the model fully
-     visible without letterboxing. */
-  aspect-ratio: 13 / 10;
-  max-height: 600px;
+  height: 360px;
+  /* Width follows viewBox (8.8:8) ratio at the fixed height */
+  width: 396px;
+  max-width: 100%;
+  margin: 0 auto;
 }
 @media (max-width: 768px) {
   .project-massing-svg {
-    aspect-ratio: 13 / 10;
-    max-height: 360px;
+    height: 260px;
+    width: 286px;
   }
 }
 .project-massing-legend {
