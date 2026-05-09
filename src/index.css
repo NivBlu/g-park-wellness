@@ -540,6 +540,20 @@ a {
 .catalog-topbar-title { text-align: center; }
 .catalog-topbar-title .display-sm { font-size: clamp(1rem, 2vw, 1.5rem); }
 
+/* Right-side cluster in topbar */
+.catalog-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  justify-self: end;
+}
+@media (max-width: 900px) {
+  .catalog-topbar-actions {
+    justify-self: stretch;
+    justify-content: flex-end;
+  }
+}
+
 /* Building tabs */
 .catalog-buildingtabs {
   display: flex;
@@ -563,12 +577,95 @@ a {
   background: var(--color-ink);
   color: var(--color-paper);
 }
-@media (max-width: 600px) {
-  .catalog-buildingtabs {
-    overflow-x: auto;
-    width: 100%;
-  }
-  .catalog-buildingtab { font-size: 0.65rem; padding: 0.5rem 0.75rem; }
+
+/* "All apartments" pill (desktop) — opens the directory drawer.
+   Reflects the active building filter via label + accent border. */
+.catalog-directory-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  border: 1px solid var(--color-stone);
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: all 0.3s var(--ease-out);
+}
+.catalog-directory-trigger:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+.catalog-directory-trigger.is-filtered {
+  border-color: var(--color-sage);
+  box-shadow: inset 0 -2px 0 0 var(--color-sage);
+}
+.catalog-directory-trigger-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-sage);
+  flex-shrink: 0;
+}
+
+/* Mobile breakpoint: hide desktop tabs + "all apts" pill */
+@media (max-width: 900px) {
+  .catalog-buildingtabs,
+  .catalog-directory-trigger { display: none; }
+}
+
+/* Floating action button — visible on mobile only.
+   Anchored to the start side (right in RTL) so it sits within thumb reach
+   without obscuring the canvas. */
+.catalog-fab {
+  display: none;
+  position: fixed;
+  inset-block-end: calc(1.25rem + env(safe-area-inset-bottom));
+  inset-inline-start: 1.25rem;
+  z-index: 35;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.125rem;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border: 1px solid var(--color-ink);
+  border-radius: 999px;
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  box-shadow: 0 6px 24px rgba(14, 15, 12, 0.25);
+  transition: all 0.3s var(--ease-out);
+}
+.catalog-fab:hover { transform: translateY(-2px); }
+.catalog-fab:active { transform: translateY(0); }
+.catalog-fab.is-filtered {
+  background: var(--color-sage);
+  color: var(--color-paper);
+  border-color: var(--color-sage);
+  padding: 0.625rem 1.125rem 0.625rem 1rem;
+}
+.catalog-fab-label {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+.catalog-fab-eyebrow {
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  opacity: 0.7;
+  margin-bottom: 0.15rem;
+}
+.catalog-fab-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+}
+@media (max-width: 900px) {
+  .catalog-fab { display: inline-flex; }
 }
 
 /* Main */
@@ -637,12 +734,28 @@ a {
   letter-spacing: 0.05em;
 }
 @media (max-width: 900px) {
+  .catalog-rail {
+    /* Constrain the rail to viewport so the inner UL can scroll horizontally
+       instead of expanding the page. */
+    max-width: 100%;
+    overflow: hidden;
+  }
   .catalog-rail-list {
     flex-direction: row;
+    flex-wrap: nowrap;
     overflow-x: auto;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
     position: static;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--color-stone);
+    /* Mask edges so chips fade when scrolled — visual cue for scrollability. */
+    scroll-snap-type: x proximity;
+  }
+  .catalog-rail-list::-webkit-scrollbar { height: 3px; }
+  .catalog-rail-list::-webkit-scrollbar-thumb {
+    background: var(--color-stone);
+    border-radius: 2px;
   }
   .catalog-rail-item {
     flex-direction: column;
@@ -651,7 +764,9 @@ a {
     border-inline-end: 0;
     border-bottom: 2px solid transparent;
     padding: 0.625rem 0.75rem;
-    min-width: 5rem;
+    min-width: 5.5rem;
+    flex-shrink: 0;
+    scroll-snap-align: start;
   }
   .catalog-rail-item.is-active {
     border-inline-end: 0;
@@ -839,6 +954,191 @@ a {
   text-align: center;
   padding: 2rem;
   color: var(--color-mist);
+}
+
+/* Building directory — off-canvas drawer with all apartments per building */
+.catalog-directory-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 15, 12, 0.55);
+  z-index: 60;
+  border: 0;
+}
+.catalog-directory {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: min(460px, 92vw);
+  /* Use dvh so the drawer survives mobile address-bar resize. */
+  height: 100dvh;
+  max-height: 100dvh;
+  background: var(--color-paper);
+  border-inline-end: 1px solid var(--color-stone);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 8px 0 60px rgba(14, 15, 12, 0.18);
+}
+@media (max-width: 480px) {
+  .catalog-directory { width: 100vw; }
+}
+.catalog-directory-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.5rem clamp(1.25rem, 3vw, 1.75rem) 1rem;
+  border-bottom: 1px solid var(--color-stone);
+  flex-shrink: 0;
+}
+.catalog-directory-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  padding: 1rem clamp(1.25rem, 3vw, 1.75rem);
+  border-bottom: 1px solid var(--color-stone);
+  flex-shrink: 0;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+.catalog-directory-filters::-webkit-scrollbar { height: 3px; }
+.catalog-directory-filters::-webkit-scrollbar-thumb {
+  background: var(--color-stone);
+  border-radius: 2px;
+}
+.catalog-directory-chip { flex-shrink: 0; }
+.catalog-directory-chip {
+  padding: 0.5rem 0.875rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-stone);
+  background: var(--color-paper);
+  color: var(--color-mist);
+  transition: all 0.3s var(--ease-out);
+  white-space: nowrap;
+}
+.catalog-directory-chip:hover {
+  border-color: var(--color-ink);
+  color: var(--color-ink);
+}
+.catalog-directory-chip.is-active {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
+}
+.catalog-directory-body {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 clamp(1.25rem, 3vw, 1.75rem) calc(2rem + env(safe-area-inset-bottom));
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.catalog-directory-group + .catalog-directory-group {
+  margin-top: 1.75rem;
+}
+.catalog-directory-group-head {
+  background: var(--color-cream);
+  border: 1px solid var(--color-stone);
+  padding: 1rem 1.125rem 1.125rem;
+  margin: 1.25rem 0 0.875rem;
+}
+.catalog-directory-group-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  margin-top: 0.125rem;
+}
+.catalog-directory-group-floors {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  margin-top: 0.5rem;
+}
+.catalog-directory-group-desc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--color-ink);
+  margin-top: 0.625rem;
+  text-wrap: pretty;
+}
+.catalog-directory-count {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-mist);
+  margin-top: 0.875rem;
+  padding: 0.25rem 0.625rem;
+  border: 1px solid var(--color-stone);
+  background: var(--color-paper);
+}
+.catalog-directory-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.catalog-directory-item {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.875rem;
+  align-items: start;
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--color-stone);
+  background: var(--color-paper);
+  text-align: start;
+  transition: all 0.3s var(--ease-out);
+}
+.catalog-directory-item:hover {
+  background: var(--color-cream);
+  border-color: var(--color-sand);
+}
+.catalog-directory-code {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  opacity: 0.85;
+  min-width: 2.5rem;
+  padding-top: 0.125rem;
+}
+.catalog-directory-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.catalog-directory-title {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-ink);
+}
+.catalog-directory-meta {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--color-mist);
+}
+.catalog-directory-desc {
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: var(--color-mist);
+  margin-top: 0.25rem;
+  text-wrap: pretty;
+  /* Keep the card from getting too tall on a long description. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Footer */

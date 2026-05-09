@@ -5,14 +5,17 @@ import { apartmentByCode } from '../../data/apartments.js'
  * users who can't (or don't think to) click a hotspot still have access.
  *
  * De-duplicates by code so users see one chip per apartment type even if the
- * plate has multiple instances.
+ * plate has multiple instances. When a `building` filter is active, only
+ * apartments that belong to that building are shown — so picking "מגדל הפארק"
+ * filters the per-floor list as well as the directory.
  */
-export default function ApartmentList({ floor, selectedCode, onSelect }) {
+export default function ApartmentList({ floor, selectedCode, onSelect, building }) {
   const seen = new Set()
   const unique = floor.apartments
     .map((a) => apartmentByCode(a.code))
     .filter((a) => {
       if (!a || seen.has(a.code)) return false
+      if (building && !a.buildings.includes(building)) return false
       seen.add(a.code)
       return true
     })
@@ -20,7 +23,9 @@ export default function ApartmentList({ floor, selectedCode, onSelect }) {
   if (unique.length === 0) {
     return (
       <p className="text-sm text-[var(--color-mist)]">
-        אין דירות מסומנות בקומה זו.
+        {building
+          ? 'אין דירות מהבניין הנבחר בקומה זו.'
+          : 'אין דירות מסומנות בקומה זו.'}
       </p>
     )
   }

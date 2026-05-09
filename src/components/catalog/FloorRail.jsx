@@ -1,7 +1,8 @@
 /**
  * Vertical floor selector (desktop, right rail) /
  * horizontal scrolling chips (mobile, top of plate).
- * Floors are listed top-down (penthouse → ground) like a real elevator panel.
+ * Floors are listed low → high (ground → penthouse) so the reading flow
+ * matches the Hebrew "start from the lowest floor and ascend".
  */
 export default function FloorRail({ floors, selectedId, onSelect }) {
   return (
