@@ -1,14 +1,20 @@
 /**
  * Floor-by-floor site plates with per-apartment hotspots.
  *
- * Each apartment entry has:
+ * Each apartment has:
  *   code     — apartment-type code (matches APARTMENTS in apartments.js)
  *   polygon  — clickable area, normalized 0..1 of plate image (x,y pairs)
- *   labelPos — [x,y] override for the type-letter label (else uses polygon centroid)
+ *   labelPos — [x,y] override for the type-letter label
  *
- * Coordinates were measured from the rendered plates in
- * /public/floorplans/plates/ (2800×1980 WebP). The pink "טיפוס X" labels in
- * the original Bar Orian drawings were used as anchor points for labelPos.
+ * Coordinates measured from rendered plates in /public/floorplans/plates/
+ * (2800×1980 WebP). Polygons tile tightly within each building so every
+ * click lands on the right apartment.
+ *
+ * Directions (G Park site convention):
+ *   מערב = ים (West, sea-facing)
+ *   צפון = פארק (North, park-facing)
+ *   דרום = תל ברוך / תל אביב (South)
+ *   מזרח = ירושלים (East)
  */
 
 export const FLOORS = [
@@ -20,7 +26,7 @@ export const FLOORS = [
     label: 'קומה 15 · מגה־פנטהאוז',
     short: '15',
     plate: '/floorplans/plates/tower-15-setback.webp',
-    note: 'דירה אחת ייחודית — מגה־פנטהאוז של 185 מ״ר עם 117 מ״ר מרפסת גג.',
+    note: 'דירה אחת ייחודית — מגה־פנטהאוז של 185 מ״ר עם מרפסת גג של 117 מ״ר.',
     apartments: [
       {
         code: 'MEGA',
@@ -40,7 +46,7 @@ export const FLOORS = [
     label: 'קומה 14 · פנטהאוזים',
     short: '14 PH',
     plate: '/floorplans/plates/tower-14-ph.webp',
-    note: 'שני פנטהאוזים — מערבי 5 חדרים (155 + 128 גג) ומזרחי 6 חדרים (160 + 178 גג).',
+    note: 'שני פנטהאוזים במגדל — מערבי 5 חדרים (155 + 128 גג) ומזרחי 6 חדרים (160 + 178 גג).',
     apartments: [
       {
         code: 'PH-W',
@@ -67,7 +73,7 @@ export const FLOORS = [
     label: 'קומה 14 · מיני פנטהאוז',
     short: '14 MP',
     plate: '/floorplans/plates/tower-mini-ph.webp',
-    note: 'מיני פנטהאוזים במגדל; בבנייני הבוטיק — דירות 5 חדרים בקצה.',
+    note: 'מיני פנטהאוזים במגדל. בבנייני הבוטיק — דירות 5 חדרים בקצה.',
     apartments: [
       {
         code: 'PH-W',
@@ -87,14 +93,14 @@ export const FLOORS = [
   },
 
   // ════════════════════════════════════════════════════
-  // FLOORS 9–13 — קומות גבוהות (tower only)
+  // FLOORS 9–13 — קומות גבוהות (tower only, 4 apts/floor)
   // ════════════════════════════════════════════════════
   {
     id: 'tower-9-13',
     label: 'קומות 9–13 · קומות גבוהות',
     short: '9–13',
     plate: '/floorplans/plates/tower-9-13.webp',
-    note: 'רק המגדל מאוכלס — 4 דירות בקומה: 2× 132 מ״ר באמצע + 2× 150 מ״ר בפינות.',
+    note: '4 דירות בקומה במגדל — 2× 132 מ״ר באמצע + 2× 150 מ״ר בפינות.',
     apartments: [
       {
         code: 'T-132',
@@ -137,42 +143,42 @@ export const FLOORS = [
     plate: '/floorplans/plates/boutique-7-ph.webp',
     note: 'הקומה העליונה של בנייני הבוטיק — פנטהאוזים עם מרפסת גג. במגדל: קומות גבוהות.',
     apartments: [
-      // North boutique penthouses (3 buildings — 1 each on top of each)
+      // North strip — 3 boutique-N penthouses (one per building)
       {
         code: 'BPH-N',
         polygon: [
-          [0.295, 0.165], [0.448, 0.165], [0.448, 0.265], [0.295, 0.265],
+          [0.257, 0.140], [0.422, 0.140], [0.422, 0.275], [0.257, 0.275],
         ],
-        labelPos: [0.371, 0.215],
+        labelPos: [0.339, 0.207],
       },
       {
         code: 'BPH-N',
         polygon: [
-          [0.468, 0.165], [0.602, 0.165], [0.602, 0.265], [0.468, 0.265],
+          [0.450, 0.140], [0.610, 0.140], [0.610, 0.275], [0.450, 0.275],
         ],
-        labelPos: [0.535, 0.215],
+        labelPos: [0.530, 0.207],
       },
       {
         code: 'BPH-N',
         polygon: [
-          [0.625, 0.165], [0.762, 0.165], [0.762, 0.265], [0.625, 0.265],
+          [0.640, 0.140], [0.910, 0.140], [0.910, 0.275], [0.640, 0.275],
         ],
-        labelPos: [0.693, 0.215],
+        labelPos: [0.775, 0.207],
       },
-      // West boutique penthouses (2 buildings)
+      // West cluster — 2 boutique-W penthouses (one per building)
       {
         code: 'BPH-W',
         polygon: [
-          [0.245, 0.310], [0.355, 0.310], [0.355, 0.485], [0.245, 0.485],
+          [0.255, 0.305], [0.420, 0.305], [0.420, 0.510], [0.255, 0.510],
         ],
-        labelPos: [0.300, 0.397],
+        labelPos: [0.337, 0.407],
       },
       {
         code: 'BPH-W',
         polygon: [
-          [0.245, 0.515], [0.355, 0.515], [0.355, 0.690], [0.245, 0.690],
+          [0.255, 0.545], [0.420, 0.545], [0.420, 0.745], [0.255, 0.745],
         ],
-        labelPos: [0.300, 0.602],
+        labelPos: [0.337, 0.645],
       },
       // Tower at this level — typical-high mix
       {
@@ -207,159 +213,150 @@ export const FLOORS = [
   },
 
   // ════════════════════════════════════════════════════
-  // FLOORS 2–6 — קומות טיפוסיות (כל הבניינים, 17 דירות)
+  // FLOORS 2–6 — קומות טיפוסיות (כל הבניינים, 17 דירות בקומה)
   // ════════════════════════════════════════════════════
   {
     id: 'tower-2-6',
     label: 'קומות 2–6 · קומות טיפוסיות',
     short: '2–6',
     plate: '/floorplans/plates/tower-2-6.webp',
-    note: 'הקומה הטיפוסית — 17 דירות בקומה: 7 במגדל + 4 במערבי + 6 בצפוני.',
+    note: '17 דירות בקומה — 7 במגדל + 4 במרקמי מערבי + 6 במרקמי צפוני.',
     apartments: [
-      // ─── North boutique top strip — left → right: B-123, A, A, A, A, B-134
-      // Building 1 (leftmost, with curve on left)
+      // ─── מרקמי צפוני · 6 דירות בקומה ──────────────────
+      // Left → right per developer spec: B-123, A, A, A, A, B-134
+      // Building 1 (left, curved corner) — B-123 + A
       {
         code: 'B-123',
         polygon: [
-          [0.295, 0.165], [0.378, 0.165], [0.378, 0.265], [0.295, 0.265],
-          [0.295, 0.180],
+          [0.257, 0.165], [0.357, 0.165], [0.357, 0.275], [0.257, 0.275],
         ],
-        labelPos: [0.336, 0.215],
+        labelPos: [0.305, 0.220],
       },
       {
         code: 'A',
         polygon: [
-          [0.378, 0.165], [0.448, 0.165], [0.448, 0.265], [0.378, 0.265],
+          [0.357, 0.165], [0.422, 0.165], [0.422, 0.275], [0.357, 0.275],
         ],
-        labelPos: [0.413, 0.215],
+        labelPos: [0.390, 0.220],
       },
-      // Building 2 (middle) — both A
+      // Building 2 (middle) — A + A
       {
         code: 'A',
         polygon: [
-          [0.468, 0.165], [0.535, 0.165], [0.535, 0.265], [0.468, 0.265],
+          [0.450, 0.165], [0.530, 0.165], [0.530, 0.275], [0.450, 0.275],
         ],
-        labelPos: [0.501, 0.215],
+        labelPos: [0.490, 0.220],
       },
       {
         code: 'A',
         polygon: [
-          [0.535, 0.165], [0.602, 0.165], [0.602, 0.265], [0.535, 0.265],
+          [0.530, 0.165], [0.610, 0.165], [0.610, 0.275], [0.530, 0.275],
         ],
-        labelPos: [0.568, 0.215],
+        labelPos: [0.570, 0.220],
       },
-      // Building 3 (rightmost, with curve on right)
+      // Building 3 (right, curved corner) — A + B-134
       {
         code: 'A',
         polygon: [
-          [0.625, 0.165], [0.692, 0.165], [0.692, 0.265], [0.625, 0.265],
+          [0.640, 0.165], [0.770, 0.165], [0.770, 0.275], [0.640, 0.275],
         ],
-        labelPos: [0.658, 0.215],
+        labelPos: [0.705, 0.220],
       },
       {
         code: 'B-134',
         polygon: [
-          [0.692, 0.165], [0.762, 0.165], [0.762, 0.265], [0.692, 0.265],
+          [0.770, 0.165], [0.910, 0.165], [0.910, 0.275], [0.770, 0.275],
         ],
-        labelPos: [0.727, 0.215],
+        labelPos: [0.840, 0.220],
       },
 
-      // ─── West boutique left column — 2 buildings × 2 apts ───
-      // Upper building: G (123m, larger ~60%) on top, H (82m, smaller ~40%) on bottom
+      // ─── מרקמי מערבי · 4 דירות בקומה ──────────────────
+      // 2 buildings stacked. Pattern (top→bottom): G, H, H, G
+      // Upper building
       {
         code: 'G',
         polygon: [
-          [0.245, 0.310], [0.355, 0.310], [0.355, 0.408], [0.245, 0.408],
+          [0.255, 0.305], [0.420, 0.305], [0.420, 0.435], [0.255, 0.435],
         ],
-        labelPos: [0.300, 0.345],
+        labelPos: [0.337, 0.370],
       },
       {
         code: 'H',
         polygon: [
-          [0.245, 0.408], [0.355, 0.408], [0.355, 0.485], [0.245, 0.485],
+          [0.255, 0.435], [0.420, 0.435], [0.420, 0.510], [0.255, 0.510],
         ],
-        labelPos: [0.300, 0.448],
+        labelPos: [0.337, 0.473],
       },
-      // Lower building: H (82m, smaller) on top, G (123m, larger) on bottom
+      // Lower building
       {
         code: 'H',
         polygon: [
-          [0.245, 0.515], [0.355, 0.515], [0.355, 0.595], [0.245, 0.595],
+          [0.255, 0.545], [0.420, 0.545], [0.420, 0.620], [0.255, 0.620],
         ],
-        labelPos: [0.300, 0.555],
+        labelPos: [0.337, 0.583],
       },
       {
         code: 'G',
         polygon: [
-          [0.245, 0.595], [0.355, 0.595], [0.355, 0.690], [0.245, 0.690],
+          [0.255, 0.620], [0.420, 0.620], [0.420, 0.745], [0.255, 0.745],
         ],
-        labelPos: [0.300, 0.643],
+        labelPos: [0.337, 0.683],
       },
 
-      // ─── Tower (8 apartments forming irregular cross) ───
-      // D 82m — top center (north-facing)
+      // ─── מגדל הפארק · 7 דירות בקומה ───────────────────
+      // North row: D (82m, north-facing) at the very top
       {
         code: 'D',
         polygon: [
-          [0.677, 0.310], [0.770, 0.310], [0.770, 0.395], [0.677, 0.395],
+          [0.685, 0.305], [0.785, 0.305], [0.785, 0.395], [0.685, 0.395],
         ],
-        labelPos: [0.722, 0.350],
+        labelPos: [0.735, 0.350],
       },
-      // C 134m — top-right corner (L-shape, larger)
+      // C (134m) — north-east corner, L-shape
       {
         code: 'C',
         polygon: [
-          [0.770, 0.310], [0.913, 0.310], [0.913, 0.480], [0.770, 0.480],
+          [0.785, 0.305], [0.918, 0.305], [0.918, 0.485], [0.785, 0.485],
         ],
-        labelPos: [0.842, 0.395],
+        labelPos: [0.851, 0.395],
       },
-      // E 67m — right-upper
+      // East column: E (67m) upper + lower
       {
         code: 'E',
         polygon: [
-          [0.770, 0.480], [0.870, 0.480], [0.870, 0.563], [0.770, 0.563],
+          [0.785, 0.485], [0.875, 0.485], [0.875, 0.572], [0.785, 0.572],
         ],
-        labelPos: [0.820, 0.522],
+        labelPos: [0.830, 0.528],
       },
-      // E 67m — right-lower
       {
         code: 'E',
         polygon: [
-          [0.770, 0.563], [0.870, 0.563], [0.870, 0.645], [0.770, 0.645],
+          [0.785, 0.572], [0.875, 0.572], [0.875, 0.658], [0.785, 0.658],
         ],
-        labelPos: [0.820, 0.604],
+        labelPos: [0.830, 0.615],
       },
-      // A 82m — left-center near tower core
-      {
-        code: 'A',
-        polygon: [
-          [0.595, 0.430], [0.685, 0.430], [0.685, 0.515], [0.595, 0.515],
-        ],
-        labelPos: [0.640, 0.473],
-      },
-      // E 67m — left-lower
+      // West column: E (67m) — only one west-side small apt
       {
         code: 'E',
         polygon: [
-          [0.595, 0.515], [0.685, 0.515], [0.685, 0.620], [0.595, 0.620],
+          [0.640, 0.430], [0.730, 0.430], [0.730, 0.660], [0.640, 0.660],
         ],
-        labelPos: [0.640, 0.567],
+        labelPos: [0.685, 0.545],
       },
-      // F 113m — bottom-left
+      // South row: F (113m) west | F (113m) east
       {
         code: 'F',
         polygon: [
-          [0.625, 0.660], [0.770, 0.660], [0.770, 0.770], [0.625, 0.770],
+          [0.640, 0.660], [0.785, 0.660], [0.785, 0.762], [0.640, 0.762],
         ],
-        labelPos: [0.697, 0.715],
+        labelPos: [0.712, 0.711],
       },
-      // F 113m — bottom-right
       {
         code: 'F',
         polygon: [
-          [0.770, 0.660], [0.913, 0.660], [0.913, 0.770], [0.770, 0.770],
+          [0.785, 0.660], [0.918, 0.660], [0.918, 0.762], [0.785, 0.762],
         ],
-        labelPos: [0.842, 0.715],
+        labelPos: [0.851, 0.711],
       },
     ],
   },
@@ -377,23 +374,23 @@ export const FLOORS = [
       {
         code: 'G-128',
         polygon: [
-          [0.595, 0.300], [0.725, 0.300], [0.725, 0.490], [0.595, 0.490],
+          [0.640, 0.300], [0.770, 0.300], [0.770, 0.490], [0.640, 0.490],
         ],
-        labelPos: [0.660, 0.395],
+        labelPos: [0.705, 0.395],
       },
       {
         code: 'G-66',
         polygon: [
-          [0.725, 0.300], [0.840, 0.300], [0.840, 0.490], [0.725, 0.490],
+          [0.770, 0.300], [0.840, 0.300], [0.840, 0.490], [0.770, 0.490],
         ],
-        labelPos: [0.782, 0.395],
+        labelPos: [0.805, 0.395],
       },
       {
         code: 'G-59',
         polygon: [
-          [0.840, 0.300], [0.915, 0.300], [0.915, 0.490], [0.840, 0.490],
+          [0.840, 0.300], [0.918, 0.300], [0.918, 0.490], [0.840, 0.490],
         ],
-        labelPos: [0.877, 0.395],
+        labelPos: [0.879, 0.395],
       },
     ],
   },

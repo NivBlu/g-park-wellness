@@ -67,7 +67,7 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
   return (
     <div className="project-massing" dir="ltr">
       <svg
-        viewBox="-5.2 -6.5 10.4 9"
+        viewBox="-5 -6.5 10 8"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
         className="project-massing-svg"

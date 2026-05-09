@@ -1367,7 +1367,7 @@ a {
 .project-massing-svg {
   display: block;
   width: 100%;
-  height: clamp(220px, 32vw, 360px);
+  height: clamp(280px, 40vw, 460px);
 }
 .project-massing-legend {
   position: absolute;
