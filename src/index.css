@@ -823,9 +823,10 @@ a {
   stroke-width: 0.005;
 }
 .hotspot.is-dimmed {
-  fill: transparent;
-  stroke: transparent;
-  pointer-events: none;
+  display: none;
+}
+.hotspot-label.is-dimmed {
+  display: none;
 }
 .hotspot-label {
   font-family: var(--font-display);
@@ -1367,7 +1368,17 @@ a {
 .project-massing-svg {
   display: block;
   width: 100%;
-  height: clamp(280px, 40vw, 460px);
+  height: auto;
+  /* Aspect ratio matching the viewBox (13:10) — keeps the model fully
+     visible without letterboxing. */
+  aspect-ratio: 13 / 10;
+  max-height: 600px;
+}
+@media (max-width: 768px) {
+  .project-massing-svg {
+    aspect-ratio: 13 / 10;
+    max-height: 360px;
+  }
 }
 .project-massing-legend {
   position: absolute;

@@ -1,18 +1,22 @@
 import { apartmentByCode } from '../../data/apartments.js'
 
 /**
- * Always-visible list of apartments on the active floor — guarantees that
- * users who can't (or don't think to) click a hotspot still have access.
+ * Apartment list under the floor plate. Filters by:
+ *   - the active floor's apartments
+ *   - the active building (if any) — only shows units that exist in that building
  *
- * De-duplicates by code so users see one chip per apartment type even if the
- * plate has multiple instances.
+ * De-duplicates by code so each type appears once even if the plate has
+ * multiple instances.
  */
-export default function ApartmentList({ floor, selectedCode, onSelect }) {
+export default function ApartmentList({ floor, selectedCode, onSelect, buildingFilter }) {
   const seen = new Set()
   const unique = floor.apartments
     .map((a) => apartmentByCode(a.code))
     .filter((a) => {
-      if (!a || seen.has(a.code)) return false
+      if (!a) return false
+      if (seen.has(a.code)) return false
+      // Hide apartments whose buildings don't include the active filter.
+      if (buildingFilter && !a.buildings.includes(buildingFilter)) return false
       seen.add(a.code)
       return true
     })
@@ -20,7 +24,7 @@ export default function ApartmentList({ floor, selectedCode, onSelect }) {
   if (unique.length === 0) {
     return (
       <p className="text-sm text-[var(--color-mist)]">
-        אין דירות מסומנות בקומה זו.
+        אין דירות מסומנות בקומה זו עבור הבניין הנבחר.
       </p>
     )
   }

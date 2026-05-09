@@ -39,20 +39,21 @@ const polyStr = (pts) => pts.map((p) => p.join(',')).join(' ')
 //   "מרקמי מערבי"     = 2 buildings on the NORTH edge (top strip)   — 22 apts
 //   "מרקמי צפוני"     = 3 buildings on the WEST edge  (left column) — 33 apts
 //   Park             = courtyard between them
+// Heights chosen so the tower (15 floors) is ~2× a 7-floor boutique.
 const BUILDINGS_3D = [
   // 2 western-boutique buildings — placed on the NORTH edge per spec
-  { id: 'boutique-w', x: 1.6, y: 4.6, w: 1.2, d: 0.7, h: 1.7, label: 'מרקמי מערבי · 22 דירות' },
-  { id: 'boutique-w', x: 3.0, y: 4.6, w: 1.2, d: 0.7, h: 1.7 },
+  { id: 'boutique-w', x: 1.8, y: 5.0, w: 1.4, d: 0.9, h: 2.2, label: 'מרקמי מערבי · 22 דירות' },
+  { id: 'boutique-w', x: 3.4, y: 5.0, w: 1.4, d: 0.9, h: 2.2 },
   // 3 northern-boutique buildings — placed on the WEST edge per spec
-  { id: 'boutique-n', x: 0.5, y: 1.6, w: 0.7, d: 0.9, h: 1.7, label: 'מרקמי צפוני · 33 דירות' },
-  { id: 'boutique-n', x: 0.5, y: 2.5, w: 0.7, d: 0.9, h: 1.7 },
-  { id: 'boutique-n', x: 0.5, y: 3.4, w: 0.7, d: 0.9, h: 1.7 },
-  // Tower — east side, 15 floors
-  { id: 'tower', x: 4.2, y: 1.8, w: 1.3, d: 1.5, h: 3.8, label: 'מגדל הפארק · 38 דירות' },
+  { id: 'boutique-n', x: 0.4, y: 1.4, w: 0.9, d: 1.1, h: 2.2, label: 'מרקמי צפוני · 33 דירות' },
+  { id: 'boutique-n', x: 0.4, y: 2.5, w: 0.9, d: 1.1, h: 2.2 },
+  { id: 'boutique-n', x: 0.4, y: 3.6, w: 0.9, d: 1.1, h: 2.2 },
+  // Tower — east side, 15 floors (~2× the boutique height)
+  { id: 'tower', x: 4.6, y: 1.6, w: 1.5, d: 1.8, h: 4.7, label: 'מגדל הפארק · 38 דירות' },
 ]
 
 // Park — central courtyard between the buildings
-const PARK = { x: 1.5, y: 1.8, w: 2.6, d: 2.7 }
+const PARK = { x: 1.5, y: 1.6, w: 3.0, d: 3.2 }
 
 export default function ProjectMassing({ activeBuilding, onSelect }) {
   // Sort back-to-front so painter's algorithm gives correct overlaps.
@@ -67,7 +68,7 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
   return (
     <div className="project-massing" dir="ltr">
       <svg
-        viewBox="-5 -6.5 10 8"
+        viewBox="-6.5 -8 13 10"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="xMidYMid meet"
         className="project-massing-svg"
@@ -77,18 +78,18 @@ export default function ProjectMassing({ activeBuilding, onSelect }) {
         <polygon
           points={polyStr([
             project(0, 0, 0),
-            project(5.7, 0, 0),
-            project(5.7, 5.5, 0),
-            project(0, 5.5, 0),
+            project(6.4, 0, 0),
+            project(6.4, 6.4, 0),
+            project(0, 6.4, 0),
           ])}
           fill="var(--color-cream)"
           stroke="var(--color-stone)"
           strokeWidth="0.02"
         />
         {/* Compass marker */}
-        <g transform={`translate(${project(0.2, 5.2, 0)[0]}, ${project(0.2, 5.2, 0)[1]})`}>
-          <circle r="0.32" fill="var(--color-paper)" stroke="var(--color-stone)" strokeWidth="0.02" />
-          <text textAnchor="middle" dominantBaseline="central" fontSize="0.32" fill="var(--color-mist)" fontStyle="italic" fontFamily="serif">N</text>
+        <g transform={`translate(${project(0.2, 6.0, 0)[0]}, ${project(0.2, 6.0, 0)[1]})`}>
+          <circle r="0.34" fill="var(--color-paper)" stroke="var(--color-stone)" strokeWidth="0.02" />
+          <text textAnchor="middle" dominantBaseline="central" fontSize="0.36" fill="var(--color-mist)" fontStyle="italic" fontFamily="serif">N</text>
         </g>
 
         {/* Park (lower box) */}

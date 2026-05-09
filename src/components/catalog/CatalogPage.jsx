@@ -144,6 +144,7 @@ export default function CatalogPage() {
               floor={floor}
               selectedCode={selectedCode}
               onSelect={setSelectedCode}
+              buildingFilter={building}
             />
             <p className="catalog-hint">
               לחצו על דירה במפה או ברשימה כדי להציג את התוכנית המלאה
