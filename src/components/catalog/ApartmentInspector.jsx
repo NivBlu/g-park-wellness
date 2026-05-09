@@ -1,7 +1,6 @@
-import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { X, Download, ArrowLeft, Maximize2 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { apartmentByCode, BUILDINGS } from '../../data/apartments.js'
 
 /**
@@ -14,19 +13,14 @@ export default function ApartmentInspector({ code, onClose }) {
   const apt = code ? apartmentByCode(code) : null
   const [zoomed, setZoomed] = useState(false)
 
+  if (!apt) return null
+
   return (
-    <AnimatePresence mode="wait">
-      {apt && (
-        <motion.div
-          key={`modal-${code}`}
-          className="apt-modal"
+        <div
+          className="apt-modal apt-modal-enter"
           role="dialog"
           aria-modal="true"
           aria-labelledby="apt-modal-title"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
         >
           {/* Backdrop */}
           <button
@@ -37,13 +31,7 @@ export default function ApartmentInspector({ code, onClose }) {
           />
 
           {/* Modal body */}
-          <motion.div
-            className="apt-modal-body"
-            initial={{ y: 32, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 16, opacity: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          >
+          <div className="apt-modal-body apt-modal-body-enter">
             <header className="apt-modal-header">
               <div>
                 <p className="eyebrow">— {apt.categoryLabel}</p>
@@ -141,36 +129,28 @@ export default function ApartmentInspector({ code, onClose }) {
                 </div>
               </aside>
             </div>
-          </motion.div>
+          </div>
 
           {/* ─── Lightbox (zoomed plan) ─── */}
-          <AnimatePresence>
-            {zoomed && apt.planAvailable && (
-              <motion.div
-                className="apt-lightbox"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                onClick={() => setZoomed(false)}
+          {zoomed && apt.planAvailable && (
+            <div
+              className="apt-lightbox"
+              onClick={() => setZoomed(false)}
+            >
+              <button
+                type="button"
+                className="apt-icon-btn apt-lightbox-close"
+                aria-label="סגירה"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setZoomed(false)
+                }}
               >
-                <button
-                  type="button"
-                  className="apt-icon-btn apt-lightbox-close"
-                  aria-label="סגירה"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    setZoomed(false)
-                  }}
-                >
-                  <X size={22} strokeWidth={1.5} />
-                </button>
-                <img src={apt.planImage} alt={apt.title} />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                <X size={22} strokeWidth={1.5} />
+              </button>
+              <img src={apt.planImage} alt={apt.title} />
+            </div>
+          )}
+        </div>
   )
 }

@@ -1,5 +1,4 @@
 import { useMemo, useState, useEffect, useRef } from 'react'
-import { motion } from 'framer-motion'
 import { apartmentByCode } from '../../data/apartments.js'
 
 /**
@@ -67,29 +66,24 @@ export default function FloorPlate({ floor, selectedCode, onSelect, buildingFilt
   }
 
   return (
-    <motion.div
-      key={floor.id}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full bg-white border border-[var(--color-stone)]"
-      ref={wrapRef}
+    <div
+      className="floor-plate"
       onClick={handlePickClick}
       data-picker={pickerEnabled ? '1' : undefined}
     >
-      <img
-        src={floor.plate}
-        alt={floor.label}
-        className="block w-full h-auto select-none"
-        draggable={false}
-        loading="lazy"
-        decoding="async"
-      />
+      <div className="floor-plate-canvas" ref={wrapRef}>
+        <img
+          src={floor.plate}
+          alt={floor.label}
+          className="floor-plate-img"
+          draggable={false}
+          loading="lazy"
+          decoding="async"
+        />
 
       <svg
         viewBox="0 0 1 1"
         preserveAspectRatio="none"
-        className="absolute inset-0 w-full h-full"
         aria-label={`מפת דירות בקומה ${floor.label}`}
       >
         {hotspots.map((h) => {
@@ -106,9 +100,11 @@ export default function FloorPlate({ floor, selectedCode, onSelect, buildingFilt
             }
           }
 
-          // Compute centroid for label placement.
+          // Label position: explicit override > polygon centroid > rect center.
           let cx, cy
-          if (Array.isArray(h.polygon) && h.polygon.length >= 3) {
+          if (Array.isArray(h.labelPos) && h.labelPos.length === 2) {
+            ;[cx, cy] = h.labelPos
+          } else if (Array.isArray(h.polygon) && h.polygon.length >= 3) {
             const sum = h.polygon.reduce(
               (acc, [px, py]) => ({ x: acc.x + px, y: acc.y + py }),
               { x: 0, y: 0 }
@@ -189,6 +185,7 @@ export default function FloorPlate({ floor, selectedCode, onSelect, buildingFilt
         )}
       </svg>
 
+      </div>
       {pickerEnabled && (
         <div className="catalog-picker-hud">
           <strong>PICKER</strong> — click to add point ·
@@ -198,6 +195,6 @@ export default function FloorPlate({ floor, selectedCode, onSelect, buildingFilt
           <div>{pickPoints.length} points</div>
         </div>
       )}
-    </motion.div>
+    </div>
   )
 }

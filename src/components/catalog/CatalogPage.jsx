@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { ArrowRight, Layers } from 'lucide-react'
 import { FLOORS, FLOORS_BY_BUILDING, floorById } from '../../data/floors.js'
 import { BUILDINGS } from '../../data/apartments.js'
@@ -9,6 +9,7 @@ import FloorPlate from './FloorPlate.jsx'
 import ApartmentList from './ApartmentList.jsx'
 import ApartmentInspector from './ApartmentInspector.jsx'
 import BuildingInfo from './BuildingInfo.jsx'
+import ProjectMassing from './ProjectMassing.jsx'
 
 const BUILDING_TABS = [
   { id: null,         he: 'כל הפרויקט',   short: 'הכל' },
@@ -114,6 +115,12 @@ export default function CatalogPage() {
         />
 
         <section className="catalog-canvas">
+          {/* Project massing — sketched 3D model that doubles as a building selector */}
+          <ProjectMassing
+            activeBuilding={building}
+            onSelect={(id) => setBuilding(id)}
+          />
+
           {/* Building info — adapts to active building (or shows project overview) */}
           <BuildingInfo building={building} />
 
@@ -123,15 +130,13 @@ export default function CatalogPage() {
             {floor.note && <p className="catalog-canvas-note">{floor.note}</p>}
           </header>
 
-          <AnimatePresence mode="wait">
-            <FloorPlate
-              key={floor.id}
-              floor={floor}
-              selectedCode={selectedCode}
-              onSelect={setSelectedCode}
-              buildingFilter={building}
-            />
-          </AnimatePresence>
+          <FloorPlate
+            key={floor.id}
+            floor={floor}
+            selectedCode={selectedCode}
+            onSelect={setSelectedCode}
+            buildingFilter={building}
+          />
 
           <div className="catalog-canvas-list">
             <p className="eyebrow">— דירות בקומה</p>
