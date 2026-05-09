@@ -1,16 +1,41 @@
 import Logo from './Logo.jsx'
 
 /**
- * Editorial footer. Brand block on the right (Logo + By G-Group), columns
- * for sales office address (per page 12 of deck), project info, and the
- * legal credit row underneath.
+ * Editorial footer. Two rows:
+ *   1. Brand stack (project + developer attribution) + sales office + project nav.
+ *   2. Base credit line with year, architect, and disclaimers.
+ *
+ * The G-Group developer mark (gold diamond G) sits as a quiet badge under
+ * the Wellness Living wordmark — clear authorship without crowding the
+ * project mark.
  */
 export default function Footer() {
   return (
     <footer className="site-footer" id="contact" aria-label="פרטי קשר וצוות הפרויקט">
       <div className="site-footer-grid">
         <div className="site-footer-brand-col">
-          <Logo height={42} variant="light" byline />
+          <Logo height={44} variant="light" />
+
+          <a
+            href="#"
+            className="site-footer-developer"
+            aria-label="By G-Group · יזם הפרויקט"
+          >
+            <span className="site-footer-developer-eyebrow">— יזם הפרויקט</span>
+            <span className="site-footer-developer-row">
+              <img
+                src="/images/logo-g-group-mark.png?v=2"
+                alt=""
+                aria-hidden="true"
+                width="44"
+                height="44"
+                decoding="async"
+                loading="lazy"
+              />
+              <span className="site-footer-developer-name">G‑Group</span>
+            </span>
+          </a>
+
           <p className="site-footer-tag">
             קומפלקס מגורים בוטיק עם קומת ולנס פרטית, בקו ראשון לפארק האקולוגי
             של צפון תל אביב — 282 דונם של ריאה ירוקה צמוד לבית.

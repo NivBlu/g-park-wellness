@@ -23,19 +23,28 @@
   --mist:        #6F6A60;        /* secondary text */
   --line:        #DCD6C9;        /* hairline rules */
 
-  /* ─── Type ─── */
-  --font-display: 'Playfair Display', 'Times New Roman', serif;
-  --font-body:    'Heebo', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-alt:     'Assistant', sans-serif;
+  /* ─── Type · 2026 stack ─── */
+  /* Hebrew display: Frank Ruhl Libre (editorial). Latin display: Playfair. */
+  --font-display: 'Frank Ruhl Libre', 'Playfair Display', 'Times New Roman', serif;
+  --font-display-latin: 'Playfair Display', 'Frank Ruhl Libre', serif;
+  --font-body:    'Heebo', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-meta:    'Inter', 'Heebo', sans-serif;   /* eyebrows, stats, small caps */
 
-  /* Editorial type scale (mobile baseline) */
-  --t-eyebrow:    0.7rem;
+  /* Editorial type scale (mobile baseline → desktop via clamp) */
+  --t-eyebrow:    0.72rem;
   --t-body:       1rem;
-  --t-lead:       1.125rem;
+  --t-lead:       1.15rem;
   --t-title-sm:   clamp(1.5rem, 4vw, 2.25rem);
-  --t-title-md:   clamp(2rem, 6vw, 3.5rem);
-  --t-title-lg:   clamp(2.75rem, 8vw, 5rem);
+  --t-title-md:   clamp(2rem, 6vw, 3.75rem);
+  --t-title-lg:   clamp(2.75rem, 8vw, 5.25rem);
   --t-display:    clamp(3.5rem, 12vw, 9rem);
+
+  /* Tracking — tighter on Hebrew display, looser on uppercase eyebrows. */
+  --tr-display:   -0.022em;
+  --tr-title:     -0.014em;
+  --tr-body:      0.005em;
+  --tr-eyebrow:   0.22em;
+  --tr-stat:      -0.01em;
 
   /* ─── Motion ─── */
   --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
@@ -59,22 +68,25 @@
   background: var(--stone);
   color: var(--ink);
   font-family: var(--font-body);
-  font-weight: 300;
-  line-height: 1.55;
-  letter-spacing: 0.005em;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: var(--tr-body);
   overflow-x: hidden;
-  font-feature-settings: "ss01", "kern";
+  font-feature-settings: 'ss01', 'kern', 'liga', 'calt';
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 .site *, .site *::before, .site *::after { box-sizing: border-box; }
 .site h1, .site h2, .site h3, .site h4 {
   font-family: var(--font-display);
   font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.05;
+  letter-spacing: var(--tr-title);
+  line-height: 1.06;
   text-wrap: balance;
   color: inherit;   /* respect each section's color (sage-deep panels stay cream) */
   margin: 0;
+  font-feature-settings: 'kern', 'liga', 'calt', 'ss01';
 }
 .site .hero-title,
 .site .arch-title,
@@ -103,11 +115,13 @@
 
 /* ─── Type utilities ─── */
 .site .eyebrow {
+  font-family: var(--font-meta);
   font-size: var(--t-eyebrow);
-  letter-spacing: 0.22em;
+  letter-spacing: var(--tr-eyebrow);
   text-transform: uppercase;
   color: var(--mist);
-  font-weight: 400;
+  font-weight: 500;
+  font-feature-settings: 'tnum', 'cv11';
 }
 .site .lead {
   font-size: var(--t-lead);
@@ -292,7 +306,9 @@
   to { opacity: 1; transform: translateY(0); }
 }
 .hero-eyebrow {
-  font-size: 0.7rem;
+  font-family: var(--font-meta);
+  font-size: 0.72rem;
+  font-weight: 500;
   letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--bronze);
@@ -300,6 +316,7 @@
   align-items: center;
   gap: 0.875rem;
   align-self: start;
+  font-feature-settings: 'tnum', 'cv11';
 }
 .hero-eyebrow::before {
   content: '';
@@ -308,14 +325,21 @@
   background: var(--bronze);
 }
 .hero-title {
-  font-size: clamp(2.25rem, 6.5vw, 5.5rem);
-  font-weight: 400;
-  line-height: 1.05;
-  letter-spacing: -0.018em;
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-weight: 500;
+  line-height: 1.04;
+  letter-spacing: var(--tr-display);
   color: var(--cream);
   align-self: end;
   text-wrap: balance;
-  text-shadow: 0 2px 22px rgba(14, 18, 14, 0.5);
+  text-shadow: 0 2px 22px rgba(14, 18, 14, 0.55);
+}
+.hero-title em {
+  font-family: var(--font-display-latin);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--bronze);
 }
 .hero-title em {
   font-style: italic;
@@ -345,19 +369,23 @@
   padding: 0;
 }
 .hero-stat-num {
-  font-family: var(--font-display);
+  font-family: var(--font-display-latin);
   font-style: italic;
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 500;
   color: var(--bronze);
   line-height: 1;
+  letter-spacing: -0.02em;
+  font-feature-settings: 'tnum', 'lnum';
 }
 .hero-stat-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
+  font-family: var(--font-meta);
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--cream) 70%, transparent);
-  margin-top: 0.375rem;
+  color: color-mix(in srgb, var(--cream) 75%, transparent);
+  margin-top: 0.5rem;
   display: block;
 }
 .hero-scroll-cue {
@@ -414,13 +442,18 @@
 .manifesto-line {
   font-family: var(--font-display);
   font-size: clamp(2rem, 6.5vw, 5rem);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  font-weight: 400;
+  line-height: 1.04;
+  letter-spacing: var(--tr-display);
+  font-weight: 500;
   color: var(--ink);
   text-wrap: balance;
 }
-.manifesto-line em { color: var(--sage); font-style: italic; }
+.manifesto-line em {
+  color: var(--sage);
+  font-style: italic;
+  font-family: var(--font-display-latin);
+  font-weight: 500;
+}
 .manifesto-body {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
@@ -1234,13 +1267,15 @@
   color: color-mix(in srgb, var(--cream) 75%, transparent);
 }
 .value-num {
-  font-family: var(--font-display);
+  font-family: var(--font-display-latin);
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 500;
+  font-style: italic;
   line-height: 1;
   margin: 0;
   color: var(--cream);
-  font-feature-settings: 'tnum' 1;
+  font-feature-settings: 'tnum', 'lnum';
+  letter-spacing: -0.02em;
 }
 .value-num--hero { color: var(--sage-deep); }
 .value-currency {
@@ -1272,9 +1307,45 @@
 }
 
 /* ════════════════════════════════════════════════════════════════
-   FOOTER — branding column tweak
+   FOOTER — branding column + G-Group developer attribution
    ════════════════════════════════════════════════════════════════ */
-.site-footer-brand-col { display: flex; flex-direction: column; gap: 1.25rem; }
+.site-footer-brand-col { display: flex; flex-direction: column; gap: 1.5rem; }
+
+/* G-Group developer credit — gold mark + name, framed by hairlines.
+   Subtle, never competes with the project wordmark above it. */
+.site-footer-developer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-block: 1rem;
+  border-block: 1px solid color-mix(in srgb, var(--cream) 14%, transparent);
+  max-width: 240px;
+}
+.site-footer-developer-eyebrow {
+  font-family: var(--font-meta);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--cream) 65%, transparent);
+}
+.site-footer-developer-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.site-footer-developer-row img {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  /* Already transparent + already gold — no filter needed. */
+}
+.site-footer-developer-name {
+  font-family: var(--font-display-latin);
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+  color: var(--bronze);
+  font-weight: 500;
+}
 
 /* ════════════════════════════════════════════════════════════════
    Reduced motion
