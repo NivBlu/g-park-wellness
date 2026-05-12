@@ -1,8 +1,8 @@
 {
-  "_comment": "Maps source PDFs to clean ASCII output names. Run scripts/build-floorplan-assets.mjs after editing.",
+  "_comment": "Maps source PDFs to clean ASCII output names used by the site. Run scripts/build-floorplan-assets.mjs after editing.",
   "sourceDirs": {
     "plates": "/Users/nivblushinsky/Downloads/תוכנית העמדה",
-    "units":  "/Users/nivblushinsky/Downloads/תוכניות מעודכנות מאי 26"
+    "units":  "/Users/nivblushinsky/Library/Mobile Documents/com~apple~CloudDocs/תוכניות דירה סופיות ללא קבלן"
   },
   "plates": {
     "קרקע.pdf":                                    "tower-ground",
@@ -14,15 +14,28 @@
     "קומה 7 פנטהאוזים בוטיק.pdf":                  "boutique-7-ph"
   },
   "units": {
-    "Ggp_Type_A_82sqm (2).pdf":     "A",
-    "Ggp_Type_B_123sqm (1).pdf":    "B-123",
-    "Ggp_Type_B_134sqm.pdf":        "B-134",
-    "Ggp_Type_C_134sqm.pdf":        "C",
-    "Ggp_Type_D_82sqm.pdf":         "D",
-    "Ggp_Type_D_82sqm_b (1).pdf":   "D-b",
-    "Ggp_Type_E_67sqm.pdf":         "E",
-    "Ggp_Type_F_113sqm.pdf":        "F",
-    "Ggp_Type_G_123sqm.pdf":        "G",
-    "Ggp_Type_H_82sqm (2).pdf":     "H"
+    "3 חדרים 82 מר בניין מרקמי צפוני ודרומי.pdf":                          "A",
+    "Ggp_Type_D_82sqm.pdf":                                                  "D",
+    "דירת 3 חדרים 82 מר בניין בוטיק דרום מערב.pdf":                        "H",
+    "דרית 3 חדרים 67 מר בניין גבוה קומות 2-7.pdf":                          "E",
+    "דירת 4 חדרים 113 מר בניין גבוה קומות 2-7.pdf":                         "F",
+    "דירת 5 חדרים בניין מרקמי בוטיק דרומי צפון מערב ודרום מערב.pdf":        "G",
+    "123 מר 5 חדרים בניין בוטיק צפוני  - צפון מערבי.pdf":                  "B-123",
+    "5 חדרים 134 מר בניין בוטיק צפוני צפון מזרח.pdf":                       "B-134",
+    "דירת 5 חדרים 134 מר בניין גבוה קומות 2-7.pdf":                         "C",
+    "Ggp_Type_J_132sqm_9-13.pdf":                                            "J-9-13",
+    "Ggp_Type_I_150sqm_9-13.pdf":                                            "I-9-13",
+    "132 מר נסיגה קומה 8.pdf":                                               "mini-ph-132",
+    "150 מר נסיגה קומה 8.pdf":                                               "mini-ph-150",
+    "Ggp_Type_O_160sqm.pdf":                                                 "ph14-160",
+    "Ggp_Type_Q_185sqm.pdf":                                                 "ph-mega",
+    "Ggp_Type_P_155sqm.pdf":                                                 "P",
+    "פנטהאוזים בניין בוטיק דרומי.pdf":                                       "bph-w",
+    "פנטהאוז בניין בוטיק 155 מר דירה אמצעית בניין צפוני.pdf":               "bph-n-m",
+    "פנטהאוז בניין בוטיק 155 מר צפון מזרח.pdf":                              "bph-n-ne",
+    "Ggp_Type_F_garden_113sqm.pdf":                                          "F-garden",
+    "Ggp_Type_M_garden_134sqm.pdf":                                          "M-garden",
+    "Ggp_Type_E_garden_71sqm.pdf":                                           "E-garden",
+    "Ggp_Type_N_garden_134sqm.pdf":                                          "N-garden"
   }
 }
