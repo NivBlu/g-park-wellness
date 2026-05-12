@@ -4,22 +4,22 @@ import './site.css'
 
 import Nav from './components/site/Nav.jsx'
 import Hero from './components/site/Hero.jsx'
-import Manifesto from './components/site/Manifesto.jsx'
-import Architecture from './components/site/Architecture.jsx'
+import Positioning from './components/site/Positioning.jsx'
 import Wellness from './components/site/Wellness.jsx'
-import Park from './components/site/Park.jsx'
-import Suites from './components/site/Suites.jsx'
-import Residences from './components/site/Residences.jsx'
-import Value from './components/site/Value.jsx'
-import Visit from './components/site/Visit.jsx'
+import ApartmentFinder from './components/site/ApartmentFinder.jsx'
+import Architecture from './components/site/Architecture.jsx'
+import Location from './components/site/Location.jsx'
+import Gallery from './components/site/Gallery.jsx'
+import Contact from './components/site/Contact.jsx'
+import StickyCTA from './components/site/StickyCTA.jsx'
 import Footer from './components/site/Footer.jsx'
 
 /**
  * G Park · Wellness Living — homepage shell.
  *
- * Loads Lenis for buttery smooth scroll, mounts the editorial sections in
- * narrative order, respects prefers-reduced-motion. The /catalog route is
- * mounted by main.jsx and bypasses this shell entirely.
+ * Loads Lenis for buttery smooth scroll, mounts the new editorial section
+ * order, respects prefers-reduced-motion. The /catalog route is mounted
+ * by main.jsx and bypasses this shell entirely.
  */
 export default function App() {
   useEffect(() => {
@@ -52,17 +52,17 @@ export default function App() {
 
       <main>
         <Hero />
-        <Manifesto />
-        <Architecture />
+        <Positioning />
         <Wellness />
-        <Park />
-        <Suites />
-        <Residences />
-        <Value />
-        <Visit />
+        <ApartmentFinder />
+        <Architecture />
+        <Location />
+        <Gallery />
+        <Contact />
       </main>
 
       <Footer />
+      <StickyCTA />
     </div>
   )
 }
