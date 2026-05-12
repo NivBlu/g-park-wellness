@@ -1,98 +1,103 @@
 import { motion } from 'framer-motion'
 
-const callouts = [
+const CARDS = [
   {
-    n: '01',
-    title: 'מגדל הפארק · 15 קומות',
-    body: 'מגדל יוקרה בן 15 קומות, נוף פנורמי מרהיב לכיוון הים, הירקון ומרחבי השרון — עיצוב אייקוני המגדיר מחדש את קו הרקיע.',
+    key: 'tower',
+    eyebrow: 'מגדל הפארק',
+    title: 'המגדל',
+    body:
+      'מגדל בן 15 קומות בתכנון משרד בר אוריין — חזית חיה עם מרפסות מעוקלות, ונוף פתוח לפארק האקולוגי ולקו הים מהקומות הגבוהות. דירות 3 עד 6 חדרים, פנטהאוז מערבי בקומה 14, ומגה־פנטהאוז יחיד בקומה 15 — דירה אחת בלבד, בגודל 185 מ״ר.',
+    image: '/images/render-tower-hero.jpg',
+    alt: 'הדמיית מגדל G Park בן 15 הקומות — חזית מעוקלת עם מרפסות, ברקע הפארק האקולוגי של רמת השרון',
   },
   {
-    n: '02',
-    title: 'מרקמי בוטיק · 7 קומות',
-    body: 'בנייני בוטיק אינטימיים בני 7 קומות, חיבור בלתי אמצעי לפארק ולמרחבי הטבע — תחושת קהילה ופרטיות מקסימלית.',
+    key: 'boutique',
+    eyebrow: 'הבניינים המרקמיים',
+    title: 'בנייני הבוטיק',
+    body:
+      'חמישה בנייני בוטיק — שניים בחזית המערבית ושלושה בחזית הצפונית — בני 7 קומות בלבד. קנה מידה אינטימי, חזיתות שטוחות וחיפוי אבן מקומית. בקומה העליונה של כל בניין יושב פנטהאוז של 155 מ״ר עם גג של 37 עד 80 מ״ר, לפי המיקום.',
+    image: '/images/render-boutique-west.png',
+    alt: 'הדמיית בניין בוטיק מערבי של G Park — קומות נמוכות, מרפסות פינתיות מעוקלות, אור זהוב של שעת ערב',
   },
   {
-    n: '03',
-    title: 'הרמוניה אדריכלית',
-    body: 'דיאלוג אדריכלי בין שתי הטיפולוגיות — מגדל לצד בוטיק — שמייצר שפה אחת חדשה: עירונית מצד אחד, אינטימית וירוקה מהצד השני.',
+    key: 'lobby',
+    eyebrow: 'הלובי',
+    title: 'הלובי',
+    body:
+      'לובי כפול־גובה במגדל, עם חזית זכוכית הנפתחת לחצר הפנימית הירוקה. חיפויי טרוורטין בהירים, מבטאי ברונזה ועץ אגוז, דלפק קבלה דיסקרטי וספות מעוגלות סביב פינת המתנה — כניסה ביתית במגע מלון בוטיק, לא חלל מסחרי.',
+    image: '/images/render-lobby-tower.png',
+    alt: 'הדמיית לובי המגדל של G Park — חלל כפול גובה, טרוורטין, חזית זכוכית לחצר וספות מעוגלות סביב דלפק הקבלה',
+  },
+  {
+    key: 'roofs',
+    eyebrow: 'הגגות והמרפסות',
+    title: 'מרפסות, גגות ופנטהאוזים',
+    body:
+      'מרפסות טיפוסיות של 12 מ״ר לכל דירה, גגות מורחבים של 40 ו־48 מ״ר בקומת הנסיגה (קומה 8 של המגדל), וגגות פנטהאוז מ־37 ועד 178 מ״ר. דירות הגן בקרקע נהנות מגינות פרטיות של 59 עד 128 מ״ר. כל קומה משתנה — לא רק "עוד דירה".',
+    image: '/images/render-aerial-2.png',
+    alt: 'תצלום אווירי של מתחם G Park — גגות הפנטהאוז, מרפסות הקומות העליונות והחצר הפנימית הירוקה',
   },
 ]
 
 /**
- * Architecture — boutique facade rendering paired with three numbered
- * callouts pulled from page 5 of the deck (Tower / Boutique / Harmony).
- * Bar Orian credit added below.
+ * Architecture — three building-typology cards driven by BUILDINGS data.
+ * No commercial / retail framing.
  */
 export default function Architecture() {
   return (
-    <section className="arch site-section--dark" id="architecture" aria-label="האדריכלות">
-      <div className="arch-grid">
-        <motion.div
-          className="arch-media"
-          initial={{ opacity: 0, scale: 1.04 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+    <section className="arch" id="architecture" aria-label="תמהיל הבניינים">
+      <div className="arch-shell">
+        <motion.span
+          className="eyebrow arch-eyebrow"
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <img
-            src="/images/render-boutique-retail.jpg"
-            alt="חזית מסחרית של מרקמי הבוטיק עם מתקני הוולנס בקומת הקרקע"
-            loading="lazy"
-            decoding="async"
-          />
-        </motion.div>
+          — האדריכלות
+        </motion.span>
+        <motion.h2
+          className="arch-title"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+        >
+          תמהיל בניינים שמייצר <em>חוויית מגורים שלמה.</em>
+        </motion.h2>
+        <motion.p
+          className="arch-intro"
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        >
+          מגדל בן 15 קומות, חמישה בנייני בוטיק של 7 קומות, לובי מלוני וגגות
+          מרפסות — ארבע טיפולוגיות שמדברות שפה אדריכלית אחת, בתכנון משרד
+          בר אוריין, על מגרש שמשקיף לפארק האקולוגי של רמת השרון.
+        </motion.p>
 
-        <div>
-          <motion.span
-            className="eyebrow arch-eyebrow"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
-          >
-            — האדריכלות
-          </motion.span>
-          <motion.h2
-            className="arch-title"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
-          >
-            חתימת ידו של <em>גידי בר אוריין.</em>
-          </motion.h2>
-
-          <motion.p
-            className="arch-byline"
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-          >
-            משרד בר אוריין אדריכלים — מהמובילים בישראל ואחראי על קו הרקיע
-            של תל אביב-יפו — אמון על התכנון האדריכלי של G&nbsp;Park, ומביא
-            לפרויקט שפה ייחודית המחברת בין העיר לטבע.
-          </motion.p>
-
-          <ul className="arch-callouts">
-            {callouts.map((c, idx) => (
-              <motion.li
-                key={c.n}
-                className="arch-callout"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.4 }}
-                transition={{ duration: 0.7, ease: 'easeOut', delay: 0.1 + idx * 0.12 }}
-              >
-                <span className="arch-callout-num">{c.n}</span>
-                <div className="arch-callout-body">
-                  <h4>{c.title}</h4>
-                  <p>{c.body}</p>
-                </div>
-              </motion.li>
-            ))}
-          </ul>
-        </div>
+        <ul className="arch-grid">
+          {CARDS.map((c, idx) => (
+            <motion.li
+              key={c.key}
+              className="arch-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: idx * 0.1 }}
+            >
+              <div className="arch-card-media">
+                <img src={c.image} alt={c.alt} loading="lazy" decoding="async" />
+              </div>
+              <div className="arch-card-body">
+                <span className="arch-card-eyebrow">{c.eyebrow}</span>
+                <h3 className="arch-card-title">{c.title}</h3>
+                <p className="arch-card-desc">{c.body}</p>
+              </div>
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
   )

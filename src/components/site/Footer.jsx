@@ -11,7 +11,7 @@ import Logo from './Logo.jsx'
  */
 export default function Footer() {
   return (
-    <footer className="site-footer" id="contact" aria-label="פרטי קשר וצוות הפרויקט">
+    <footer className="site-footer" id="site-footer" aria-label="פרטי קשר וצוות הפרויקט">
       <div className="site-footer-grid">
         <div className="site-footer-brand-col">
           <Logo height={44} variant="light" />
@@ -56,18 +56,19 @@ export default function Footer() {
         <div className="site-footer-col">
           <h5>הפרויקט</h5>
           <ul>
-            <li><a href="#architecture">האדריכלות</a></li>
-            <li><a href="#wellness">מתקני ולנס</a></li>
-            <li><a href="#suites">2 הסוויטות</a></li>
-            <li><a href="#value">ערך ההשקעה</a></li>
-            <li><a href="/catalog">קטלוג דירות</a></li>
+            <li><a href="#wellness">וולנס</a></li>
+            <li><a href="#apts">תמהיל דירות</a></li>
+            <li><a href="#architecture">אדריכלות</a></li>
+            <li><a href="#location">מיקום</a></li>
+            <li><a href="#gallery">גלריה</a></li>
+            <li><a href="/catalog">קטלוג מלא</a></li>
           </ul>
         </div>
       </div>
 
       <div className="site-footer-base">
         <span>© G&nbsp;Park · Wellness Living · By G‑Group · {new Date().getFullYear()}</span>
-        <span>אדריכלות: בר אוריין · כל ההדמיות והאיורים להמחשה בלבד · ט.ל.ח</span>
+        <span>אדריכלות: בר אוריין · כל ההדמיות והאיורים באתר הם להמחשה בלבד ואינם מחייבים. אין באמור באתר משום הצעה או התחייבות מצד היזם. ט.ל.ח</span>
       </div>
     </footer>
   )
